@@ -9,7 +9,7 @@ import EngageWithComOwners from '../components/EngageWithComOwners'
 import FeatCom from '../components/FeatCom'
 import WhyPigeonhireStands from '../components/WhyPigeonhireStands'
 import OurDiverseUser from '../components/OurDiverseUser'
-import Footer from '../components/Footer'
+import Footer from '../components/footer'
 
 const Home = () => {
   return (

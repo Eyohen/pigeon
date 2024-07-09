@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { TbCircleMinus, TbCirclePlus } from "react-icons/tb";
 import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Footer from "../components/footer";
 
 const Faq = () => {
   const [toggle, setToggle] = useState(true);

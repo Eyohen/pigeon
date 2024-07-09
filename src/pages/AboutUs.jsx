@@ -2,7 +2,7 @@ import React from "react";
 import frame3 from "../assets/Frame3.png";
 import values from "../assets/aboutpage/values.png"
 import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Footer from "../components/footer";
 
 const AboutUs = () => {
   return (
