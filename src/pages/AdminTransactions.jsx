@@ -4,7 +4,7 @@ import { CiSearch } from "react-icons/ci";
 import { CiBellOn } from "react-icons/ci";
 import { CiSliderHorizontal } from "react-icons/ci";
 import AdminSidebar from '../components/AdminSidebar';
-import AdminTransaction from '../components/Admintransaction';
+import AdminTransaction from '../components/AdminTransaction'
 
 
 
