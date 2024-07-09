@@ -4,7 +4,7 @@ import { CiSearch } from "react-icons/ci";
 import { CiBellOn } from "react-icons/ci";
 import { CiSliderHorizontal } from "react-icons/ci";
 import Sidebar from '../components/Sidebar';
-import InsideBrowseOwner from '../components/insideBrowseOwner';
+import InsideBrowseOwner from '../components/InnerBrowsePage'
 
 
 
