@@ -32,7 +32,7 @@ import FreeCommunityOwners from './pages/FreeCommunityOwners'
 import ForgotPassword from './pages/ForgotPassword'
 import CreateNewPassword from './pages/CreateNewPassword'
 import Test from './pages/Test'
-import VerifyEmail from './pages/verifyEmail'
+import VerifyEmail from './pages/VerifyEmail'
 
 
 const App = () => {
