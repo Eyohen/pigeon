@@ -2,7 +2,7 @@ import React from 'react'
 import { GoArrowLeft } from "react-icons/go";
 
 
-const Adminownerpage = () => {
+const Adminownpage = () => {
   return (
     <div className='flex-1 mt-12 ml-12'>
 
@@ -26,5 +26,5 @@ const Adminownerpage = () => {
   )
 }
 
-export default Adminownerpage
+export default Adminownpage
 
