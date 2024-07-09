@@ -193,14 +193,6 @@ const AdminTransaction = () => {
             status
             </th>
        
-       
-       
-            {/* <th scope="col" class="px-6 py-3 font-light text-[#F08E1F]">
-              edit
-            </th>
-            <th scope="col" class="px-6 py-3 font-light text-[#F08E1F]">
-              delete
-            </th> */}
           
           </tr>
         </thead>
