@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import { PiCheckCircleDuotone } from "react-icons/pi";
 import check from "../assets/orangecheck.png";
 import close from "../assets/landingpage/close.svg";
-import Footer from "../components/footer";
+import Footer from "../components/Footer";
 
 const Pricing = () => {
   const [show, setShow] = React.useState(false);

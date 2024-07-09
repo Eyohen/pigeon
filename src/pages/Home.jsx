@@ -7,10 +7,10 @@ import FAQ from '../components/FAQ'
 import StoriesConnect from '../components/StoriesConnect'
 import HowBusinessThrive from '../components/HowBusinessThrive'
 import EngageWithComOwners from '../components/EngageWithComOwners'
-import FeatCom from '../components/featCom'
+import FeatCom from '../components/FeatCom'
 import WhyPigeonhireStands from '../components/WhyPigeonhireStands'
 import OurDiverseUser from '../components/OurDiverseUser'
-import Footer from '../components/footer'
+import Footer from '../components/Footer'
 
 const Home = () => {
   return (

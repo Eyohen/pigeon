@@ -3,7 +3,7 @@ import frame1 from "../assets/Frame1.png";
 import frame2 from "../assets/Frame2.png";
 import frame3 from "../assets/Frame3.png";
 import Navbar from "../components/Navbar";
-import Footer from "../components/footer";
+import Footer from "../components/Footer";
 
 const Blog = () => {
   return (
