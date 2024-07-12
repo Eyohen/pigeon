@@ -59,7 +59,7 @@ const App = () => {
      <Route exact path="/communityowner" element={ <ProtectedRoute><CommunityOwner /></ProtectedRoute> }/>
      <Route exact path="/communitypage/:id" element={<CommunityPage />}/>
      <Route exact path="/collaborationtype" element={<CollaborationType />}/>
-     <Route exact path="/browserowner" element={<BrowserOwner />}/>
+     <Route exact path="/browserowner" element={<ProtectedRoute><BrowserOwner /></ProtectedRoute> }/>
      <Route exact path="/innerbrowsepage/:id" element={<BrowserPage />}/>
      <Route exact path="/subscriptionplans" element={<BrowserSubPlans />}/>
      <Route exact path="/purchasehistory" element={<PurchaseHistory />}/>
