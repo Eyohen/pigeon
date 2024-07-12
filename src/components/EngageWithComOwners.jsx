@@ -13,7 +13,7 @@ const EngageWithComOwners = () => {
 
     <div className='flex flex-col md:flex-row items-center justify-center gap-x-0 md:gap-x-9 md:space-y-0 space-y-4 mt-9'>
         <div>
-        <button onClick={()=> navigate('/freebrowsecommunity')} className='bg-[#F08E1F] text-white rounded-full px-6 py-4'>Discover Community Owners</button>
+        <button onClick={()=> navigate('/freecommunityowners')} className='bg-[#F08E1F] text-white rounded-full px-6 py-4'>Discover Community Owners</button>
         </div>
 
         <div>

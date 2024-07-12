@@ -1,174 +1,255 @@
-import React, { useState, useEffect } from 'react'
-import { LiaSlidersHSolid } from "react-icons/lia";
-import { CiSearch } from "react-icons/ci";
-import { CiBellOn } from "react-icons/ci";
-import { CiSliderHorizontal } from "react-icons/ci";
-import { IoChevronForward } from "react-icons/io5";
-import { IoChevronDown } from "react-icons/io5";
-import Sidebar from './Sidebar';
-import Navbar2 from './Navbar2';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { IoSearchOutline } from "react-icons/io5";
 import { URL } from "../url";
 import axios from "axios";
-import BrowseCard from './BrowseCard';
-
-
-
-
-const data = [ 
-{
-    id: 1,
-    name: "Community Type"
-},
-{
-    id: 2,
-    name: "Location"
-},
-{
-    id: 3,
-    name: "Community Size"
-},
-{
-    id: 4,
-    name: "Interests"
-},
-{
-    id: 5,
-    name: "Engagement"
-},
-{
-    id: 6,
-    name: "Community Goals"
-},
-{
-    id: 7,
-    name: "Platform"
-},
-
-]
-
+import { Link } from "react-router-dom";
+import CommunityOwnerCard from './CommunityOwnerCard';
+import Navbar2 from './Navbar2';
+import { IoFilter } from "react-icons/io5";
 
 const InsideBrowseOwner = () => {
-    const [isOpen, setIsOpen] = useState(false)
-    const [communities, setCommunities] = useState([])
+    const [isOpen, setIsOpen] = useState(false);
+    const [communities, setCommunities] = useState([]);
+    const [search, setSearch] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+    const [limit, setLimit] = useState(5); // You can adjust the limit as needed
+    const [locations, setLocations] = useState([]);
+    const [selectedLocation, setSelectedLocation] = useState('');
+    const [countryFilter, setCountryFilter] = useState('')
+    const [sizeFilter, setSizeFilter] = useState('')
+    const [interestFilter, setInterestFilter] = useState('')
+    const [engagementFilter, setEngagementFilter] = useState('')
+    const [goalFilter, setGoalFilter] = useState('')
+    const [platformFilter, setPlatformFilter] = useState('')
 
-
-    const fetchCommunities = async () => {
+    const fetchCommunities = async (searchTerm = '', page = 1, limit = 1, location = '') => {
         try {
-          const res = await axios.get(URL + "/api/visibility/");
-          setCommunities(res.data);
-          console.log(res.data)
+            const res = await axios.get(`${URL}/api/visible`, {
+                params: {
+                    search: searchTerm,
+                    page: page,
+                    limit: limit,
+                    location: location
+                }
+            });
+            setCommunities(res.data.communities);
+            // if(res.data.communities.location.length > 0) {
+            //     console.log("see info",res.data.communities);
+            //   }
+            console.log("to see communities come here", res.data)
+            console.log("see info",res.data.communities[0].location);
+            setTotalPages(res.data.totalPages);
         } catch (err) {
-          console.log(err);
+            console.log(err);
         }
-      };
-    
-      useEffect(() => {
-        fetchCommunities();
-      }, []);
+    };
 
-  return (
-    <div className='flex-1'>
-        
-        <Navbar2/>
+    const handleSearch = (e) => {
+        const searchTerm = e.target.value;
+        setSearch(searchTerm);
+        fetchCommunities(searchTerm, 1, limit, selectedLocation);
+    };
 
-<p className='ml-12 font-semibold text-4xl mt-9'>Browse Communities</p>
-
-<div className='flex items-center gap-2 px-12 mt-12'>
-  
-        <CiSliderHorizontal size={25} />
-        <p>Filter by</p>
-        <div className='relative'>
-        <button onClick={() => setIsOpen((prev) => !prev)} className='border border-[#F08E1F] py-1 px-3 flex items-center justify-center rounded-full hover:bg-[#F08E1F] hover:text-white '>Community Type</button>
-{isOpen && (<div  className='rounded border border-gray-300 bg-white py-4 px-4 absolute w-[400px]'>
-    <p className='font-semibold'>Community Type</p>
-    <div className='flex justify-between items-center mt-6'>
-    <p className=''>Social and Interest-Based Communities</p>
-    <IoChevronForward color='#F08E1F' size={20} />
-    </div>
-    <p className='text-gray-400'>Hobbyist Communities</p>
-    <p className='text-gray-400'>Fan Clubs</p>
-    <p className='text-gray-400'>Book Clubs and Literary Groups</p>
-    <p className='text-gray-400'>Food stores/communities</p>
-    <p className='text-gray-400'>Mobility</p>
-
-    <div className='flex justify-between items-center border-b-2 py-2'>
-    <p className=''>Gaming Communities</p>
-    <IoChevronDown color='#F08E1F' size={20} />
-    </div>
-    <div className='flex justify-between items-center border-b-2 py-2'>
-    <p className=''>Professional and Business-Oriented Communities</p>
-    <IoChevronDown color='#F08E1F' size={20} />
-    </div>
-    <div className='flex justify-between items-center border-b-2 py-2'>
-    <p className=''>Health and Wellness Communities</p>
-    <IoChevronDown color='#F08E1F' size={20} />
-    </div>
-    <div className='flex justify-between items-center border-b-2 py-2'>
-    <p className=''>Cultural and Identity-Based Communities</p>
-    <IoChevronDown color='#F08E1F' size={20} />
-    </div>
-    <div className='flex justify-between items-center border-b-2 py-2'>
-    <p className=''>Geographical and Local Communities</p>
-    <IoChevronDown color='#F08E1F' size={20} />
-    </div>
-    <div className='flex justify-between items-center border-b-2 py-2'>
-    <p className=''>Country-Specific Communities</p>
-    <IoChevronDown color='#F08E1F' size={20} />
-    </div>
-    <div className='flex justify-between items-center border-b-2 py-2'>
-    <p className=''>Online and Virtual Communities</p>
-    <IoChevronDown color='#F08E1F' size={20} />
-    </div>
-    <div className='flex justify-between items-center  py-2'>
-    <p className=''>Academic and Research Communities</p>
-    <IoChevronDown color='#F08E1F' size={20} />
-    </div>
-</div>)}
-
-</div>
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+        fetchCommunities(search, page, limit, selectedLocation);
+    };
 
 
-        <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" className='border border-[#F08E1F] py-1 px-3 flex items-center justify-center rounded-full hover:bg-[#F08E1F] hover:text-white'>Location</button>
-        <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" className='border border-[#F08E1F] py-1 px-3 flex items-center justify-center rounded-full hover:bg-[#F08E1F] hover:text-white'>Community Size</button>
-        <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" className='border border-[#F08E1F] py-1 px-3 flex items-center justify-center rounded-full hover:bg-[#F08E1F] hover:text-white'>Interests</button>
-        <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" className='border border-[#F08E1F] py-1 px-3 flex items-center justify-center rounded-full hover:bg-[#F08E1F] hover:text-white'>Engagements</button>
-        <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" className='border border-[#F08E1F] py-1 px-3 flex items-center justify-center rounded-full hover:bg-[#F08E1F] hover:text-white'>Community Goals</button>
-        <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" className='border border-[#F08E1F] py-1 px-3 flex items-center justify-center rounded-full hover:bg-[#F08E1F] hover:text-white'>Platforms Used</button>
+    const toggleDropdown = () => {
+        setIsOpen(!isOpen);
+    };
 
-       
-        </div>
-{/* <Link to={'/innerbrowsepage'}>
-<div className='shadow-xl rounded-xl mt-12 px-16 py-4 max-w-[1200px] ml-12'>
-    <div className='flex gap-x-5 items-center'>
-        <div className='bg-green-400 text-white rounded-full w-11 h-11 flex justify-center text-2xl items-center'>G</div>
-        <div>
-            <p>Community Type: Environmental Activism</p>
-            <div className='flex gap-x-9 items-center'>
-                <p className='font-semibold text-xl'>Green Earth Advocates</p>
-                <p className='bg-green-200 text-green-600 rounded-md font-semibold px-3'>Verified</p>
+    const handleLocationFilter = (location) => {
+        setSelectedLocation(location);
+        setIsOpen(false); // Close dropdown after selecting location
+        fetchCommunities(search, 1, limit, location, selectedLocation);
+    };
+
+    const handleCountryFilter = (e) => {
+        setCountryFilter(e.target.value);
+    }
+
+    const handleSizeFilter = (e) => {
+        setSizeFilter(e.target.value);
+    }
+
+    const handleInterestFilter = (e) => {
+        setInterestFilter(e.target.value);
+    }
+
+    const handleEngagementFilter = (e) => {
+        setEngagementFilter(e.target.value);
+    }
+
+    const handleGoalFilter = (e) => {
+        setGoalFilter(e.target.value);
+    }
+
+    const handlePlatformFilter = (e) => {
+        setPlatformFilter(e.target.value);
+    }
+
+      const filteredCommunities = communities.filter(c =>
+    Object.keys(c).some(key =>
+      c[key].toString().toLowerCase().includes(search.toLowerCase())
+    ) && (!countryFilter || c.location === countryFilter) && (!sizeFilter || c.size === sizeFilter)
+    && (!interestFilter || c.communityInterest === interestFilter) && (!engagementFilter || c.engagementLevel === engagementFilter)
+    && (!goalFilter || c.communityGoal === goalFilter) && (!platformFilter || c.communicationPlatform === platformFilter)
+  );
+
+
+  const uniqueCountries = [...new Set(communities.map(c => c.location))];
+
+  const uniqueSizes = [...new Set(communities.map(c => c.size))];
+
+  const uniqueInterests = [...new Set(communities.map(c => c.communityInterest))];
+
+  const uniqueEngagements = [...new Set(communities.map(c => c.engagementLevel))];
+
+  const uniqueGoals = [...new Set(communities.map(c => c.communityGoal))];
+
+  const uniquePlatforms = [...new Set(communities.map(c => c.communicationPlatform))];
+
+
+    useEffect(() => {
+        fetchCommunities(search, currentPage, limit);
+    }, [currentPage, limit, selectedLocation]);
+
+
+    useEffect(() => {
+        // Fetch locations from API
+        const fetchLocations = async () => {
+            try {
+                const res = await axios.get(`${URL}/api/locations`);
+                setLocations(res.data); // Assuming the response contains an array of locations
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        fetchLocations();
+    }, []);
+
+    const renderLocationsDropdown = () => {
+        return (
+            <div className="absolute mt-2 w-[300px] bg-black rounded border border-gray-300 shadow-lg z-100 py-24">
+                {locations.map((location) => (
+                    <button
+                        key={location.id}
+                        onClick={() => handleLocationFilter(location.name)}
+                        className="block w-full px-4 py-2 text-white hover:bg-gray-200"
+                    >
+                        {location.name}
+                    </button>
+                ))}
             </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.....</p>
+        );
+    };
 
+    const renderPagination = () => {
+        const pages = [];
+        for (let i = 1; i <= totalPages; i++) {
+            pages.push(
+                <button
+                    key={i}
+                    onClick={() => handlePageChange(i)}
+                    className={`px-3 py-1 border rounded ${i === currentPage ? 'bg-gray-300' : 'bg-white'}`}
+                >
+                    {i}
+                </button>
+            );
+        }
+        return pages;
+    };
+
+    return (
+        <div className='flex-1'>
+            <Navbar2 />
+            <div className='flex items-center justify-start gap-x-24'>
+                <p className='ml-12 font-semibold text-4xl mt-9'>Browse Communities</p>
+                <div className="relative mt-9">
+                    <div className="absolute inset-y-0 left-0 flex items-center px-2">
+                        <label className="px-2 py-1 text-xl font-mono cursor-pointer text-gray-400 text-left">
+                            <IoSearchOutline />
+                        </label>
+                    </div>
+                    <input
+                        type="text"
+                        placeholder="Search"
+                        value={search}
+                        onChange={handleSearch}
+                        className="px-11 py-2 w-[300px] border border-gray-400 bg-gray-200 rounded"
+                    />
+                </div>
+            </div>
+            {/* <div className='flex items-center gap-2 px-12 mt-12'>
+                <button className='border border-[#F08E1F] py-1 px-3 flex items-center justify-center rounded-full hover:bg-[#F08E1F] hover:text-white'>Location</button>
+
+            </div> */}
+
+
+<div className='flex items-center justify-evenly px-12 mt-12'>
+
+<IoFilter />Filter by
+
+<select value={countryFilter} onChange={handleCountryFilter} className='border border-[#F08E1F] py-1 px-3 max-w-[130px]  flex items-center justify-center rounded-full text-gray-900'>
+           <option value="" className='custom-option'>Location</option>
+           {uniqueCountries.map((country, index) => (
+            <option key={index} value={country}>{country}</option>
+           ))}
+         </select>
+
+
+         <select value={sizeFilter} onChange={handleSizeFilter} className='border border-[#F08E1F] py-1 px-3 flex items-center justify-center rounded-full text-gray-900'>
+           <option value="" className='custom-option'>Community Size</option>
+           {uniqueSizes.map((country, index) => (
+            <option key={index} value={country}>{country}</option>
+           ))}
+         </select>
+
+
+       <select value={interestFilter} onChange={handleInterestFilter} className='border border-[#F08E1F] py-1 px-3 max-w-[120px] flex items-center justify-center rounded-full text-gray-900'>
+           <option value="" className='custom-option'>Interests</option>
+           {uniqueInterests.map((country, index) => (
+            <option key={index} value={country}>{country}</option>
+           ))}
+         </select>
+
+         <select value={engagementFilter} onChange={handleEngagementFilter} className='border border-[#F08E1F] py-1 px-3 max-w-[155px]  flex items-center justify-center rounded-full text-gray-900'>
+           <option value="" className='custom-option'>Engagements</option>
+           {uniqueEngagements.map((country, index) => (
+            <option key={index} value={country}>{country}</option>
+           ))}
+         </select>
+
+
+           <select value={goalFilter} onChange={handleGoalFilter} className='border border-[#F08E1F] py-1 px-3 flex items-center justify-center rounded-full text-gray-900'>
+           <option value="" className='custom-option'>Community Goals</option>
+           {uniqueGoals.map((country, index) => (
+            <option key={index} value={country}>{country}</option>
+           ))}
+         </select>
+
+         <select value={platformFilter} onChange={handlePlatformFilter} className='border border-[#F08E1F] py-1 px-3 max-w-[120px] flex items-center justify-center rounded-full text-gray-900'>
+           <option value="" className='custom-option'>Platforms Used</option>
+           {uniquePlatforms.map((country, index) => (
+            <option key={index} value={country}>{country}</option>
+           ))}
+         </select>
+         </div>
+
+
+            {filteredCommunities.map((community) => (
+                <Link key={community.id} to={`/communitypage/${community.id}`}>
+                    <CommunityOwnerCard community={community} />
+                </Link>
+            ))}
+            <div className="flex justify-center items-center gap-x-4 mt-4">
+                {renderPagination()}
+            </div>
         </div>
-        </div>
-</div> 
-</Link>
- */}
+    );
+};
 
-
-
-
-{communities.map((community) => (
-        <Link to={`/innerbrowsepage/${community.id}`}>
-    <BrowseCard key={community.id} community={community} />
-    </Link>
-    ))}
-
-
-
-    </div>
-  )
-}
-
-export default InsideBrowseOwner
+export default InsideBrowseOwner;

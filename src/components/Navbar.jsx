@@ -34,7 +34,7 @@ const Navbar = () => {
           <Link to={"/aboutus"}><p className="text-[#201327] text-base font-medium hover:text-[#F08E1F] hidden md:block">
             About Us
           </p> </Link>
-          <p onClick={user ? (() => navigate('/browseowner')) : (() => navigate('/login'))} className="text-[#201327] text-base font-medium hover:text-[#F08E1F] hidden md:block">
+          <p onClick={user ? (() => navigate('/browserowner')) : (() => navigate('/login'))} className="text-[#201327] text-base font-medium hover:text-[#F08E1F] hidden md:block cursor-pointer">
             Communities
           </p>
           <Link to={"/pricing"}>
@@ -57,12 +57,7 @@ const Navbar = () => {
 
 
          <div className="relative">
-         <p onClick={handleOpen} className="text-white px-6 py-2 rounded-full text-lg font-nunito font-normal hidden md:block bg-[#F08E1F]">Sign in</p>
-
-         {/* <div className="border border-[#F08E1F] bg-white px-12 py-6 z-50 absolute rounded-lg mt-4 left-1/2 transform -translate-x-1/2">
-         <p className="text-[#F08E1F] min-w-[95px]">Create New</p>
-        {user ? (<p onClick={logout} className="text-[#F08E1F] cursor-pointer">Logout</p>) : (<p onClick={()=> navigate('/login')} className="text-[#F08E1F] cursor-pointer">Login</p>)} 
-         </div> */}
+         <p onClick={handleOpen} className="text-white px-6 py-2 rounded-full text-lg font-nunito font-normal hidden md:block bg-[#F08E1F] cursor-pointer">{user ? user?.fname : "Sign in"}</p>
 
          {open && <div className="border border-[#F08E1F] bg-white px-12 py-6 z-50 absolute rounded-lg mt-4 left-1/2 transform -translate-x-1/2">
          <p className="text-[#F08E1F] min-w-[95px]">Create New</p>

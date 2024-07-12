@@ -8,8 +8,7 @@ import CommunityOwner from './pages/CommunityOwner'
 import CommunityPage from './pages/CommunityPage'
 import CollaborationType from './pages/CollaborationType'
 import BrowserOwner from './pages/BrowserOwner'
-// import InsideBrowseOwner from './components/insideBrowseOwner'
-// import InnerBrowsePage from './components/InnerBrowsePage'
+import InnerBrowsePage from './components/InnerBrowsePage'
 import BrowserPage from './pages/BrowserPage'
 import BrowserSubPlans from './pages/BrowserSubPlans'
 import PurchaseHistory from './pages/PurchaseHistory'
@@ -33,11 +32,13 @@ import ForgotPassword from './pages/ForgotPassword'
 import CreateNewPassword from './pages/CreateNewPassword'
 import Test from './pages/Test'
 import VerifyEmail from './pages/VerifyEmail'
+import ProtectedRoute from './context/ProtectedRoute'
+import InsideBrowseOwner from './components/InsideBrowseOwner'
 
 
 const App = () => {
   return (
-    <UserContextProvider>
+    // <UserContextProvider>
       <Routes>
      <Route exact path="/" element={<Home/>}/>
      <Route exact path="/login" element={<Login/>}/>
@@ -55,10 +56,10 @@ const App = () => {
      <Route exact path="/verify" element={<VerifyEmail/>}/>
 
   
-     <Route exact path="/communityowner" element={<CommunityOwner />}/>
+     <Route exact path="/communityowner" element={ <ProtectedRoute><CommunityOwner /></ProtectedRoute> }/>
      <Route exact path="/communitypage/:id" element={<CommunityPage />}/>
      <Route exact path="/collaborationtype" element={<CollaborationType />}/>
-     <Route exact path="/browseowner" element={<BrowserOwner />}/>
+     <Route exact path="/browserowner" element={<BrowserOwner />}/>
      <Route exact path="/innerbrowsepage/:id" element={<BrowserPage />}/>
      <Route exact path="/subscriptionplans" element={<BrowserSubPlans />}/>
      <Route exact path="/purchasehistory" element={<PurchaseHistory />}/>
@@ -67,6 +68,8 @@ const App = () => {
      <Route exact path="/settings" element={<Settings />}/>
      <Route exact path="/switchpremium" element={<SwitchPremium />}/>
      <Route exact path="/test" element={<Test />}/>
+     <Route exact path="/insidebrowseowner" element={<InsideBrowseOwner />}/>
+     <Route exact path="/innerbrowsepage" element={<InnerBrowsePage />}/>
 
 
 
@@ -75,7 +78,7 @@ const App = () => {
      <Route exact path="/adminownerpage" element={<AdminOwnerPage />}/>
 
       </Routes>
-      </UserContextProvider>
+      // </UserContextProvider>
 
   )
 }

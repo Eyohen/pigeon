@@ -99,11 +99,6 @@ const InsideOwner = () => {
     && (!goalFilter || c.communityGoal === goalFilter) && (!platformFilter || c.communicationPlatform === platformFilter)
   );
 
-//   const filteredSize = communities.filter(c =>
-//     Object.keys(c).some(key =>
-//       c[key].toString().toLowerCase().includes(search.toLowerCase())
-//     ) && (!sizeFilter || c.size === sizeFilter)
-//   );
 
   const uniqueCountries = [...new Set(communities.map(c => c.location))];
 

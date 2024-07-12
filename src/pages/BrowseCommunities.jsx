@@ -7,7 +7,39 @@ import Sidebar from '../components/Sidebar';
 import InsideOwner from '../components/InsideOwner';
 
 
-const CommunityOwner = () => {
+const data = [ 
+{
+    id: 1,
+    name: "Community Type"
+},
+{
+    id: 2,
+    name: "Location"
+},
+{
+    id: 3,
+    name: "Community Size"
+},
+{
+    id: 4,
+    name: "Interests"
+},
+{
+    id: 5,
+    name: "Engagement"
+},
+{
+    id: 6,
+    name: "Community Goals"
+},
+{
+    id: 7,
+    name: "Platform"
+},
+
+]
+
+const BrowseCommunities = () => {
   return (
     <div className='flex justify-between'>
 
@@ -19,4 +51,4 @@ const CommunityOwner = () => {
   )
 }
 
-export default CommunityOwner
+export default BrowseCommunities

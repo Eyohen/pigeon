@@ -55,9 +55,11 @@ const Navbar2 = () => {
 
 
   return (
-    <div>
+    <div className='flex justify-between gap-x-9 items-center px-12 '>
+          <Link to={'/'}> <p className="text-xl">Home</p></Link>
         <div className='flex justify-end gap-x-9 items-center px-12 mt-9'>
         <p className='font-semibold text-xl'></p>
+   
        
          {/* <div className='flex px-3 items-center bg-gray-200 border border-gray-400 rounded-md'>
          <CiSearch color='gray' size={40} className=' text-white px-2 rounded-md font-semibold '/>

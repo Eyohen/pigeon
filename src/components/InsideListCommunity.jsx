@@ -530,7 +530,7 @@ useEffect(() => {
 
 
           {/* collaboration types */}
-   <div className='border-2 rounded-xl mt-12 py-9 px-6 space-y-3 mb-9'>
+   {/* <div className='border-2 rounded-xl mt-12 py-9 px-6 space-y-3 mb-9'>
         <p className='font-semibold'>Collaboration Types</p>
 
         <p className='text-sm'>Title <span className='text-red-500 text-xl'>*</span></p>
@@ -566,16 +566,13 @@ useEffect(() => {
               <div key={c.id}>{c.collaborationType}</div>
             ))}
           </div>
-{/*      
-          <div className='items-center justify-center flex'>
-          <button className='border border-[#F08E1F] rounded-full px-16 py-2'>Create Collaboration Type</button>
-          </div> */}
+
 
 <div className='items-center justify-center flex'>
           <button onClick={createCollaboration} className='border border-[#F08E1F] rounded-full px-16 py-2'>Add Collaboration Type</button>
 
           </div>
-          </div>
+          </div> */}
 
 
 
