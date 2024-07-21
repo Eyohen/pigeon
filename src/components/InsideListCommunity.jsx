@@ -185,7 +185,7 @@ useEffect(() => {
 
 
   const handleCreate = async ()=>{
-    const [platform, category] = selectedCommPlatfrom.split('|');
+    const [platform, category] = selectedCommPlatform.split('|');
     const [interest, interestcat] = selectedInterest.split('|');
     const [type, typecat] = selectedCommType.split('|');
 
