@@ -4,10 +4,11 @@ import { IoChevronForward } from "react-icons/io5";
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { URL } from "../url";
 import axios from "axios";
-
+import { useAuth } from '../context/AuthContext';
 
 
 const InnerComunityPage = () => {
+  const { user, logout } = useAuth();
   const communityId = useParams().id
   const [community, setCommunity] = useState([])
   const [firstName, setFirstName] = useState("")
@@ -31,23 +32,7 @@ const InnerComunityPage = () => {
 
 
 
-    const userId = community.user  
-
-    const fetchUser = async () => {
-      try {
-        const res = await axios.get(URL+"/api/users/"+userId);
    
-        // console.log("this user henry",res.data)
-        setFirstName(res.data.firstName);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-  
-    useEffect(() => {
-      fetchUser();
-    }, [userId]);
-  
   return (
     <div className='flex-1'>
         <Navbar2 />

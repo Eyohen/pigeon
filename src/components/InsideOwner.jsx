@@ -104,13 +104,13 @@ const InsideOwner = () => {
 
   const uniqueSizes = [...new Set(communities.map(c => c.size))];
 
-  const uniqueInterests = [...new Set(communities.map(c => c.communityInterest))];
+  const uniqueInterests = [...new Set(communities.map(c => c.interestCategory))];
 
   const uniqueEngagements = [...new Set(communities.map(c => c.engagementLevel))];
 
   const uniqueGoals = [...new Set(communities.map(c => c.communityGoal))];
 
-  const uniquePlatforms = [...new Set(communities.map(c => c.communicationPlatform))];
+  const uniquePlatforms = [...new Set(communities.map(c => c.communicationCategory))];
 
 
     useEffect(() => {

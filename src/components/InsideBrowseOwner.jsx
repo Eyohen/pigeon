@@ -83,9 +83,9 @@ const InsideBrowseOwner = () => {
         setEngagementFilter(e.target.value);
     }
 
-    const handleGoalFilter = (e) => {
-        setGoalFilter(e.target.value);
-    }
+    // const handleGoalFilter = (e) => {
+    //     setGoalFilter(e.target.value);
+    // }
 
     const handlePlatformFilter = (e) => {
         setPlatformFilter(e.target.value);
@@ -96,7 +96,7 @@ const InsideBrowseOwner = () => {
       c[key].toString().toLowerCase().includes(search.toLowerCase())
     ) && (!countryFilter || c.location === countryFilter) && (!sizeFilter || c.size === sizeFilter)
     && (!interestFilter || c.communityInterest === interestFilter) && (!engagementFilter || c.engagementLevel === engagementFilter)
-    && (!goalFilter || c.communityGoal === goalFilter) && (!platformFilter || c.communicationPlatform === platformFilter)
+    && (!platformFilter || c.communicationPlatform === platformFilter)
   );
 
 
@@ -104,13 +104,13 @@ const InsideBrowseOwner = () => {
 
   const uniqueSizes = [...new Set(communities.map(c => c.size))];
 
-  const uniqueInterests = [...new Set(communities.map(c => c.communityInterest))];
+  const uniqueInterests = [...new Set(communities.map(c => c.interestCategory))];
 
   const uniqueEngagements = [...new Set(communities.map(c => c.engagementLevel))];
 
-  const uniqueGoals = [...new Set(communities.map(c => c.communityGoal))];
+//   const uniqueGoals = [...new Set(communities.map(c => c.communityGoal))];
 
-  const uniquePlatforms = [...new Set(communities.map(c => c.communicationPlatform))];
+  const uniquePlatforms = [...new Set(communities.map(c => c.communicationCategory))];
 
 
     useEffect(() => {
@@ -224,12 +224,12 @@ const InsideBrowseOwner = () => {
          </select>
 
 
-           <select value={goalFilter} onChange={handleGoalFilter} className='border border-[#F08E1F] py-1 px-3 flex items-center justify-center rounded-full text-gray-900'>
+           {/* <select value={goalFilter} onChange={handleGoalFilter} className='border border-[#F08E1F] py-1 px-3 flex items-center justify-center rounded-full text-gray-900'>
            <option value="" className='custom-option'>Community Goals</option>
            {uniqueGoals.map((country, index) => (
             <option key={index} value={country}>{country}</option>
            ))}
-         </select>
+         </select> */}
 
          <select value={platformFilter} onChange={handlePlatformFilter} className='border border-[#F08E1F] py-1 px-3 max-w-[120px] flex items-center justify-center rounded-full text-gray-900'>
            <option value="" className='custom-option'>Platforms Used</option>
@@ -241,7 +241,7 @@ const InsideBrowseOwner = () => {
 
 
             {filteredCommunities.map((community) => (
-                <Link key={community.id} to={`/communitypage/${community.id}`}>
+                <Link key={community.id} to={`/innerbrowsepage/${community.id}`}>
                     <CommunityOwnerCard community={community} />
                 </Link>
             ))}

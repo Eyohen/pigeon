@@ -94,7 +94,7 @@ const FreeBrowseCommunities = () => {
       c[key].toString().toLowerCase().includes(search.toLowerCase())
     ) && (!countryFilter || c.location === countryFilter) && (!sizeFilter || c.size === sizeFilter)
     && (!interestFilter || c.communityInterest === interestFilter) && (!engagementFilter || c.engagementLevel === engagementFilter)
-    && (!goalFilter || c.communityGoal === goalFilter) && (!platformFilter || c.communicationPlatform === platformFilter)
+    && (!platformFilter || c.communicationPlatform === platformFilter)
   );
 
 
@@ -106,7 +106,7 @@ const FreeBrowseCommunities = () => {
 
   const uniqueEngagements = [...new Set(communities.map(c => c.engagementLevel))];
 
-  const uniqueGoals = [...new Set(communities.map(c => c.communityGoal))];
+//   const uniqueGoals = [...new Set(communities.map(c => c.communityGoal))];
 
   const uniquePlatforms = [...new Set(communities.map(c => c.communicationPlatform))];
 
@@ -208,12 +208,12 @@ const renderPagination = () => {
          </select>
 
 
-           <select value={goalFilter} onChange={handleGoalFilter} className='border border-[#F08E1F] py-1 px-3 flex items-center justify-center rounded-full text-gray-900'>
+           {/* <select value={goalFilter} onChange={handleGoalFilter} className='border border-[#F08E1F] py-1 px-3 flex items-center justify-center rounded-full text-gray-900'>
            <option value="" className='custom-option'>Community Goals</option>
            {uniqueGoals.map((country, index) => (
             <option key={index} value={country}>{country}</option>
            ))}
-         </select>
+         </select> */}
 
          <select value={platformFilter} onChange={handlePlatformFilter} className='border border-[#F08E1F] py-1 px-3 max-w-[120px] flex items-center justify-center rounded-full text-gray-900'>
            <option value="" className='custom-option'>Platforms Used</option>
