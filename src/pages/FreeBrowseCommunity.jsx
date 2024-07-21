@@ -229,7 +229,7 @@ const renderPagination = () => {
         </div>
 
     {filteredCommunities.map((community) => (
-        <Link to={`/communitypage/${community.id}`}>
+        <Link to={`/innerbrowsepage/${community.id}`}>
     <CommunityOwnerCard key={community.id} community={community} />
     </Link>
     ))}
