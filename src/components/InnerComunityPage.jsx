@@ -14,9 +14,9 @@ const InnerComunityPage = () => {
   const [firstName, setFirstName] = useState("")
     const navigate = useNavigate()
 
-    const fetchCommunity = async()=>{
+    const fetchCommunity = async () => {
       try{
-        const res= await axios.get(URL+"/api/communities/"+communityId)
+        const res = await axios.get(URL+"/api/communities/"+communityId)
         // console.log("this is community henry",res.data)
         setCommunity(res.data)
       }
@@ -61,7 +61,7 @@ Endorsed by leading conservation organizations, our company is recognized for ou
          
            
             <div className='items-center justify-center flex'>
-            <Link to={'/collaborationtype'}> <button className='bg-[#F08E1F] py-2 px-6 text-white rounded-full mt-4'>Launch Collaboration</button></Link>
+            <Link to={`/collaborationtype/${community.id}`}> <button className='bg-[#F08E1F] py-2 px-6 text-white rounded-full mt-4'>Launch Collaboration</button></Link>
             </div>
             <p className='text-[#F08E1F]  text-lg ml-12  mt-4'>Launch collaboration to connect with the community owner</p>
         </div>

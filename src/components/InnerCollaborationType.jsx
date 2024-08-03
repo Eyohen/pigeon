@@ -1,14 +1,18 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Navbar2 from './Navbar2'
 import { IoIosSquareOutline } from "react-icons/io";
 import { IoChevronForward } from "react-icons/io5";
 import { IoMdSquareOutline,IoMdSquare  } from "react-icons/io";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import PaymentModal from './PaymentModal';
+import { URL } from "../url";
+import axios from "axios";
 
 
 const InnerCollaborationType = () => {
     // const [isChecked, setIsChecked] = useState(false);
+    const communityId = useParams().id
+    const [community, setCommunity] = useState('')
     const navigate = useNavigate()
     const [checkboxes, setCheckboxes] = useState({
         checkbox1: false,
@@ -29,6 +33,22 @@ const handleToggle = (checkboxId) => {
     }));
 };
 
+
+const fetchCommunity = async () => {
+    try{
+      const res = await axios.get(URL+"/api/communities/"+communityId)
+      console.log("this is community owner henry",res.data)
+      setCommunity(res.data)
+    }
+    catch(err){
+      console.log(err)
+    }
+  }
+
+  useEffect(()=>{
+    fetchCommunity()
+
+  },[communityId])
   return (
     <div className='flex-1'>
         <Navbar2 />
@@ -36,7 +56,7 @@ const handleToggle = (checkboxId) => {
         <div className='flex gap-x-4 ml-12 mt-9 items-center'>
         <p className='text-gray-400 cursor-pointer' onClick={() => navigate(-2)}>Community Owners</p>
         <IoChevronForward />
-        <p className='font-semibold cursor-pointer' onClick={() => navigate(-1)}>Green Earth Advocates</p>
+        <p className='font-semibold cursor-pointer' onClick={() => navigate(-1)}>{community.name}</p>
         <IoChevronForward />
         <p className='font-semibold cursor-pointer' >Collaboration Type</p>
         </div>

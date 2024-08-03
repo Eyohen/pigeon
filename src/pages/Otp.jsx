@@ -12,14 +12,15 @@ import  'react-phone-number-input/style.css'
 import { RiEyeLine, RiEyeOffLine } from "react-icons/ri";
 import { useAuth } from '../context/AuthContext';
 import forgotimage from '../assets/forgotpassword.png'
-import { forgotPassword } from '../api';
+import { verifyOTP } from '../api';
 
 
-const ForgotPassword = () => {
+
+const OTP = () => {
 
   const { login} = useAuth();
 
-  const [email, setEmail] = useState('')
+  const [otp, setOTP] = useState('')
   const [message, setMessage] = useState('')
 
   const [error,setError] = useState(false)
@@ -39,15 +40,29 @@ const ForgotPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true)
+    const resetToken = localStorage.getItem('resetToken');
+    console.log('Submitting OTP:', otp);
+    console.log('Reset Token:', resetToken);
+    if(!resetToken){
+      setMessage('Reset token not found. Please start the process again.');
+      return;
+    }
+
     try{
-      const response = await forgotPassword(email);
-        setMessage(response.msg);
-        localStorage.setItem('resetToken', response.resetToken);
-        navigate("/otp")
+      // const res = await axios.post(URL+"/api/auth/verify-otp", {otp, resetToken},
+      //   {headers:{'x-reset-token':resetToken}}
+      // )
+      const response = await verifyOTP(otp, resetToken);
+      console.log('Response:', response);
+      setMessage(response.msg);
+        // setOTP(res.data)
+       
+        navigate("/reset-password")
     }
     catch(error) {
-      setMessage(error.response?.data?.msg || 'An error occurred');
       console.log(error)
+      setMessage(error.res?.data?.msg || 'An error occurred');
+  
     } finally {
       setIsLoading(false)
     }
@@ -73,18 +88,18 @@ const ForgotPassword = () => {
 
         <p className='text-center font-semibold text-3xl pt-9'>Forgot Password</p>
 
-        <p className='text-center font-semibold text-xl pt-3'>Kindly provide the email address linked to your account.</p>
+        <p className='text-center font-semibold text-xl pt-3'>Kindly provide the otp sent to your email.</p>
  
       
-        <p className='pt-6'>Email</p>
-        <input onChange={(e) => setEmail(e.target.value)} className='border border-[#D7D7D7] w-full md:w-[550px] py-2 px-3 rounded-lg hover:border-[#F08E1F]' />
+        <p className='pt-6'>OTP</p>
+        <input onChange={(e) => setOTP(e.target.value)} className='border border-[#D7D7D7] w-full md:w-[550px] py-2 px-3 rounded-lg hover:border-[#F08E1F]' />
        
 
 
 
         <div>
         {/* <p className='text-gray-600 text-sm text-center mt-4'>By clicking sign up, you agree to our <span className='text-[#F08E1F]'>terms and data policy</span></p> */}
-        <button onClick={handleSubmit}  className='bg-[#F7F7F7] text-[#98999A] w-full md:w-[550px] py-2 rounded-2xl mt-6 hover:bg-[#F08E1F] hover:text-white'>{isLoading ? "Loading..." : "Continue"}</button>
+        <button onClick={handleSubmit}  className='bg-[#F7F7F7] text-[#98999A] w-full md:w-[550px] py-2 rounded-2xl mt-6 hover:bg-[#F08E1F] hover:text-white'>{isLoading ? "Loading..." : "Verify OTP"}</button>
         {message && <h3 className='text-red-500 text-lg text-center'>{message}</h3>}
         </div>
 
@@ -99,4 +114,4 @@ const ForgotPassword = () => {
   )
 }
 
-export default ForgotPassword
+export default OTP

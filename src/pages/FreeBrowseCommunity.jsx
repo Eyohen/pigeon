@@ -25,8 +25,12 @@ const FreeBrowseCommunities = () => {
     const [sizeFilter, setSizeFilter] = useState('')
     const [interestFilter, setInterestFilter] = useState('')
     const [engagementFilter, setEngagementFilter] = useState('')
-    const [goalFilter, setGoalFilter] = useState('')
-    const [platformFilter, setPlatformFilter] = useState('')
+    const [goalFilter, setGoalFilter] = useState('');
+    const [platformFilter, setPlatformFilter] = useState('');
+    const [priceTagFilter, setPriceTagFilter] = useState('')
+    const [commTypeFilter, setCommTypeFilter] = useState('')
+    const [connectionFilter, setConnectionFilter] = useState('')
+    // const [commTypeCategory, setCommTypeCategory] = useState('');
 
 
 
@@ -89,16 +93,33 @@ const FreeBrowseCommunities = () => {
         setPlatformFilter(e.target.value);
     }
 
+    const handlePriceFilter = (e) => {
+      setPriceTagFilter(e.target.value);
+  }
+
+  const handleCommunityType = (e) => {
+      setCommTypeFilter(e.target.value);
+  }
+
+  const handleConnection = (e) => {
+      setConnectionFilter(e.target.value);
+  }
+
+
       const filteredCommunities = communities.filter(c =>
     Object.keys(c).some(key =>
       c[key].toString().toLowerCase().includes(search.toLowerCase())
     ) && (!countryFilter || c.location === countryFilter) && (!sizeFilter || c.size === sizeFilter)
     && (!interestFilter || c.communityInterest === interestFilter) && (!engagementFilter || c.engagementLevel === engagementFilter)
-    && (!platformFilter || c.communicationPlatform === platformFilter)
+    && (!platformFilter || c.communicationPlatform === platformFilter) && (!priceTagFilter || c.accessType === priceTagFilter)  && (!goalFilter || c.communityGoal === goalFilter)
+    && (!commTypeFilter || c.communityType === commTypeFilter) && (!connectionFilter || c.connCategory === connectionFilter)
   );
 
+  const uniqueCommunityTypes = [...new Set(communities.map(c => c.commTypeCategory))];
 
   const uniqueCountries = [...new Set(communities.map(c => c.location))];
+
+  const uniquePriceTag = [...new Set(communities.map(c => c.accessType))];
 
   const uniqueSizes = [...new Set(communities.map(c => c.size))];
 
@@ -106,9 +127,11 @@ const FreeBrowseCommunities = () => {
 
   const uniqueEngagements = [...new Set(communities.map(c => c.engagementLevel))];
 
-//   const uniqueGoals = [...new Set(communities.map(c => c.communityGoal))];
+  const uniqueGoals = [...new Set(communities.map(c => c.communityGoal))];
 
   const uniquePlatforms = [...new Set(communities.map(c => c.communicationPlatform))];
+
+  const uniqueConnections = [...new Set(communities.map(c => c.connCategory))];
 
     
   useEffect(() => {
@@ -172,20 +195,26 @@ const renderPagination = () => {
 <p className='ml-12 font-semibold text-4xl mt-9'>Browse Communities</p>
 
 <div className='hidden md:block'>
-<div className='flex items-center gap-2 px-12 mt-12'>
+<div className='flex items-center justify-evenly gap-2 px-9 mt-12'>
   
        
 <IoFilter />Filter by
 
-<select value={countryFilter} onChange={handleCountryFilter} className='border border-[#F08E1F] py-1 px-3 max-w-[130px]  flex items-center justify-center rounded-full text-gray-900'>
-           <option value="" className='custom-option'>Location</option>
-           {uniqueCountries.map((country, index) => (
+<select value={commTypeFilter} onChange={handleCommunityType} className='border border-[#F08E1F] py-1 px-2 max-w-[170px] flex items-center justify-center rounded-full text-gray-900'>
+           <option value="" className='custom-option'>Community Type</option>
+           {uniqueCommunityTypes.map((country, index) => (
             <option key={index} value={country}>{country}</option>
            ))}
          </select>
 
+<select value={priceTagFilter} onChange={handlePriceFilter} className='border border-[#F08E1F] py-1 px-2 max-w-[120px] flex items-center justify-center rounded-full text-gray-900'>
+           <option value="" className='custom-option'>Price Tag</option>
+           {uniquePriceTag.map((country, index) => (
+            <option key={index} value={country}>{country}</option>
+           ))}
+         </select>
 
-         <select value={sizeFilter} onChange={handleSizeFilter} className='border border-[#F08E1F] py-1 px-3 flex items-center justify-center rounded-full text-gray-900'>
+         <select value={sizeFilter} onChange={handleSizeFilter} className='border border-[#F08E1F] py-1 px-2 flex items-center justify-center rounded-full text-gray-900'>
            <option value="" className='custom-option'>Community Size</option>
            {uniqueSizes.map((country, index) => (
             <option key={index} value={country}>{country}</option>
@@ -193,36 +222,40 @@ const renderPagination = () => {
          </select>
 
 
-       <select value={interestFilter} onChange={handleInterestFilter} className='border border-[#F08E1F] py-1 px-3 max-w-[120px] flex items-center justify-center rounded-full text-gray-900'>
+       <select value={interestFilter} onChange={handleInterestFilter} className='border border-[#F08E1F] py-1 px-2 max-w-[120px] flex items-center justify-center rounded-full text-gray-900'>
            <option value="" className='custom-option'>Interests</option>
            {uniqueInterests.map((country, index) => (
             <option key={index} value={country}>{country}</option>
            ))}
          </select>
 
-         <select value={engagementFilter} onChange={handleEngagementFilter} className='border border-[#F08E1F] py-1 px-3 max-w-[155px]  flex items-center justify-center rounded-full text-gray-900'>
+         <select value={engagementFilter} onChange={handleEngagementFilter} className='border border-[#F08E1F] py-1 px-2 max-w-[155px]  flex items-center justify-center rounded-full text-gray-900'>
            <option value="" className='custom-option'>Engagements</option>
            {uniqueEngagements.map((country, index) => (
             <option key={index} value={country}>{country}</option>
            ))}
          </select>
 
-
-           {/* <select value={goalFilter} onChange={handleGoalFilter} className='border border-[#F08E1F] py-1 px-3 flex items-center justify-center rounded-full text-gray-900'>
+           <select value={goalFilter} onChange={handleGoalFilter} className='border border-[#F08E1F] py-1 px-2 flex items-center justify-center rounded-full text-gray-900'>
            <option value="" className='custom-option'>Community Goals</option>
            {uniqueGoals.map((country, index) => (
             <option key={index} value={country}>{country}</option>
            ))}
-         </select> */}
+         </select>
 
-         <select value={platformFilter} onChange={handlePlatformFilter} className='border border-[#F08E1F] py-1 px-3 max-w-[120px] flex items-center justify-center rounded-full text-gray-900'>
+         <select value={platformFilter} onChange={handlePlatformFilter} className='border border-[#F08E1F] py-1 px-2 max-w-[120px] flex items-center justify-center rounded-full text-gray-900'>
            <option value="" className='custom-option'>Platforms Used</option>
            {uniquePlatforms.map((country, index) => (
             <option key={index} value={country}>{country}</option>
            ))}
          </select>
 
-
+         <select value={connectionFilter} onChange={handleConnection} className='border border-[#F08E1F] py-1 px-2 max-w-[145px] flex items-center justify-center rounded-full text-gray-900'>
+           <option value="" className='custom-option'>Connections</option>
+           {uniqueConnections.map((country, index) => (
+            <option key={index} value={country}>{country}</option>
+           ))}
+         </select>
 
          </div>
      

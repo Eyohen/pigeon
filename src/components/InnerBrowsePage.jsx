@@ -10,10 +10,13 @@ const InnerBrowsePage = () => {
   const communityId = useParams().id
   const [community, setCommunity] = useState([])
   const [firstName, setFirstName] = useState("")
+  const navigate = useNavigate()
 
-  const fetchCommunity = async()=>{
+
+
+  const fetchCommunity = async () => {
     try{
-      const res= await axios.get(URL+"/api/visibility/"+communityId)
+      const res = await axios.get(URL+"/api/visible/"+communityId)
       console.log("this is browser community henry",res.data)
       setCommunity(res.data)
     }
@@ -29,25 +32,6 @@ const InnerBrowsePage = () => {
 
 
 
-  // const userId = community.user  
-
-  // const fetchUser = async () => {
-  //   try {
-  //     const res = await axios.get(URL+"/api/users/"+userId);
- 
-  //     console.log("this browser user henry",res.data)
-  //     setFirstName(res.data.firstName);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchUser();
-  // }, [userId]);
-
-
-    const navigate = useNavigate()
   return (
     <div className='flex-1'>
         <Navbar2 />
@@ -55,22 +39,22 @@ const InnerBrowsePage = () => {
         <div className='flex gap-x-4 ml-12 mt-9 items-center'>
         <p className='text-gray-400 cursor-pointer' onClick={() => navigate(-1)}>Browse Communities</p>
         <IoChevronForward />
-        <p className='font-semibold'>Green Earth Advocates</p>
+        <p className='font-semibold'>{community.name}</p>
         </div>
 
 <div className='flex gap-x-12'>
 
 <div>
-        <div className='w-32 h-32 rounded-full items-center justify-center flex border border-gray-700 mt-9 ml-12'>{community.fname?.charAt(0)}</div>
+        <div className='w-32 h-32 text-2xl rounded-full items-center justify-center flex border border-gray-700 mt-9 ml-12'>{community.email?.charAt(0)}</div>
 
 
         <div className='max-w-[700px]'>
            
             <p className=' text-lg ml-12  mt-4'>Description : {community.description}</p>
             <p className=' text-lg ml-12  mt-4'>Community Type : {community.communityType}</p>
-            <p className=' text-lg ml-12  mt-4'>Member Count : {community.szie} members</p>
-            <p className=' text-lg ml-12  mt-4'>Key Topics : Climate Change Mitigation, Sustainable Living Practices and Renewable Energy Advancements</p>
-            <p className=' text-lg ml-12  mt-4'>Date launched : January 2021</p>
+            <p className=' text-lg ml-12  mt-4'>Member Count : {community.size} members</p>
+            <p className=' text-lg ml-12  mt-4'>Key Topics : {community.communityInterest}</p>
+            <p className=' text-lg ml-12  mt-4'>Date launched :{new Date(community.established).toDateString()}</p>
             <p className=' text-lg ml-12  mt-4'>Price Tag : {community.accessType}</p>
             <p className=' text-lg ml-12  mt-4'>Unique Selling Points : {community.usp}</p>
         
@@ -87,7 +71,7 @@ const InnerBrowsePage = () => {
                 <p className=' text-lg ml-12  mt-4'>- Continous Updates and Support</p>
 
 
-                <Link to={'/subscriptionplans'}><button className='bg-[#F08E1F] text-white px-12 py-2 rounded-full mt-4 ml-12 mb-9'>Subscribe to premium</button></Link>
+                <Link to={`/subscriptionplans/${community.id}`}><button className='bg-[#F08E1F] text-white px-12 py-2 rounded-full mt-4 ml-12 mb-9'>Subscribe to premium</button></Link>
               
 
             </div>
@@ -112,7 +96,7 @@ const InnerBrowsePage = () => {
                 <p className=' text-lg   mt-4'>- Continous Updates and Support</p>
 
 
-                <Link to={'/subscriptionplans'}><button className='bg-[#F08E1F] text-white px-12 py-2 rounded-full mt-4 ml-4 '>Subscribe to premium</button></Link>
+                <Link to={`/subscriptionplans/${community.id}`}><button className='bg-[#F08E1F] text-white px-12 py-2 rounded-full mt-4 ml-4 '>Subscribe to premium</button></Link>
 
 
             </div>

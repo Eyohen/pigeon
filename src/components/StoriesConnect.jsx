@@ -1,60 +1,51 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import frame1 from "../assets/Frame1.png";
 import frame2 from "../assets/Frame2.png";
 import frame3 from "../assets/Frame3.png";
+import { URL } from "../url";
+import axios from "axios";
+import { Link } from 'react-router-dom';
+import BlogCard from "./BlogCard";
 
 const StoriesConnect = () => {
+  const [posts, setPost] = useState([])
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  const fetchPosts = async () => {
+    try {
+      const res = await axios.get(`${URL}/api/posts`)
+      console.log(res.data);
+      setPost(res.data);
+    } catch (error){
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    fetchPosts();
+  },[])
+
+
   return (
     <div className="py-9 bg-white px-4 md:px-[120px] font-nunito">
       <div className="flex justify-center items-center mb-10">
         <p className="text-center text-6xl font-bold mx-auto ">
           Stories that connect
         </p>
-        <button className="text-[#F08E1F] text-xl ">View all</button>
+        <Link to={'/blog'}><button className="text-[#F08E1F] text-xl ">View all</button></Link>
       </div>
 
       <div className="flex flex-col md:flex-row items-center gap-y-4 md:gap-y-0 justify-between ">
-        <div className="max-w-[350px]">
-          <img
-            src={frame1}
-            className="object-cover h-[250px] w-[350px] rounded-t-2xl"
-          />
-          <p className="text-2xl font-bold mt-2">Maximizing Engagement:</p>
-          <p className="text-2xl font-bold">Tips for Community Owners</p>
-          <p className="mt-1">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt{" "}
-            <span className="text-[#F08E1F] text-xl">Read More...</span>
-          </p>
-        </div>
+        {posts?.slice(currentIndex, currentIndex + 3)?.map((p) => (
+          <Link to={`/blogdetails/${p.id}`}>
+            <div key={p.id}>
+            <BlogCard title={p.title} heading={p.heading} imageUrl={p?.imageUrl} text={p.text} />
+            </div>
+          </Link>
+        ))}
 
-        <div className="max-w-[350px]">
-          <img
-            src={frame2}
-            className="object-cover h-[250px] w-[350px] rounded-t-2xl"
-          />
-          <p className="text-2xl font-bold mt-2">Creating Community: Owner</p>
-          <p className="text-2xl font-bold">and User Collaboration</p>
-          <p className="mt-1">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt{" "}
-            <span className="text-[#F08E1F] text-xl">Read More...</span>
-          </p>
-        </div>
-
-        <div className="max-w-[350px]">
-          <img
-            src={frame3}
-            className="object-cover h-[250px] w-[350px] rounded-t-2xl"
-          />
-          <p className="text-2xl font-bold mt-2">Building Bridges: Owners</p>
-          <p className="text-2xl font-bold">and Users Unite</p>
-          <p className="mt-1">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt{" "}
-            <span className="text-[#F08E1F] text-xl">Read More...</span>
-          </p>
-        </div>
+    
+    
       </div>
     </div>
   );

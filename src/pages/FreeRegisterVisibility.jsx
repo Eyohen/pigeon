@@ -3,7 +3,11 @@ import { URL } from "../url";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from '../context/AuthContext';
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
 import Navbar from '../components/Navbar';
+import toast, { Toaster } from "react-hot-toast";
+import { AiFillAndroid } from "react-icons/ai";
 
 const FreeRegisterVisibility = () => {
   const {user , logout} = useAuth();
@@ -22,6 +26,9 @@ const [connCategory, setConnCategory] = useState([]);
 
 const [selectedContentShared, setSelectedContentShared] = useState('');
 const [contentShared, setContentShared] = useState([]);
+
+const [established, setEstablished] = useState(new Date())
+const [startDate, setStartDate] = useState(new Date());
 
 const [selectedInterest, setSelectedInterest] = useState('');
   const [frequency, setFrequency] = useState('')
@@ -47,8 +54,10 @@ const [selectedInterest, setSelectedInterest] = useState('');
   
   const [selectedEnglevel, setSelectedEnglevel] = useState([])
   const [engagementLevel, setLevel] = useState([])
-  const [selectedGoal, setSelectedGoal] = useState([])
-  const [communityGoal, setGoal] = useState([])
+
+  const [communityGoal, setCommunityGoal] = useState([])
+  const [selectedGoal, setSelectedGoal] = useState('')
+
   // const [user, setUser] = useState([])
   const [content, setContent] = useState('')
   const [accessType, setAccessType] = useState('')
@@ -68,6 +77,7 @@ const [selectedInterest, setSelectedInterest] = useState('');
   const [amount, setAmount] = useState('')
   const [selectedDuration, setSelectedDuration] = useState('')
   const [duration, setDuration] = useState('')
+  const [accessRequire, setAccessRequire] = useState('')
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(false)
   
@@ -157,7 +167,7 @@ const [selectedInterest, setSelectedInterest] = useState('');
     const fetchGoal = async () => {
       try {
         const res = await axios.get(URL + "/api/goals/");
-        setGoal(res.data);
+        setCommunityGoal(res.data);
       } catch (err) {
         console.log(err);
       }
@@ -252,8 +262,7 @@ const [selectedInterest, setSelectedInterest] = useState('');
          engagementLevel:selectedEnglevel, 
          accessType:selectedAccess,phone,email, 
          connCategory:selectedConnCategory, contentShared:selectedContentShared,
-           prevCollabType,
-         //  commInterest:selectedInterest,
+           prevCollabType, established:startDate,communityGoal:selectedGoal, accessRequire,
             twitter, telegram, whatsapp, usp, recognition, additionalService, user:userId
         }, {
           headers: {
@@ -269,17 +278,18 @@ const [selectedInterest, setSelectedInterest] = useState('');
         setInterest(res.data.interest)
         setLevel(res.data.engagementLevel)
         setAccessType(res.data.accessType)
-  
         setWhatsapp(res.data.whatsapp)
         setTelegram(res.data.telegram)
         setTwitter(res.data.twitter)
         setRecognition(res.data.recgonition)
         setUSP(res.data.usp)
         setError(false)
-        navigate("/")    
+        toast.success('Community creation successful!!', toastStyles.success)
+        setTimeout(() => navigate('/'), 3000); 
       }
       catch(err){
         setError(true)
+        toast.error('Failed to create community');
         console.log(err)
       }finally {
         setIsLoading(false)
@@ -313,10 +323,11 @@ const [selectedInterest, setSelectedInterest] = useState('');
         
   
         setError(false)
-        navigate("/browseowner")    
+        navigate("/")    
       }
       catch(err){
         setError(true)
+        toast.error('Failed to create community');
         console.log(err)
       }finally {
         setIsLoading(false)
@@ -440,7 +451,7 @@ const [selectedInterest, setSelectedInterest] = useState('');
             interestCategory:[
               "Visual Arts (painting, sculpture)","Performing Arts (theater, dance, opera)",
               "Music (various genres, playing instruments)","Literature (book clubs, writing groups)",
-              "Film and Cinema (movie buffs, filmmaking)","Photography","Crafts (knitting, DIY crafts)","Fashion and Design","Fashion and Design"
+              "Film and Cinema (movie buffs, filmmaking)","Photography","Crafts (knitting, DIY crafts)","Fashion and Design",
             ]
         },
         {
@@ -575,12 +586,60 @@ const [selectedInterest, setSelectedInterest] = useState('');
       setSelectedCommPlatform(event.target.value);
   };
   
+
+  const toastStyles = {
+    success: {
+  
+      duration: 10000,
+      // style: {
+      //   background: '#4CAF50',
+      //   color: 'white',
+      //   fontWeight: 'bold',
+      // },
+      iconTheme: {
+        primary: 'white',
+        secondary: '#4CAF50',
+      },
+        style: {
+  
+                 background: "green",
+                 color: "whitesmoke",
+                 icon: <AiFillAndroid background-color="whitesmoke" color='green' />,
+               },
+    },
+    error: {
+      duration: 10000,
+      style: {
+        background: '#F44336',
+        color: 'white',
+        fontWeight: 'bold',
+      },
+      iconTheme: {
+        primary: 'white',
+        secondary: '#F44336',
+      },
+    },
+  };
+  
   
 
   return (
     <>
     <Navbar/>
     <div>
+    <Toaster 
+    position="top-right"
+    reverseOrder={false}
+    gutter={8}
+    toastOptions={{
+        duration:9000,
+        style:{
+            borderRadius:'8px',
+            boxShadow:'0 3px 10px rgba(0,0,0,0.1), 0 3px 3px rgba(0,0,0,0.05)'
+        }
+    }} 
+     />
+
 
 <div className='flex justify-evenly'>
 
@@ -634,7 +693,7 @@ const [selectedInterest, setSelectedInterest] = useState('');
    onChange={handleCommunityType} 
    className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'
 >
-   <option value="">Select community type</option>
+   <option value=""></option>
    {communityType?.map(type => (
        <optgroup key={type.id} label={type.communityType}>
            {type?.commTypeCategory 
@@ -650,33 +709,51 @@ const [selectedInterest, setSelectedInterest] = useState('');
        </optgroup>
    ))}
 </select>
-        {/* <select value={selectedCommType} onChange={handleCommType} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'>
-            <option value="">Select community type</option>
-            {communityType.map(item => (
-              <option key={item.id} value={item.communityType}>{item.communityType}</option>
-            ) )}
-          </select> */}
 
-          <p>Location</p>
-          <select value={selectedLocation} onChange={handleLocation} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'>
-            <option value="">Select Location</option>
-            {countries.map(item => (
-              <option key={item.id} value={item.location}>{item.location}</option>
+<p>Connection Category</p>
+          <select value={selectedConnCategory} onChange={handleConnCategory} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'>
+            <option value=""></option>
+            {connCategory?.map(item => (
+              <option key={item.id} value={item.connCategory}>{item.connCategory}</option>
             ) )}
           </select>
 
-          <p className='text-sm'>Membership Count<span className='text-red-500 text-xl'> *</span></p>
+          <p>Established Date<span className='text-red-500 text-xl'> *</span></p>
+          <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'  />
+        {/* <input onChange={(e)=>setEstablished(e.target.value)} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4' /> */}
+
+          <p className='text-sm'>Total Number of members <span className='text-red-500 text-xl'> *</span></p>
         <select value={selectedSize} onChange={handleSize} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'>
-            <option value="">Select Size of Community</option>
-            {size.map(item => (
+            <option value=""></option>
+            {size?.map(item => (
               <option key={item._id} value={item.size}>{item.size}</option>
             ) )}
           </select>
 
+          <p>Location</p>
+          <select value={selectedLocation} onChange={handleLocation} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'>
+            <option value=""></option>
+            {countries?.map(item => (
+              <option key={item.id} value={item.location}>{item.location}</option>
+            ) )}
+          </select>
+
+          <p className='text-sm'>Access Type<span className='text-red-500 text-xl'> *</span></p>
+        <select value={selectedAccess} onChange={handleAccess} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'>
+            <option value=""></option>
+            {accesses?.map(item => (
+              <option key={item._id} value={item.accessType}>{item.accessType}</option>
+            ) )}
+          </select>
+
+          <p>Price Tag</p>
+          <input onChange={(e)=>setPrice(e.target.value)} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4' />
+
+
           <p className='text-sm'>Engagement level<span className='text-red-500 text-xl'> *</span></p>
         <select value={selectedEnglevel} onChange={handleEnglevel} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'>
-            <option value="">Select Engagement level</option>
-            {engagementLevel.map(item => (
+            <option value=""></option>
+            {engagementLevel?.map(item => (
               <option key={item._id} value={item.engagementLevel}>{item.engagementLevel}</option>
             ) )}
           </select>
@@ -692,17 +769,8 @@ const [selectedInterest, setSelectedInterest] = useState('');
             ) )}
           </select>
 
-          <p className='text-sm'>Types of Content Shared</p>
-          <select value={selectedContentShared} onChange={handleContentShared} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'>
-            <option value="">Select Content Shared</option>
-            {contentShared.map(item => (
-              <option key={item.id} value={item.contentShared}>{item.contentShared}</option>
-            ) )}
-          </select>
-
-
           <p className='text-sm'>Key Topics and Interests</p>
-          <select 
+                  <select 
    
    value={selectedInterest} 
    onChange={handleInterestOption} 
@@ -725,53 +793,49 @@ const [selectedInterest, setSelectedInterest] = useState('');
    ))}
 </select>
 
-
           <p className='text-sm'>Communication Platforms Used<span className='text-red-500 text-xl'> *</span></p>
           <select 
    
-   value={selectedCommPlatform} 
-   onChange={handleCommunicationOption} 
-   className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'
->
-   <option value="">Select communication platform</option>
-   {communicationPlatform.map(platform => (
-       <optgroup key={platform.id} label={platform.communicationPlatform}>
-           {platform.communicationCategory 
-               ? platform.communicationCategory.map(category => (
-                   <option key={`${platform.id}-${category}`} value={`${platform.communicationPlatform}|${category}`}>
-                       {category}
-                   </option>
-                 ))
-               : <option value={`${platform.communicationPlatform}|null`}>
-                   No category
-                 </option>
-           }
-       </optgroup>
-   ))}
-</select>
+                value={selectedCommPlatform} 
+                onChange={handleCommunicationOption} 
+                className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'
+            >
+                <option value=""></option>
+                {communicationPlatform?.map(platform => (
+                    <optgroup key={platform.id} label={platform.communicationPlatform}>
+                        {platform?.communicationCategory 
+                            ? platform?.communicationCategory?.map(category => (
+                                <option key={`${platform.id}-${category}`} value={`${platform.communicationPlatform}|${category}`}>
+                                    {category}
+                                </option>
+                              ))
+                            : <option value={`${platform.communicationPlatform}|null`}>
+                                No category
+                              </option>
+                        }
+                    </optgroup>
+                ))}
+            </select>
 
-<p>Connection Category</p>
-<select value={selectedConnCategory} onChange={handleConnCategory} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'>
-<option value="">Select Connection Category</option>
-{connCategory.map(item => (
- <option key={item.id} value={item.connCategory}>{item.connCategory}</option>
-) )}
-</select>
-
-
-
-         
-
-          <p className='text-sm'>Access Type<span className='text-red-500 text-xl'> *</span></p>
-        <select value={selectedAccess} onChange={handleAccess} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'>
-            <option value="">Select Access  Type</option>
-            {accesses.map(item => (
-              <option key={item._id} value={item.accessType}>{item.accessType}</option>
+          <p>Content Shared</p>
+          <select value={selectedContentShared} onChange={handleContentShared} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'>
+            <option value=""></option>
+            {contentShared?.map(item => (
+              <option key={item.id} value={item.contentShared}>{item.contentShared}</option>
             ) )}
           </select>
 
-          <p>Price Tag</p>
-          <input onChange={(e)=>setPrice(e.target.value)} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4' />
+          <p>Type Of Interaction</p>
+          <select value={selectedGoal} onChange={handleGoal} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'>
+            <option value=""></option>
+            {communityGoal?.map(item => (
+              <option key={item.id} value={item.communityGoal}>{item.communityGoal}</option>
+            ) )}
+          </select>
+
+          <p>Access Requirement<span className='text-red-500 text-xl'> *</span></p>
+        <input onChange={(e)=>setAccessRequire(e.target.value)} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4' />
+
 
 </div>
 

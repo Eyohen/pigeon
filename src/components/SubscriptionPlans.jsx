@@ -1,12 +1,32 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Navbar2 from './Navbar2'
 import { IoIosSquareOutline } from "react-icons/io";
 import { IoChevronForward } from "react-icons/io5";
 import { IoMdSquareOutline,IoMdSquare  } from "react-icons/io";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { URL } from "../url";
+import axios from "axios";
 
 const SubscriptionPlans = () => {
     const navigate = useNavigate()
+    const communityId = useParams().id
+    const [community, setCommunity] = useState([])
+
+    const fetchCommunity = async () => {
+      try{
+        const res = await axios.get(URL+"/api/visible/"+communityId)
+        console.log("this is browser community henry",res.data)
+        setCommunity(res.data)
+      }
+      catch(err){
+        console.log(err)
+      }
+    }
+  
+    useEffect(()=>{
+      fetchCommunity()
+  
+    },[communityId])
   return (
 
          <div className='flex-1'>
@@ -15,7 +35,7 @@ const SubscriptionPlans = () => {
         <div className='flex gap-x-4 ml-12 mt-9 items-center'>
         <p className='text-gray-400 cursor-pointer' onClick={() => navigate(-2)}>Browse Communities</p>
         <IoChevronForward />
-        <p className=' text-gray-400 cursor-pointer' onClick={() => navigate(-1)}>Green Earth Advocates</p>
+        <p className=' text-gray-400 cursor-pointer' onClick={() => navigate(-1)}>{community.name}</p>
         <IoChevronForward />
         <p className='font-semibold cursor-pointer' >Subscription Plans</p>
         </div>

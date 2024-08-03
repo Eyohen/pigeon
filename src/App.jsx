@@ -34,6 +34,8 @@ import Test from './pages/Test'
 import VerifyEmail from './pages/VerifyEmail'
 import ProtectedRoute from './context/ProtectedRoute'
 import InsideBrowseOwner from './components/InsideBrowseOwner'
+import OTP from './pages/Otp'
+import BlogDetails from './components/BlogDetails'
 
 
 const App = () => {
@@ -44,7 +46,7 @@ const App = () => {
      <Route exact path="/login" element={<Login/>}/>
      <Route exact path="/register" element={<Register />}/>
      <Route exact path="/forgotpassword" element={<ForgotPassword />}/>
-     <Route exact path="/createnewpassword" element={<CreateNewPassword />}/>
+     <Route exact path="/reset-password" element={<CreateNewPassword />}/>
      <Route exact path="/pricing" element={<Pricing />}/>
      <Route exact path="/contactus" element={<ContactUs />}/>
      <Route exact path="/blog" element={<Blog />}/>
@@ -54,14 +56,16 @@ const App = () => {
      <Route exact path="/freeregisterVisibility" element={<FreeRegisterVisibility />}/>
      <Route exact path="/freecommunityowners" element={<FreeCommunityOwners/>}/>
      <Route exact path="/verify" element={<VerifyEmail/>}/>
+     <Route exact path="/otp" element={<OTP/>}/>
+     <Route exact path="/blogdetails/:id" element={<BlogDetails/>}/>
 
   
      <Route exact path="/communityowner" element={ <ProtectedRoute><CommunityOwner /></ProtectedRoute> }/>
      <Route exact path="/communitypage/:id" element={<CommunityPage />}/>
-     <Route exact path="/collaborationtype" element={<CollaborationType />}/>
+     <Route exact path="/collaborationtype/:id" element={<CollaborationType />}/>
      <Route exact path="/browserowner" element={<ProtectedRoute><BrowserOwner /></ProtectedRoute> }/>
      <Route exact path="/innerbrowsepage/:id" element={<BrowserPage />}/>
-     <Route exact path="/subscriptionplans" element={<BrowserSubPlans />}/>
+     <Route exact path="/subscriptionplans/:id" element={<BrowserSubPlans />}/>
      <Route exact path="/purchasehistory" element={<PurchaseHistory />}/>
      <Route exact path="/listcommunity" element={<ListCommunity />}/>
      <Route exact path="/listvisibility" element={<ListVisibility />}/>

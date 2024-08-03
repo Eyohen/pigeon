@@ -3,6 +3,9 @@ import { URL } from "../url";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from '../context/AuthContext';
+import toast, {Toaster} from 'react-hot-toast';
+import { AiFillAndroid } from 'react-icons/ai';
+
 
 const InsideListCommunity = () => {
 const {user , logout} = useAuth();
@@ -241,10 +244,13 @@ useEffect(() => {
       setRecognition(res.data.recgonition)
       setUSP(res.data.usp)
       setError(false)
-      navigate("/communityowner")    
+      toast.success('Community Creation Successful!!', toastStyles.success)
+      setTimeout(() => navigate('/communityowner'), 3000);
+      // navigate("/communityowner")    
     }
     catch(err){
       setError(true)
+      toast.error('Failed to create Community');
       console.log(err)
     }finally {
       setIsLoading(false)
@@ -369,7 +375,7 @@ useEffect(() => {
         interestCategory:[
           "Visual Arts (painting, sculpture)","Performing Arts (theater, dance, opera)",
           "Music (various genres, playing instruments)","Literature (book clubs, writing groups)",
-          "Film and Cinema (movie buffs, filmmaking)","Photography","Crafts (knitting, DIY crafts)","Fashion and Design","Fashion and Design"
+          "Film and Cinema (movie buffs, filmmaking)","Photography","Crafts (knitting, DIY crafts)","Fashion and Design",
         ]
     },
     {
@@ -495,6 +501,39 @@ const handleLocation = (event) => {
   setSelectedLocation(event.target.value);
 };
 
+const toastStyles = {
+  success: {
+
+    duration: 10000,
+    // style: {
+    //   background: '#4CAF50',
+    //   color: 'white',
+    //   fontWeight: 'bold',
+    // },
+    iconTheme: {
+      primary: 'white',
+      secondary: '#4CAF50',
+    },
+      style: {
+
+               background: "green",
+               color: "whitesmoke",
+               icon: <AiFillAndroid background-color="whitesmoke" color='green' />,
+             },
+  },
+  error: {
+    duration: 10000,
+    style: {
+      background: '#F44336',
+      color: 'white',
+      fontWeight: 'bold',
+    },
+    iconTheme: {
+      primary: 'white',
+      secondary: '#F44336',
+    },
+  },
+};
 
 
 
@@ -504,6 +543,18 @@ const handleLocation = (event) => {
     <div className='flex-1'>
 
 <div className='flex justify-evenly'>
+<Toaster 
+    position="top-right"
+    reverseOrder={false}
+    gutter={8}
+    toastOptions={{
+        duration:9000,
+        style:{
+            borderRadius:'8px',
+            boxShadow:'0 3px 10px rgba(0,0,0,0.1), 0 3px 3px rgba(0,0,0,0.05)'
+        }
+    }} 
+     />
 
   <div className='mt-12 '>
     <div className='flex gap-x-4 items-center'>
@@ -577,7 +628,7 @@ const handleLocation = (event) => {
           <p>Location</p>
           <select value={selectedLocation} onChange={handleLocation} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'>
             <option value="">Select Location</option>
-            {countries.map(item => (
+            {countries?.map(item => (
               <option key={item.id} value={item.location}>{item.location}</option>
             ) )}
           </select>
@@ -586,7 +637,7 @@ const handleLocation = (event) => {
           <p className='text-sm'>Size of community<span className='text-red-500 text-xl'> *</span></p>
         <select value={selectedSize} onChange={handleSize} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'>
             <option value="">Select Size of Community</option>
-            {size.map(item => (
+            {size?.map(item => (
               <option key={item._id} value={item.size}>{item.size}</option>
             ) )}
           </select>
@@ -602,7 +653,7 @@ const handleLocation = (event) => {
    {interests?.map(interest => (
        <optgroup key={interest.id} label={interest.interest}>
            {interest?.interestCategory 
-               ? interest.interestCategory?.map(interestcat => (
+               ? interest?.interestCategory?.map(interestcat => (
                    <option key={`${interest.id}-${interestcat}`} value={`${interest.interest}|${interestcat}`}>
                        {interestcat}
                    </option>
@@ -626,7 +677,7 @@ const handleLocation = (event) => {
           <p className='text-sm'>Engagement level<span className='text-red-500 text-xl'> *</span></p>
         <select value={selectedEnglevel} onChange={handleEnglevel} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'>
             <option value="">Select Engagement level</option>
-            {engagementLevel.map(item => (
+            {engagementLevel?.map(item => (
               <option key={item.id} value={item.engagementLevel}>{item.engagementLevel}</option>
             ) )}
           </select>
@@ -641,10 +692,10 @@ const handleLocation = (event) => {
                 className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'
             >
                 <option value="">Select communication option</option>
-                {communicationPlatform.map(platform => (
+                {communicationPlatform?.map(platform => (
                     <optgroup key={platform.id} label={platform.communicationPlatform}>
-                        {platform.communicationCategory 
-                            ? platform.communicationCategory.map(category => (
+                        {platform?.communicationCategory 
+                            ? platform?.communicationCategory?.map(category => (
                                 <option key={`${platform.id}-${category}`} value={`${platform.communicationPlatform}|${category}`}>
                                     {category}
                                 </option>
@@ -666,7 +717,7 @@ const handleLocation = (event) => {
           <p className='text-sm'>Community Goals/Content<span className='text-red-500 text-xl'> *</span></p>
         <select value={selectedGoal} onChange={handleGoal} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'>
             <option value="">Select goal/content</option>
-            {communityGoal.map(item => (
+            {communityGoal?.map(item => (
               <option key={item.id} value={item.communityGoal}>{item.communityGoal}</option>
             ) )}
           </select>
@@ -674,7 +725,7 @@ const handleLocation = (event) => {
           <p className='text-sm'>Access Type<span className='text-red-500 text-xl'> *</span></p>
         <select value={selectedAccess} onChange={handleAccess} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'>
             <option value="">Select Access  Type</option>
-            {accesses.map(item => (
+            {accesses?.map(item => (
               <option key={item._id} value={item.accessType}>{item.accessType}</option>
             ) )}
           </select>

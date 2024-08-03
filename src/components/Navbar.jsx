@@ -45,16 +45,12 @@ const Navbar = () => {
           </p> */}
 
 
-<div className="relative">
-          <p onClick={handleOpenCommunity} className="text-[#201327] text-base font-medium hover:text-[#F08E1F] hidden md:block cursor-pointer">Communities</p>
 
-          {openCommunity && <div className="border border-[#F08E1F] bg-white px-3 py-6 z-50 absolute rounded-lg mt-6 left-1/2 transform -translate-x-1/2">
-        {user ? (<p onClick={() => navigate('/communityowner')} className="text-[#F08E1F] min-w-[150px] cursor-pointer">Community Owners</p>) : (<p onClick={() => navigate('/login')} className="text-[#F08E1F] min-w-[150px] cursor-pointer">Community Owners</p>) } 
-        {user ? (<p onClick={() => navigate('/browserowner')} className="text-[#F08E1F] min-w-[160px] cursor-pointer py-2">Browse Communities</p>) : (<p onClick={() => navigate('/login')} className="text-[#F08E1F] min-w-[160px] cursor-pointer py-2">Browse Communities</p>)}
+      <p onClick={user ? (() => navigate('/browserowner')) : (() => navigate('/login'))} className="text-[#201327] text-base font-medium hover:text-[#F08E1F] hidden md:block cursor-pointer">Communities</p>
 
-         </div> }
 
-          </div>
+
+
 
 
           <Link to={"/pricing"}>
