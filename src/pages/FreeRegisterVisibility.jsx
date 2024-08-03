@@ -377,41 +377,82 @@ const [selectedInterest, setSelectedInterest] = useState('');
       },
       {
         id: 2,
-        location: "Canada",
+        location: "Algeria",
       },
       {
       id: 3,
-      location: "Egypt",
-    },
-    {
+      location: "Argentina",
+      },
+      {
       id: 4,
-      location: "France",
-    },
-    {
-        id: 5,
-        location: "Morocco",
-    },
-    {
-      id: 6,
-      location: "Nigeria",
-    },
-    {
-      id: 7,
-      location: "South Africa",
-    },
-    {
+      location: "Bangledesh",
+      },
+      {
+      id: 5,
+     location: "Brazil",
+      },
+      {
+        id: 6,
+        location: "Canada",
+      },
+      {
+        id: 7,
+        location: "China",
+      },
+      {
       id: 8,
-      location: "United State of America",
+      location: "Croatia",
     },
     {
       id: 9,
+      location: "Dominica",
+    },
+    {
+    id: 10,
+    location: "Denmark",
+    },
+      {
+      id:11,
+      location: "Egypt",
+    },
+    {
+      id: 12,
+      location: "Ecuador",
+    },
+    {
+    id: 13,
+    location: "Estonia",
+    },
+    {
+      id:14,
+      location: "France",
+    },
+    {
+        id: 15,
+        location: "Morocco",
+    },
+    {
+      id: 16,
+      location: "Nigeria",
+    },
+    {
+      id: 17,
+      location: "South Africa",
+    },
+    {
+      id: 18,
+      location: "United State of America",
+    },
+    {
+      id: 19,
       location: "United Kingdom",
     },
     {
-      id: 10,
+      id: 20,
       location: "Venezuela",
     },
     ]
+  
   
   
     const accesses = [

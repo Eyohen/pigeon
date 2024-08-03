@@ -6,7 +6,7 @@ const Unauthorized = () => {
     <div className='flex justify-center items-center h-screen'>
 
 <div>
-        <img src={oops} className=' w-[500px]' />
+        <img src={oops} className='w-full ' />
         <p className='text-3xl'>Oops!! Sorry Looks like you're not logged In</p>
 
         </div>
