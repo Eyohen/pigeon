@@ -39,7 +39,7 @@ const StoriesConnect = () => {
         {posts?.slice(currentIndex, currentIndex + 3)?.map((p) => (
           <Link to={`/blogdetails/${p.id}`}>
             <div key={p.id}>
-            <BlogCard title={p.title} heading={p.heading} imageUrl={p?.imageUrl} text={p.text} />
+            <BlogCard id={p.id} title={p.title} heading={p.heading} imageUrl={p?.imageUrl} text={p.text} />
             </div>
           </Link>
         ))}

@@ -34,7 +34,7 @@ const InnerComunityPage = () => {
 
    
   return (
-    <div className='flex-1'>
+    <div className='flex-1 ml-[300px]'>
         <Navbar2 />
 
         <div className='flex gap-x-4 ml-12 mt-9 items-center'>

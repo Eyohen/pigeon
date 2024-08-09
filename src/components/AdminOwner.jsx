@@ -90,28 +90,6 @@ const AdminOwner = () => {
         <p className='text-3xl ml-32 mt-6'>Community Owners</p>
            <div className='max-w-[1100px] bg-white ml-32'>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-16">
-      {/* <div className="flex justify-between">
-        <Link to={"/home"}>
-          <button className="bg-[#2C5C4B] p-2 text-white rounded-lg">
-            All Participants
-          </button>
-        </Link>
-
-        <div>
-          <input
-            type="text"
-            placeholder="Search name"
-            className=" h-10 border border-gray-500"
-            onChange={(e) => setInput(e.target.value)}
-          />
-          <button
-            className="bg-[#2C5C4B] p-2 text-white"
-            onClick={handleSearch}
-          >
-            Search
-          </button>
-        </div>
-      </div> */}
 
 <div>
 <div className='flex gap-x-10 border-b-2 py-3 px-2'>
@@ -120,27 +98,6 @@ const AdminOwner = () => {
     <input className='border border-gray-400 rounded py-2 px-2' placeholder='search' />
     <div className='text-gray-400 border border-gray-400 rounded px-4'>CSV</div>
     </div>
-
-
-{/* <div className='relative'>
-    <p onClick={handleToggle1}  className={`${toggle1 ? 'text-black' : 'text-gray-300'}`}>All Purchases</p>
-    {toggle1 ? <div className='bg-[#F08E1F] h-[3px] w-[90px] absolute mt-[10px]'></div> : null }
-    </div> */}
-
-    {/* <div className='relative'>
-    <p onClick={handleToggle2}  className={`${toggle2 ? 'text-black' : 'text-gray-300'}`} >Completed</p>
-   {toggle2 ? <div className='bg-[#F08E1F] h-[3px] w-[90px] absolute mt-[10px]'></div> : null } 
-    </div> */}
-
-    {/* <div className='relative'>
-    <p onClick={handleToggle3}   className={`${toggle3 ? 'text-black' : 'text-gray-300'}`}>In Progress</p>
-    {toggle3 ? <div className='bg-[#F08E1F] h-[3px] w-[90px] absolute mt-[10px]'></div> : null }
-    </div> */}
-{/* 
-    <div className='relative'>
-    <p onClick={handleToggle4}  className={`${toggle4 ? 'text-black' : 'text-gray-300'}`}>Failed</p>
-    {toggle4 ? <div className='bg-[#F08E1F] h-[3px] w-[90px] absolute mt-[10px]'></div> : null }
-    </div> */}
 
 </div>
 </div>

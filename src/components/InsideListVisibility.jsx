@@ -19,12 +19,12 @@ const [selectedLocation, setSelectedLocation] = useState('')
 const [location, setLocation] = useState('')
 
 
-
 const [selectedConnCategory, setSelectedConnCategory] = useState('');
 const [connCategory, setConnCategory] = useState([]);
 
-const [selectedContentShared, setSelectedContentShared] = useState('');
+const [selectedContentShared, setSelectedContentShared] = useState([]);
 const [contentShared, setContentShared] = useState([]);
+const [isContentDropdownOpen, setIsContentDropdownOpen] = useState(false);
 
 const [selectedInterest, setSelectedInterest] = useState('');
 const [frequency, setFrequency] = useState('')
@@ -43,7 +43,8 @@ const [communityType, setCommType] = useState([])
 const [selectedCommType, setSelectedCommType] = useState('')
 
 const [communityGoal, setCommunityGoal] = useState([])
-const [selectedGoal, setSelectedGoal] = useState('')
+const [selectedGoal, setSelectedGoal] = useState([])
+const [isGoalDropdownOpen, setIsGoalDropdownOpen] = useState(false)
 
 const [established, setEstablished] = useState(new Date())
 const [startDate, setStartDate] = useState(new Date());
@@ -582,9 +583,19 @@ useEffect(() => {
   const handleEnglevel = (e) => {
     setSelectedEnglevel(e.target.value);
   }
-  const handleGoal = (e) => {
-    setSelectedGoal(e.target.value);
-  }
+  const handleGoal = (event) => {
+    const value = event.target.value;
+    setSelectedGoal(prevSelected => 
+      prevSelected.includes(value)
+       ? prevSelected.filter(item => item !== value)
+       : [...prevSelected, value]
+    );
+  };
+
+  const toggleGoalDropdown = () => {
+    setIsGoalDropdownOpen(!isGoalDropdownOpen);
+  };
+
   const handleCommunity = (e) => {
     setSelectedCommunity(e.target.value);
   }
@@ -606,9 +617,21 @@ useEffect(() => {
   const handleConnCategory = (event) => {
     setSelectedConnCategory(event.target.value);
   };
+
+
   const handleContentShared = (event) => {
-    setSelectedContentShared(event.target.value);
+    const value = event.target.value;
+    setSelectedContentShared(prevSelected => 
+      prevSelected.includes(value)
+        ? prevSelected.filter(item => item !== value)
+        : [...prevSelected, value]
+    );
   };
+
+  const toggleContentDropdown = () => {
+    setIsContentDropdownOpen(!isContentDropdownOpen);
+  };
+
   const handleInterestOption = (event) => {
     setSelectedInterest(event.target.value);
   };
@@ -843,24 +866,86 @@ const toastStyles = {
                 ))}
             </select>
 
-          <p>Content Shared</p>
-          <select value={selectedContentShared} onChange={handleContentShared} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'>
-            <option value=""></option>
-            {contentShared?.map(item => (
-              <option key={item.id} value={item.contentShared}>{item.contentShared}</option>
-            ) )}
-          </select>
+    
+            {/* {contentShared?.map(item => (
+    <div key={item.id} className="flex items-center">
+      <input
+        type="checkbox"
+        id={`content-${item.id}`}
+        value={item.contentShared}
+        checked={selectedContentShared.includes(item.contentShared)}
+        onChange={handleContentShared}
+        className="mr-2"
+      />
+      <label htmlFor={`content-${item.id}`}>{item.contentShared}</label>
+    </div>
+  ))} */}
+  <div className="relative">
+  <p>Content Shared</p>
+  <div 
+    onClick={toggleContentDropdown}
+    className="border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4 cursor-pointer flex justify-between items-center"
+  >
+    <span>{selectedContentShared.length ? `${selectedContentShared.length} selected` : 'Select content'}</span>
+    <span>{isContentDropdownOpen ? '▲' : '▼'}</span>
+  </div>
+  {isContentDropdownOpen && (
+    <div className="absolute z-10 mt-1 w-full md:w-[400px] max-h-60 overflow-auto bg-white border border-gray-300 rounded-lg shadow-lg">
+      {contentShared?.map(item => (
+        <div key={item.id} className="flex items-center p-2 hover:bg-gray-100">
+          <input
+            type="checkbox"
+            id={`content-${item.id}`}
+            value={item.contentShared}
+            checked={selectedContentShared.includes(item.contentShared)}
+            onChange={handleContentShared}
+            className="mr-2"
+          />
+          <label htmlFor={`content-${item.id}`} className="flex-grow cursor-pointer">{item.contentShared}</label>
+        </div>
+      ))}
+    </div>
+  )}
+</div>
 
-          <p>Type Of Interaction</p>
-          <select value={selectedGoal} onChange={handleGoal} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'>
+      
+          {/* <select value={selectedGoal} onChange={handleGoal} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'>
             <option value=""></option>
             {communityGoal?.map(item => (
               <option key={item.id} value={item.communityGoal}>{item.communityGoal}</option>
             ) )}
-          </select>
+          </select> */}
+          <div className="relative">
+              <p>Type Of Interaction</p>
+ <div 
+    onClick={toggleGoalDropdown}
+    className="border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4 cursor-pointer flex justify-between items-center"
+  >
+    <span>{selectedGoal.length ? `${selectedGoal.length} selected` : 'Select Interaction'}</span>
+    <span>{isGoalDropdownOpen ? '▲' : '▼'}</span>
+  </div>
+  {isGoalDropdownOpen && (
+    <div className="absolute z-10 mt-1 w-full md:w-[400px] max-h-60 overflow-auto bg-white border border-gray-300 rounded-lg shadow-lg">
+      {communityGoal?.map(item => (
+        <div key={item.id} className="flex items-center p-2 hover:bg-gray-100">
+          <input
+            type="checkbox"
+            id={`content-${item.id}`}
+            value={item.communityGoal}
+            checked={selectedGoal.includes(item.communityGoal)}
+            onChange={handleGoal}
+            className="mr-2"
+          />
+          <label htmlFor={`content-${item.id}`} className="flex-grow cursor-pointer">{item.communityGoal}</label>
+        </div>
+      ))}
+    </div>
+  )}
+</div>
+
 
           <p>Access Requirement<span className='text-red-500 text-xl'> *</span></p>
-        <input onChange={(e)=>setAccessRequire(e.target.value)} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4' />
+        <input onChange={(e)=>setAccessRequire(e.target.value)} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4' placeholder='(e.g., membership fees, application process)'/>
 
 
 </div>

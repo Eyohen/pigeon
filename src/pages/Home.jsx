@@ -17,7 +17,6 @@ const Home = () => {
 
         <Navbar/>
         <Hero/>
-
        <div className='mt-6'><HowPigWorks /></div> 
        <div className='mt-6'><OurDiverseUser/></div>
        <div className='mt-6'><WhyPigeonhireStands /></div>

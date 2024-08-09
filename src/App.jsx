@@ -36,6 +36,11 @@ import ProtectedRoute from './context/ProtectedRoute'
 import InsideBrowseOwner from './components/InsideBrowseOwner'
 import OTP from './pages/Otp'
 import BlogDetails from './components/BlogDetails'
+import MyCommunities from './pages/MyCommunities'
+import MyCommunityDetail from './pages/MyCommunityDetail'
+import AdminAnalytics from './pages/AdminAnalytics'
+import AdminCommunityOwner from './pages/AdminCommunityOwner'
+import Admin from './pages/Admin'
 
 
 const App = () => {
@@ -69,6 +74,9 @@ const App = () => {
      <Route exact path="/purchasehistory" element={<PurchaseHistory />}/>
      <Route exact path="/listcommunity" element={<ListCommunity />}/>
      <Route exact path="/listvisibility" element={<ListVisibility />}/>
+
+     <Route exact path="/mycommunities" element={ <ProtectedRoute><MyCommunities /></ProtectedRoute> }/>
+     <Route exact path="/mycommunitydetail/:id" element={ <ProtectedRoute><MyCommunityDetail /></ProtectedRoute> }/>
      <Route exact path="/settings" element={<Settings />}/>
      <Route exact path="/switchpremium" element={<SwitchPremium />}/>
      <Route exact path="/test" element={<Test />}/>
@@ -76,8 +84,10 @@ const App = () => {
      <Route exact path="/innerbrowsepage" element={<InnerBrowsePage />}/>
 
 
-
-     <Route exact path="/adminowner" element={<AdminCommOwner />}/>
+     <Route exact path="/admin" element={<Admin/>}/>
+     <Route exact path="/adminanalytics" element={<ProtectedRoute><AdminAnalytics/></ProtectedRoute>}/>
+     {/* <Route exact path="/adminowner" element={<AdminCommOwner />}/> */}
+     <Route exact path="/admincommunityowner" element={<ProtectedRoute><AdminCommunityOwner /></ProtectedRoute>}/>
      <Route exact path="/admintransaction" element={<AdminTransactions />}/>
      <Route exact path="/adminownerpage" element={<AdminOwnerPage />}/>
 

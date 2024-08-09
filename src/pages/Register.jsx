@@ -11,136 +11,38 @@ import PhoneInput from 'react-phone-number-input';
 import  'react-phone-number-input/style.css'
 import { RiEyeLine, RiEyeOffLine } from "react-icons/ri";
 import registerimage from '../assets/pana.png'
+import CustomDropdown from '../components/CustomDropDown';
+import usflag from '../assets/usflag.png'
+import cadflag from '../assets/cadflag.png'
+import gbpflag from '../assets/gbpflag.jpeg'
+import ngnflag from '../assets/ngnflag.png'
 
-const interests = [
-  {
-      _id: 1,
-      interest: "Arts and Culture",
-  },
-  {
-      _id: 2,
-      interest: "Technology and Science",
-  },
-  {
-      _id: 3,
-      interest: "Health and Wellness",
-  },
-  {
-    _id: 4,
-    interest: "Business and Finance",
-  },
-  {
-    _id: 5,
-    interest: "Education and Learning",
-  },
-  {
-    _id: 6,
-    interest: "Social and Community",
-  },
-  {
-    _id: 7,
-    interest: "Lifestyle and Hobbies",
-},
-{
-  _id: 8,
-  interest: "Entertainment and Leisure",
-},
-{
-  _id: 9,
-  interest: "Environment and Sustainability",
-},
-{
-  _id: 10,
-  interest: "Special Interest",
-},
-{
-  _id: 11,
-  interest: "Creative and Expressive",
-},
-{
-  _id: 12,
-  interest: "Business Technologies",
-}
-  ]
 
-  const goals = [
-    {
-        _id: 1,
-        goal: "Growth",
-    },
-    {
-        _id: 2,
-        goal: "Engagement",
-    },
-    {
-        _id: 3,
-        goal: "Networking",
-    },
-    {
-      _id: 4,
-      goal: "Knowledge Sharing",
-    },
-    {
-      _id: 5,
-      goal: "Support",
-    },
-    {
-      _id: 6,
-      goal: "Advocacy",
-    },
-    {
-      _id: 7,
-      goal: "Skill Development",
-  },
+const currencies = [
   {
-      _id: 8,
-      goal: "Resource Sharing",
-  },
-  {
-      _id: 9,
-      goal: "Innovation",
-  },
-  {
-    _id: 10,
-    goal: "Cultural Exchange",
-  },
-  {
-    _id: 11,
-    goal: "Sustainability",
-  },
-  {
-    _id: 12,
-    goal: "Fundraising",
-  },
-  {
-    _id: 13,
-    goal: "Brand Building",
-  },
-  {
-    _id: 14,
-    goal: "Diversity and Inclusion",
-  },
-  {
-    _id: 15,
-    goal: "Community Service",
+    id: 1,
+    currency: "USD",
+    image:usflag
 },
 {
-    _id: 16,
-    goal: "Health and Wellness",
+    id: 2,
+    currency: "GBP",
+    image:gbpflag
+    
 },
 {
-    _id: 17,
-    goal: "Event Planning",
+  id: 3,
+  currency: "CAD",
+  image:cadflag
 },
 {
-  _id: 18,
-  goal: "Member Recognition",
+  id: 4,
+  currency: "NGN",
+  image:ngnflag
 },
-{
-  _id: 19,
-  goal: "Feedback and Improvement ",
-}
-    ]
+
+]
+
 
 const Register = () => {
   const [firstName, setFirstName] = useState('')
@@ -148,6 +50,8 @@ const Register = () => {
   const [phone, setPhone] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('')
   const [email, setEmail] = useState('')
+  const [selectedCurrency, setSelectedCurrency] = useState('')
+  const [currency, setCurrency] = useState('')
   const [valid,setValid] = useState(true)
   const [error,setError] = useState(false)
 
@@ -164,14 +68,6 @@ const Register = () => {
   }
 
 
-  const handleInterest = (e) => {
-    setSelectedInterest(e.target.value);
-  }
-
-  const handleGoal = (e) => {
-    setSelectedGoal(e.target.value);
-  }
-
   const handleSubmit = async() => {
     //e.preventDefault()
 
@@ -187,7 +83,11 @@ const Register = () => {
 
     setIsLoading(true)
     try{
-      const res = await axios.post(URL+"/api/auth/register", {firstName, lastName, email, password, phone:phoneNumber,})
+      const res = await axios.post(URL+"/api/auth/register", {firstName, lastName, 
+        email, password,
+         phone:phoneNumber,
+        currency: selectedCurrency
+        })
 
       // const {access_token} = res.data;
 
@@ -235,7 +135,9 @@ const handleConfirmPasswordChange = (e) => {
    setPasswordsMatch(e.target.value === password);
 }
 
-
+// const handleCurrency = (e) => {
+//   setSelectedCurrency(e.target.value);
+// }
 
   return (
     <div className='font-nunito'>
@@ -250,6 +152,7 @@ const handleConfirmPasswordChange = (e) => {
 
         <p className='pt-6'>First Name</p>
         <input onChange={(e) => setFirstName(e.target.value)} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F]' />
+
 
         <p className='pt-6'>Last Name</p>
         <input onChange={(e) => setLastName(e.target.value)} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F]' />
@@ -281,15 +184,15 @@ const handleConfirmPasswordChange = (e) => {
         <PhoneInput  inputProps={{required:true,}} value={phoneNumber} onChange={handleChange}  className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F]' />
         {!valid && <p className='text-red-500'>Please enter a valid phone number</p>}
 
+        <p className='text-sm pt-5'>Select Preferred Currency</p>
+        <CustomDropdown
+  options={currencies}
+  value={selectedCurrency}
+  onChange={(value) => setSelectedCurrency(value)}
+/>
+
         <p className='pt-5'>Password</p>
-        {/* <div  >
-        <input  type={isPasswordVisible ? "text" : "password"} onChange={(e) => setPassword(e.target.value)} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] ' />
-        <button
-        className="absolute  z-30 mr-24 text-gray-600"
-        onClick={togglePasswordVisibility}
-      >
-         {isPasswordVisible ? (<RiEyeLine />):(<RiEyeOffLine />)} </button>
-         </div> */}
+
         <div class="relative w-full md:w-[400px]">
     <div class="absolute inset-y-0 right-0 flex items-center px-2">
       {/* <input class="hidden js-password-toggle" id="toggle" type="checkbox" /> */}

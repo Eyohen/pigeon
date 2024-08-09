@@ -174,7 +174,7 @@ const InsideOwner = () => {
     };
 
     return (
-        <div className='flex-1'>
+        <div className='flex-1 ml-[300px]'>
             <Navbar2 />
             <div className='flex items-center justify-start gap-x-24'>
                 <p className='ml-12 font-semibold text-4xl mt-9'>Community Owners</p>

@@ -24,7 +24,9 @@ const AdminSidebar = () => {
 
   console.log("sidebar", user)
   return (
-    <div className='flex justify-center h-screen px-[30px] bg-[#201327]'>
+    <div className='fixed top-0 left-0 bottom-0 h-screen bg-[#201327]'>
+    {/* <div className='flex justify-center h-screen px-[30px] bg-[#201327]'> */}
+    <div className='flex justify-center px-[30px]'>
         {/* <div>
         <img src={logo} className='w-9 h-9' />
         </div> */}
@@ -32,44 +34,44 @@ const AdminSidebar = () => {
             <div>
         <p className='text-[#F08E1F] font-semibold mt-9'>Menu</p>
 
-        <Link to={'/communityowner'}> <div className='flex gap-x-3 items-center hover:bg-[#F3D8A7] px-2 mt-6 rounded'>
+        <Link to={'/adminanalytics'}> <div className='flex gap-x-3 items-center hover:bg-[#F08E1F]  px-2 mt-6 rounded'>
         <FiUsers color='white' className='' />
-        <p className='hover:bg-[#F3D8A7] text-white py-1 text-center '>Analytics</p>
+        <p className='hover:bg-[#F08E1F] text-white py-1 text-center '>Analytics</p>
         </div></Link>
 
-        <Link to={'/communityowner'}> <div className='flex gap-x-3 items-center hover:bg-[#F3D8A7] px-2 mt-6 rounded'>
+        <Link to={'/admincommunityowner'}> <div className='flex gap-x-3 items-center hover:bg-[#F08E1F] px-2 mt-6 rounded'>
         <FiUsers color='white' className='' />
-        <p className='hover:bg-[#F3D8A7] text-white py-1 text-center '>Community Owners</p>
+        <p className='hover:bg-[#F08E1F] text-white py-1 text-center '>Community Owners</p>
         </div></Link>
 
-        <Link to={'/admintransaction'}> <div className='flex gap-x-3 items-center hover:bg-[#F3D8A7] px-2 mt-6 rounded'>
+        <Link > <div className='flex gap-x-3 items-center hover:bg-[#F08E1F] px-2 mt-6 rounded'>
         <CiSearch color='white'  size={20} className=' '/>
-        <p className='hover:bg-[#F3D8A7] text-white py-1 text-center'>Transactions</p>
+        <p className='hover:bg-[#F08E1F] text-white py-1 text-center'>Transactions</p>
         </div></Link>
 
-        <Link to={'/purchasehistory'}><div className='flex gap-x-3 items-center hover:bg-[#F3D8A7] px-2 mt-6 rounded'>
+        <Link ><div className='flex gap-x-3 items-center hover:bg-[#F08E1F] px-2 mt-6 rounded'>
         <IoReceiptOutline color='white' className=''/>
-        <p className='hover:bg-[#F3D8A7] text-white py-1 text-center'>Communities</p>
+        <p className='hover:bg-[#F08E1F] text-white py-1 text-center'>Communities</p>
         </div></Link>
 
-        <Link to={'/switchpremium'}><div className='flex gap-x-3 items-center hover:bg-[#F3D8A7] px-2 mt-6 rounded'>
+        <Link ><div className='flex gap-x-3 items-center hover:bg-[#F08E1F] px-2 mt-6 rounded'>
         <FiUsers color='white' className='' />
-        <p className='hover:bg-[#F3D8A7] text-white  py-1 text-center'>Users</p>
+        <p className='hover:bg-[#F08E1F] text-white  py-1 text-center'>Users</p>
         </div></Link>
 
-        <Link to={'/purchasehistory'}><div className='flex gap-x-3 items-center hover:bg-[#F3D8A7] px-2 mt-6 rounded'>
+        <Link ><div className='flex gap-x-3 items-center hover:bg-[#F08E1F] px-2 mt-6 rounded'>
         <IoReceiptOutline color='white' className=''/>
-        <p className='hover:bg-[#F3D8A7] text-white py-1 text-center'>Blog</p>
+        <p className='hover:bg-[#F08E1F] text-white py-1 text-center'>Blog</p>
         </div></Link>
 
-        <Link to={'/switchpremium'}><div className='flex gap-x-3 items-center hover:bg-[#F3D8A7] px-2 mt-6 rounded'>
+        <Link ><div className='flex gap-x-3 items-center hover:bg-[#F08E1F] px-2 mt-6 rounded'>
         <FiUsers color='white' className='' />
-        <p className='hover:bg-[#F3D8A7] text-white  py-1 text-center'>Messages</p>
+        <p className='hover:bg-[#F08E1F] text-white  py-1 text-center'>Messages</p>
         </div></Link>
 
-        <Link to={'/settings'}><div className='flex gap-x-3 items-center hover:bg-[#F3D8A7] px-2 mt-6 rounded'>
+        <Link ><div className='flex gap-x-3 items-center hover:bg-[#F08E1F] px-2 mt-6 rounded'>
         <IoSettingsOutline color='white' className=''/>
-        <p className='hover:bg-[#F3D8A7] text-white  py-1 text-center'>Settings</p>
+        <p className='hover:bg-[#F08E1F] text-white  py-1 text-center'>Settings</p>
         </div></Link>
 
         {/* <div className='flex gap-x-3 items-center hover:bg-[#F3D8A7] px-2 mt-6 rounded'>
@@ -88,14 +90,14 @@ const AdminSidebar = () => {
         </div>
         </div>
 
-        <Link to={'/login'}><div className='flex items-center bg-white rounded py-1 gap-x-3 mt-9 justify-center'>
+        <Link to={'/admin'}><div className='flex items-center bg-white rounded py-1 gap-x-3 mt-9 justify-center'>
         <CiLogout />
         <p onClick={logout}>Log out</p>
         </div></Link>
 
         </div>
 
-
+        </div>
     </div>
   )
 }

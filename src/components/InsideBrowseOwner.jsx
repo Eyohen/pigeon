@@ -184,7 +184,7 @@ const InsideBrowseOwner = () => {
     };
 
     return (
-        <div className='flex-1'>
+        <div className='flex-1 ml-[300px]'>
             <Navbar2 />
             <div className='flex items-center justify-start gap-x-24'>
                 <p className='ml-12 font-semibold text-4xl mt-9'>Browse Communities</p>
@@ -250,7 +250,7 @@ const InsideBrowseOwner = () => {
          </select>
 
 
-           <select value={goalFilter} onChange={handleGoalFilter} className='border border-[#F08E1F] py-1 px-2 flex items-center justify-center rounded-full text-gray-900'>
+           <select value={goalFilter} onChange={handleGoalFilter} className='border border-[#F08E1F] py-1 px-2 max-w-[167px]  flex items-center justify-center rounded-full text-gray-900'>
            <option value="" className='custom-option'>Community Goals</option>
            {uniqueGoals.map((country, index) => (
             <option key={index} value={country}>{country}</option>

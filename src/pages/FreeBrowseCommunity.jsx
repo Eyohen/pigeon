@@ -236,14 +236,14 @@ const renderPagination = () => {
            ))}
          </select>
 
-           <select value={goalFilter} onChange={handleGoalFilter} className='border border-[#F08E1F] py-1 px-2 flex items-center justify-center rounded-full text-gray-900'>
+           <select value={goalFilter} onChange={handleGoalFilter} className='border border-[#F08E1F] py-1 px-2 max-w-[167px]  flex items-center justify-center rounded-full text-gray-900'>
            <option value="" className='custom-option'>Community Goals</option>
            {uniqueGoals.map((country, index) => (
             <option key={index} value={country}>{country}</option>
            ))}
          </select>
 
-         <select value={platformFilter} onChange={handlePlatformFilter} className='border border-[#F08E1F] py-1 px-2 max-w-[120px] flex items-center justify-center rounded-full text-gray-900'>
+         <select value={platformFilter} onChange={handlePlatformFilter} className='border border-[#F08E1F] py-1 px-2 max-w-[110px] flex items-center justify-center rounded-full text-gray-900'>
            <option value="" className='custom-option'>Platforms Used</option>
            {uniquePlatforms.map((country, index) => (
             <option key={index} value={country}>{country}</option>

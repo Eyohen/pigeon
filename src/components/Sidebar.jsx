@@ -24,12 +24,10 @@ const Sidebar = () => {
 
   console.log("sidebar", user)
   return (
-    <div className='flex justify-center h-screen px-[30px] bg-[#FAFAFA]'>
-        {/* <div>
-        <img src={logo} className='w-9 h-9' />
-        </div> */}
-
-            <div>
+    <div className='fixed top-0 left-0 bottom-0 h-screen bg-[#FAFAFA]'>
+      {/* className='fixed top-0 left-0 w-[250px] h-screen bg-[#FAFAFA] px-[30px] shadow-lg z-10' */}
+    <div className='flex justify-center px-[30px]'>
+        <div>
         <p className='text-[#F08E1F] font-semibold mt-9'>Menu</p>
 
         <Link to={'/communityowner'}> <div className='flex gap-x-3 items-center hover:bg-[#F3D8A7] px-2 mt-6 rounded'>
@@ -49,22 +47,22 @@ const Sidebar = () => {
         <p className='hover:bg-[#F3D8A7] py-1 text-center'>Purchase History</p>
         </div></Link>
         
-        <div className='flex gap-x-3 items-center justify-between hover:bg-[#F3D8A7] px-2 mt-6 rounded'>
-          <div className='flex items-center gap-x-3'  onClick={() => setIsOpen((prev) => !prev)}>
+        <div className='flex gap-x-3 items-center justify-between hover:bg-[#F3D8A7] px-2 mt-6 rounded cursor-pointer' onClick={() => setIsOpen((prev) => !prev)}>
+          <div className='flex items-center gap-x-3 cursor-pointer'  >
         <FiUser className='' />
-        <p className='hover:bg-[#F3D8A7] py-1 text-center'>Account</p>
+        <p className='hover:bg-[#F3D8A7] py-1 text-center cursor-pointer'>Account</p>
         </div>
         <IoChevronDown onClick={() => setIsOpen((prev) => !prev)}  size={20} className='' />
         </div>
         {isOpen && (<div  className='rounded  bg-[#FAFAFA] pl-9 absolute'>
     
-    <div className='flex justify-between items-center gap-x-6 mt-3'>
+    <Link to={'/mycommunities'}><div className='flex justify-between items-center gap-x-6 mt-3 cursor-pointer'>
     <p className=''>Listed Communities</p>
     <IoChevronForward size={20} />
-    </div>
+    </div></Link>
    
     <div className='flex justify-between items-center py-2'>
-    <p className=''>New Requests</p>
+    <p className=''>Requests</p>
         <button className='text-white bg-black rounded px-2'>8</button>
     </div>
   
@@ -115,6 +113,8 @@ const Sidebar = () => {
         <CiLogout />
         <p onClick={logout}>Log out</p>
         </div></Link>
+
+        </div>
 
         </div>
 
