@@ -25,6 +25,7 @@ const AddTeamMember = ({ isOpen, onClose, communityId, onVerificationUpdate, chi
   }
 
   const createTeamMember = async (e) => {
+    
     e.preventDefault();
     setIsLoading(true)
     setError("")
