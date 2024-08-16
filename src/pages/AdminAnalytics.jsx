@@ -17,17 +17,39 @@ const user = "Registered Users"
 
 const AdminAnalytics = () => {
     const { user, logout } = useAuth();
-    const [count, setCount] = useState([])
+    const [commOwner, setCommOwner] = useState([])
+    const [users, setUsers] = useState(0)
+    const [comm, setComm] = useState(0)
+    const [Loading, setIsLoading] = useState(true)
+
+    const fetchUserCount = async () => {
+      const res = await axios.get(`${URL}/api/users/count`)
+      console.log("see",res.data)
+      setUsers(res.data.count)
+    }
+    useEffect(() => {
+      fetchUserCount()
+    },[])
 
     const fetchCommunityCount = async () => {
       const res = await axios.get(`${URL}/api/communities/count`)
-      console.log(res.data.count)
-      setCount(res.data.count)
+      console.log("see",res.data)
+      setCommOwner(res.data.count)
     }
-  
     useEffect(() => {
       fetchCommunityCount()
     },[])
+
+    const fetchVisible = async () => {
+            const res = await axios.get(`${URL}/api/visible/count`);
+            console.log("visible", res.data.count);
+            setComm(res.data.count);
+    }
+      useEffect(() => {
+        fetchVisible()
+      },[])
+
+
   
 
  
@@ -45,12 +67,12 @@ const AdminAnalytics = () => {
                 <p className='font-semibold text-4xl mt-2 ml-[48px]'>Analytics </p>
 
                 <div className='grid grid-cols-4 gap-y-6 mt-6 ml-[48px]'>
-                <AnalyticCard count={count} name="Registered Users"/>
+                <AnalyticCard count={users} name="Registered Users"/>
                 <AnalyticCard name="Active Users" />
                 <AnalyticCard name="Total Subscribers"/>
                 <AnalyticCard name="Active Subscribers" />
-                <AnalyticCard name="Total Communities"/>
-                <AnalyticCard count={count} name="Total Community Owners"/>
+                <AnalyticCard count={comm} name="Total Communities"/>
+                <AnalyticCard count={commOwner} name="Total Community Owners"/>
                 <AnalyticCard name="Subscription Revenue"/>
                 <AnalyticCard name="PAYG Revenue" />
                 <AnalyticCard name="Total Transaction Volume"/>

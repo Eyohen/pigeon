@@ -22,7 +22,6 @@ import Blog from './pages/Blog'
 import AboutUs from './pages/AboutUs'
 import Faq from './pages/Faq'
 import ListVisibility from './pages/ListVisibility'
-import AdminCommOwner from './pages/AdminCommOwners'
 import AdminTransactions from './pages/AdminTransactions'
 import AdminOwnerPage from './pages/AdminOwnerPage'
 import FreeBrowseCommunity from './pages/FreeBrowseCommunity'
@@ -41,6 +40,14 @@ import MyCommunityDetail from './pages/MyCommunityDetail'
 import AdminAnalytics from './pages/AdminAnalytics'
 import AdminCommunityOwner from './pages/AdminCommunityOwner'
 import Admin from './pages/Admin'
+import AdminCommunities from './pages/AdminCommunities'
+import AdminUsers from './pages/AdminUsers'
+import AdminBlog from './pages/AdminBlog'
+import AdminSettings from './pages/AdminSettings'
+import AdminRestrictedOwners from './pages/AdminRestrictedOwners'
+import AdminCommunityOwnerDetail from './pages/AdminCommunityOwnerDetail'
+import AdminRestrictedCommunities from './pages/AdminRestrictedCommunities'
+import AdminCommunityDetail from './pages/AdminCommunityDetail'
 
 
 const App = () => {
@@ -86,8 +93,15 @@ const App = () => {
 
      <Route exact path="/admin" element={<Admin/>}/>
      <Route exact path="/adminanalytics" element={<ProtectedRoute><AdminAnalytics/></ProtectedRoute>}/>
-     {/* <Route exact path="/adminowner" element={<AdminCommOwner />}/> */}
      <Route exact path="/admincommunityowner" element={<ProtectedRoute><AdminCommunityOwner /></ProtectedRoute>}/>
+     <Route exact path="/admincommunityownerdetail/:id" element={<ProtectedRoute><AdminCommunityOwnerDetail /></ProtectedRoute>}/>
+     <Route exact path="/adminrestrictedowners" element={<ProtectedRoute><AdminRestrictedOwners /></ProtectedRoute>}/>
+     <Route exact path="/adminrestrictedcommunities" element={<ProtectedRoute><AdminRestrictedCommunities /></ProtectedRoute>}/>
+     <Route exact path="/admincommunities" element={<ProtectedRoute><AdminCommunities /></ProtectedRoute>}/>
+     <Route exact path="/admincommunitydetail/:id" element={<ProtectedRoute><AdminCommunityDetail /></ProtectedRoute>}/>
+     <Route exact path="/adminusers" element={<ProtectedRoute><AdminUsers /></ProtectedRoute>}/>
+     <Route exact path="/adminblog" element={<ProtectedRoute><AdminBlog /></ProtectedRoute>}/>
+     <Route exact path="/adminsettings" element={<ProtectedRoute><AdminSettings /></ProtectedRoute>}/>
      <Route exact path="/admintransaction" element={<AdminTransactions />}/>
      <Route exact path="/adminownerpage" element={<AdminOwnerPage />}/>
 

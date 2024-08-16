@@ -6,7 +6,7 @@ import { URL } from "../url"
 const AnalyticCard = ({count, name}) => {
 
   return (
-    <div className='border rounded-xl bg-white w-[320px] h-[100px] py-3 px-2'>
+    <div className='border rounded-xl bg-white w-[280px] h-[100px] py-3 px-2'>
 
     <div className='flex justify-between'>
     <p className='text-gray-600 text-2xl font-medium'>{count}</p>
@@ -15,7 +15,7 @@ const AnalyticCard = ({count, name}) => {
 
     <div className='flex justify-between mt-4'>
         <p className='text-gray-500 text-md font-medium max-w-[200px]'>{name}</p>
-        <p className='text-gray-300 text-md font-medium'>2hrs ago</p>
+        <p className='text-gray-300 text-sm font-medium'>2hrs ago</p>
     </div>
 
 </div>

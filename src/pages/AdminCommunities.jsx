@@ -11,13 +11,12 @@ import { useAuth } from '../context/AuthContext';
 import AdminSidebar from '../components/AdminSidebar';
 import { MdKeyboardArrowDown } from "react-icons/md";
 import AnalyticCard from '../components/AnalyticCard';
-import VerifyModal from '../components/VerifyModal';
+import VerifyModal2 from '../components/verifyModal2';
 import { IoEllipsisVerticalSharp } from "react-icons/io5";
-import RestrictModal from '../components/RestrictModal';
+import RestrictModal2 from '../components/RestrictModal2';
 
 
-
-const AdminCommunityOwner = () => {
+const AdminCommunities = () => {
     const { user, logout } = useAuth();
     const [selectedItem, setSelectedItem] = useState(null);
     const [users, setUsers] = useState([]);
@@ -27,12 +26,13 @@ const AdminCommunityOwner = () => {
     const [isRestrictModalOpen, setIsRestrictModalOpen] = useState(false);
     const [showModal, setShowModal] = useState(false);
 
+
     const navigate = useNavigate()
 
     const handlePress = (item) => {
-      setSelectedItem(item);
-      setShowModal(true);
-    }  
+        setSelectedItem(item);
+        setShowModal(true);
+      }  
 
     const openModal = (communityId) => {
       setIsModalOpen(true);
@@ -44,16 +44,16 @@ const AdminCommunityOwner = () => {
     }
 
     const openRestrictModal = (communityId) => {
-      setSelectedCommunityId(communityId);
-      setIsRestrictModalOpen(true);
-    }
+        setSelectedCommunityId(communityId);
+        setIsRestrictModalOpen(true);
+      }
 
 
 console.log("userId",user)
 
     const fetchCommunities = async () => {
         try {
-            const res = await axios.get(`${URL}/api/communities`);
+            const res = await axios.get(`${URL}/api/visible`);
             console.log("community", res.data.communities)
             setCommunities(res.data.communities);
         } catch (err) {
@@ -84,11 +84,12 @@ console.log("userId",user)
 
   return (
     <div className='flex justify-between bg-[#FAFAFA] h-screen font-nunito'>
+
 <AdminSidebar/>
 
 <div className='flex-1 ml-[330px] '> 
     <Navbar2/>
-        <p className='text-3xl ml-[48px]'>Community Owners</p>
+        <p className='text-3xl ml-[48px]'>Communities</p>
 
            <div className='max-w-[1100px] bg-white ml-[48px] border mt-9 rounded-lg'>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-1">
@@ -102,7 +103,7 @@ console.log("userId",user)
     </div>
 
 </div>
-</div>
+</div>-
 
       <div class="max-h-60 overflow-y-auto">
       <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 mt-5 relative">
@@ -126,9 +127,10 @@ console.log("userId",user)
             <th scope="col" class="px-6 py-3 font-semibold text-gray-500">
             Status
             </th>
-            <th scope="col" class="px-9 py-3 font-semibold text-gray-500">
+            <th scope="col" class="px-6 py-3 font-semibold text-gray-500">
+
             </th>
-            
+       
        
        
        
@@ -151,14 +153,14 @@ console.log("userId",user)
 
                <td class="px-6 py-2">{item.name}</td>
                 <td class="px-6 py-2">{new Date(item.createdAt).toDateString()}</td>
-                <td class="px-6 py-2">{item.user}</td>
+                <td class="px-6 py-2">example@gmail.com</td>
                 <td class="px-6 py-2">{item.accessType}</td>
 
-               <td className='px-6 py-2'>{item.verified === false ? <button onClick={() => openModal(item.id)} class="px-6 py-1 bg-red-100 rounded-lg text-red-500 mt-3">Unverified</button> : <button onClick={() => openModal(item.id)} class="px-6 py-1 bg-green-100 rounded-lg text-green-500 mt-3">Verified</button> }</td>
-               <div onClick={() => handlePress(item)} className='cursor-pointer mt-4'>
-               <td class="px-9 py-2"><IoEllipsisVerticalSharp /> </td> 
+                <td className='px-6 py-2'>{item.verified === false ? <button onClick={() => openModal(item.id)} class="px-6 py-1 bg-red-100 rounded-lg text-red-500 mt-3">Unverified</button> : <button onClick={() => openModal(item.id)} class="px-6 py-1 bg-green-100 rounded-lg text-green-500 mt-3">Verified</button> }</td>
+                <div onClick={() => handlePress(item)} className='cursor-pointer mt-4'>
+               <td class="px-6 py-2"><IoEllipsisVerticalSharp /> </td> 
                {selectedItem && selectedItem.id === item.id && showModal && (<div className="bg-white absolute z-50 border rounded-lg right-0 top-[50px] shadow-lg">
-                      <p onClick={() => {navigate(`/admincommunityownerdetail/${selectedItem.id}`) }} className="hover:text-[#F08E1F] px-9 py-2">View</p>
+                      <p onClick={() => {navigate(`/admincommunitydetail/${selectedItem.id}`) }} className="hover:text-[#F08E1F] px-9 py-2">View</p>
                       {/* <p onClick={() => openViewModal()}  className="hover:bg-blue-100 hover:text-blue-600 px-9 py-2">View</p>
                       <p onClick={() => openModal()}  className="hover:bg-blue-100 hover:text-blue-600 px-9 py-2">Edit</p> */}
                       <p onClick={() => openRestrictModal(item.id)}  className="bg-gray-100 px-9 py-2">Restrict</p>
@@ -166,8 +168,6 @@ console.log("userId",user)
 
                     </div>)}
                   </div>
-
-
               </tr>
             ))} 
            
@@ -180,20 +180,19 @@ console.log("userId",user)
    
        
     </div>
-    <VerifyModal 
+    <VerifyModal2
     isOpen={isModalOpen}
      onClose={closeModal} 
      communityId={selectedCommunityId}
      onVerificationUpdate={fetchCommunities}
      />
-
-<RestrictModal isOpen={isRestrictModalOpen} onClose={() => setIsRestrictModalOpen(false)} onRestrictionUpdate={fetchCommunities}   communityId={selectedCommunityId} onConfirm={() => {
+   
+   <RestrictModal2 isOpen={isRestrictModalOpen} onClose={() => setIsRestrictModalOpen(false)} onRestrictionUpdate={fetchCommunities}   communityId={selectedCommunityId} onConfirm={() => {
           setCommunities(communities.filter(c => c !== selectedCommunityId));
           setIsRestrictModalOpen(false);
         }}/>
-   
     </div>
   )
 }
 
-export default AdminCommunityOwner
+export default AdminCommunities

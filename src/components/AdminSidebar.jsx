@@ -10,6 +10,7 @@ import { IoChevronDown } from "react-icons/io5";
 import { IoChevronForward } from "react-icons/io5";
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { RiForbidLine } from "react-icons/ri";
 
 
 const AdminSidebar = () => {
@@ -32,57 +33,68 @@ const AdminSidebar = () => {
         </div> */}
 
             <div>
-        <p className='text-[#F08E1F] font-semibold mt-9'>Menu</p>
+        <p className='text-[#F08E1F] font-semibold mt-6'>Menu</p>
 
         <Link to={'/adminanalytics'}> <div className='flex gap-x-3 items-center hover:bg-[#F08E1F]  px-2 mt-6 rounded'>
         <FiUsers color='white' className='' />
         <p className='hover:bg-[#F08E1F] text-white py-1 text-center '>Analytics</p>
         </div></Link>
 
-        <Link to={'/admincommunityowner'}> <div className='flex gap-x-3 items-center hover:bg-[#F08E1F] px-2 mt-6 rounded'>
+        <Link to={'/admincommunityowner'}> <div className='flex gap-x-3 items-center hover:bg-[#F08E1F] px-2 mt-5 rounded'>
         <FiUsers color='white' className='' />
         <p className='hover:bg-[#F08E1F] text-white py-1 text-center '>Community Owners</p>
         </div></Link>
 
-        <Link > <div className='flex gap-x-3 items-center hover:bg-[#F08E1F] px-2 mt-6 rounded'>
+        <Link > <div className='flex gap-x-3 items-center hover:bg-[#F08E1F] px-2 mt-5 rounded'>
         <CiSearch color='white'  size={20} className=' '/>
         <p className='hover:bg-[#F08E1F] text-white py-1 text-center'>Transactions</p>
         </div></Link>
 
-        <Link ><div className='flex gap-x-3 items-center hover:bg-[#F08E1F] px-2 mt-6 rounded'>
+        <Link to={'/admincommunities'}><div className='flex gap-x-3 items-center hover:bg-[#F08E1F] px-2 mt-5 rounded'>
         <IoReceiptOutline color='white' className=''/>
         <p className='hover:bg-[#F08E1F] text-white py-1 text-center'>Communities</p>
         </div></Link>
 
-        <Link ><div className='flex gap-x-3 items-center hover:bg-[#F08E1F] px-2 mt-6 rounded'>
+        <Link to={'/adminusers'}><div className='flex gap-x-3 items-center hover:bg-[#F08E1F] px-2 mt-5 rounded'>
         <FiUsers color='white' className='' />
         <p className='hover:bg-[#F08E1F] text-white  py-1 text-center'>Users</p>
         </div></Link>
 
-        <Link ><div className='flex gap-x-3 items-center hover:bg-[#F08E1F] px-2 mt-6 rounded'>
+        <Link to={'/adminblog'}><div className='flex gap-x-3 items-center hover:bg-[#F08E1F] px-2 mt-5 rounded'>
         <IoReceiptOutline color='white' className=''/>
         <p className='hover:bg-[#F08E1F] text-white py-1 text-center'>Blog</p>
         </div></Link>
 
-        <Link ><div className='flex gap-x-3 items-center hover:bg-[#F08E1F] px-2 mt-6 rounded'>
+        <Link ><div className='flex gap-x-3 items-center hover:bg-[#F08E1F] px-2 mt-5 rounded'>
         <FiUsers color='white' className='' />
         <p className='hover:bg-[#F08E1F] text-white  py-1 text-center'>Messages</p>
         </div></Link>
 
-        <Link ><div className='flex gap-x-3 items-center hover:bg-[#F08E1F] px-2 mt-6 rounded'>
+        <Link to={'/adminsettings'}><div className='flex gap-x-3 items-center hover:bg-[#F08E1F] px-2 mt-5 rounded'>
         <IoSettingsOutline color='white' className=''/>
         <p className='hover:bg-[#F08E1F] text-white  py-1 text-center'>Settings</p>
         </div></Link>
+
+        <Link to={'/adminrestrictedowners'}><div className='flex gap-x-3 items-center hover:bg-[#F08E1F] px-2 mt-5 rounded'>
+        <RiForbidLine color='white' className=''/>
+        <p className='hover:bg-[#F08E1F] text-white  py-1 text-center'>Restricted Community Owners</p>
+        </div></Link>
+
+        <Link to={'/adminrestrictedcommunities'}><div className='flex gap-x-3 items-center hover:bg-[#F08E1F] px-2 mt-5 rounded'>
+        <RiForbidLine color='white' className=''/>
+        <p className='hover:bg-[#F08E1F] text-white  py-1 text-center'>Restricted Communities</p>
+        </div></Link>
+
 
         {/* <div className='flex gap-x-3 items-center hover:bg-[#F3D8A7] px-2 mt-6 rounded'>
         <IoChatboxOutline className=''/>
         <p className='hover:bg-[#F3D8A7] py-1 text-center'>Contact Support</p>
         </div> */}
 
-        <p className='text-[#F08E1F] font-semibold mt-32 '>Profile</p>
+        <p className='text-[#F08E1F] font-semibold mt-[45px] '>Profile</p>
 
 
-        <div className='flex gap-x-5 items-center mt-9 '>
+        <div className='flex gap-x-5 items-center mt-5'>
         <div className='bg-purple-900 text-white rounded-full w-11 h-11 flex justify-center text-2xl items-center'>{user?.fname.charAt()}</div>
         <div>
             <p className='font-semibold text-white text-lg'>{user?.fname},{user?.lname}</p>
@@ -90,7 +102,7 @@ const AdminSidebar = () => {
         </div>
         </div>
 
-        <Link to={'/admin'}><div className='flex items-center bg-white rounded py-1 gap-x-3 mt-9 justify-center'>
+        <Link to={'/admin'}><div className='flex items-center bg-white rounded py-1 gap-x-3 mt-6 justify-center'>
         <CiLogout />
         <p onClick={logout}>Log out</p>
         </div></Link>

@@ -3,7 +3,7 @@ import { URL } from '../url'
 import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom'
 
-const VerifyModal = ({ isOpen, onClose, communityId, onVerificationUpdate, children }) => {
+const VerifyModal2 = ({ isOpen, onClose, communityId, onVerificationUpdate, children }) => {
   if (!isOpen) return null;
 
   const navigate = useNavigate()
@@ -25,7 +25,7 @@ const VerifyModal = ({ isOpen, onClose, communityId, onVerificationUpdate, child
     }
 
     try {
-      const res = await axios.put(`${URL}/api/communities/${communityId}`, updatedInfo, {
+      const res = await axios.put(`${URL}/api/visible/${communityId}`, updatedInfo, {
         headers: {
           'Content-Type': 'application/json'
         }
@@ -84,4 +84,4 @@ const VerifyModal = ({ isOpen, onClose, communityId, onVerificationUpdate, child
   );
 };
 
-export default VerifyModal;
+export default VerifyModal2;

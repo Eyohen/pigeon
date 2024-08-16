@@ -14,10 +14,10 @@ import AnalyticCard from '../components/AnalyticCard';
 import VerifyModal from '../components/VerifyModal';
 import { IoEllipsisVerticalSharp } from "react-icons/io5";
 import RestrictModal from '../components/RestrictModal';
+import { RiDeleteBinLine } from "react-icons/ri";
 
 
-
-const AdminCommunityOwner = () => {
+const AdminRestrictedOwners = () => {
     const { user, logout } = useAuth();
     const [selectedItem, setSelectedItem] = useState(null);
     const [users, setUsers] = useState([]);
@@ -53,7 +53,7 @@ console.log("userId",user)
 
     const fetchCommunities = async () => {
         try {
-            const res = await axios.get(`${URL}/api/communities`);
+            const res = await axios.get(`${URL}/api/communities/restricted`);
             console.log("community", res.data.communities)
             setCommunities(res.data.communities);
         } catch (err) {
@@ -88,7 +88,7 @@ console.log("userId",user)
 
 <div className='flex-1 ml-[330px] '> 
     <Navbar2/>
-        <p className='text-3xl ml-[48px]'>Community Owners</p>
+        <p className='text-3xl ml-[48px]'>Restricted Community Owners</p>
 
            <div className='max-w-[1100px] bg-white ml-[48px] border mt-9 rounded-lg'>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-1">
@@ -126,7 +126,7 @@ console.log("userId",user)
             <th scope="col" class="px-6 py-3 font-semibold text-gray-500">
             Status
             </th>
-            <th scope="col" class="px-9 py-3 font-semibold text-gray-500">
+            <th scope="col" class="px-6 py-3 font-semibold text-gray-500">
             </th>
             
        
@@ -156,9 +156,9 @@ console.log("userId",user)
 
                <td className='px-6 py-2'>{item.verified === false ? <button onClick={() => openModal(item.id)} class="px-6 py-1 bg-red-100 rounded-lg text-red-500 mt-3">Unverified</button> : <button onClick={() => openModal(item.id)} class="px-6 py-1 bg-green-100 rounded-lg text-green-500 mt-3">Verified</button> }</td>
                <div onClick={() => handlePress(item)} className='cursor-pointer mt-4'>
-               <td class="px-9 py-2"><IoEllipsisVerticalSharp /> </td> 
-               {selectedItem && selectedItem.id === item.id && showModal && (<div className="bg-white absolute z-50 border rounded-lg right-0 top-[50px] shadow-lg">
-                      <p onClick={() => {navigate(`/admincommunityownerdetail/${selectedItem.id}`) }} className="hover:text-[#F08E1F] px-9 py-2">View</p>
+               <td class="px-6 py-2"><IoEllipsisVerticalSharp /> </td> 
+               {selectedItem && selectedItem.id === item.id && showModal && (<div className="bg-white absolute z-50 border rounded-lg right-0 top-[10px] shadow-lg">
+                      <p onClick={() => {navigate(`/admincommunityownerdetail/${selectedItem.id}`) }} className=" hover:bg-blue-100 hover:text-blue-600 px-9 py-2">View</p>
                       {/* <p onClick={() => openViewModal()}  className="hover:bg-blue-100 hover:text-blue-600 px-9 py-2">View</p>
                       <p onClick={() => openModal()}  className="hover:bg-blue-100 hover:text-blue-600 px-9 py-2">Edit</p> */}
                       <p onClick={() => openRestrictModal(item.id)}  className="bg-gray-100 px-9 py-2">Restrict</p>
@@ -187,6 +187,7 @@ console.log("userId",user)
      onVerificationUpdate={fetchCommunities}
      />
 
+     
 <RestrictModal isOpen={isRestrictModalOpen} onClose={() => setIsRestrictModalOpen(false)} onRestrictionUpdate={fetchCommunities}   communityId={selectedCommunityId} onConfirm={() => {
           setCommunities(communities.filter(c => c !== selectedCommunityId));
           setIsRestrictModalOpen(false);
@@ -196,4 +197,4 @@ console.log("userId",user)
   )
 }
 
-export default AdminCommunityOwner
+export default AdminRestrictedOwners
