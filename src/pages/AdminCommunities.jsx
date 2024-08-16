@@ -8,7 +8,7 @@ import { useAuth } from '../context/AuthContext';
 import AdminSidebar from '../components/AdminSidebar';
 import { IoEllipsisVerticalSharp } from "react-icons/io5";
 import RestrictModal2 from '../components/RestrictModal2';
-import VerifyModal2 from '../components/verifyModal2';
+import VerifyModal2 from '../components/VerifyModal2';
 
 
 const AdminCommunities = () => {
