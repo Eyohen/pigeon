@@ -9,7 +9,7 @@ const InnerSwitchPremium = () => {
     const navigate = useNavigate()
   return (
 
-         <div className='flex-1'>
+         <div className='flex-1 ml-[300px]'>
         <Navbar2 />
 
        

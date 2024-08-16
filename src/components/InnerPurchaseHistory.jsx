@@ -83,7 +83,7 @@ const InnerPurchaseHistory = () => {
       setToggle4(true);
     };
   return (
-    <div className='flex-1'> 
+    <div className='flex-1 ml-[250px]'> 
     <Navbar2/>
         <p className='text-3xl ml-32 mt-6'>Purchase History</p>
            <div className='max-w-[1100px] bg-white ml-32'>
