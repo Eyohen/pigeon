@@ -54,7 +54,7 @@ console.log("userId",user)
         try {
             const res = await axios.get(`${URL}/api/users`);
             console.log("user", res.data)
-            setUsers(res.data);
+            setUsers(res.data.users);
         } catch (err) {
             console.log(err);
         }
