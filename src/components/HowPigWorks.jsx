@@ -9,7 +9,7 @@ const HowPigWorks = () => {
 
 
   return (
-    <div className="bg-white py-9 px-[4px] md:px-[180px] font-nunito">
+    <div className="bg-white py-9 px-[4px] md:px-[120px] font-nunito">
       <p className="text-6xl font-bold text-center">How Pigeonhire Works</p>
       <p className="text-3xl font-normal text-center mt-4">
         Two Simple Ways to Expand Your Reach

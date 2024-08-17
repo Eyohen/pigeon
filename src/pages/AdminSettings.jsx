@@ -7,6 +7,7 @@ import Navbar2 from '../components/Navbar2';
 import noteam from '../assets/noteam.png'
 import AddTeamMember from '../components/AddTeamMember';
 import { useAuth } from '../context/AuthContext';
+import toast, {Toaster} from 'react-hot-toast';
 
 const AdminSettings = () => {
     // const {id: userId} = useParams()

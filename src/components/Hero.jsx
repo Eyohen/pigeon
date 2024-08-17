@@ -8,7 +8,7 @@ const navigate = useNavigate()
 
   return (
     <>
-      <div className="bg-[#201327] py-9 px-4 md:px-[120px]">
+      <div className="bg-[#201327] py-9 px-4 md:px-[70px]">
         <div className="flex flex-col md:flex-row items-center justify-between">
           <div className="mt-16">
             <p className="text-white text-6xl font-bold font-nunito">
