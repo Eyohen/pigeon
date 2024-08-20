@@ -27,7 +27,7 @@ const StoriesConnect = () => {
 
 
   return (
-    <div className="py-9 bg-white px-4 md:px-[120px] font-nunito">
+    <div className="py-9 bg-white px-4 md:px-[240px] font-nunito">
       <div className="flex justify-center items-center mb-10">
         <p className="text-center text-6xl font-bold mx-auto ">
           Stories that connect

@@ -9,7 +9,7 @@ import { BsArrowRight } from "react-icons/bs";
 
 const HowBusinessThrive = () => {
   return (
-    <div className="py-9 bg-white px-4 md:px-[120px] font-nunito">
+    <div className="py-9 bg-white px-4 md:px-[240px] font-nunito">
       <p className="text-center text-6xl font-bold">
         How businesses are thriving using
       </p>
@@ -44,28 +44,28 @@ const HowBusinessThrive = () => {
         </div>
 
         <div className="grid grid-cols-2 gap-9">
-          <div className="bg-white shadow-lg px-3 py-9 max-w-[320px] flex flex-col items-center justify-center max-h-[400px]">
+          <div className="bg-white shadow-lg px-3 py-9 w-[320px] flex flex-col items-center justify-center max-h-[400px]">
             <img src={abstract2} className="object-contain h-12 w-[50px]" />
             <p className="font-semibold text-2xl">600+</p>
             <p className="font-medium text-xl">Community Connections</p>
           </div>
 
-          <div className="bg-white shadow-lg px-3 py-9 max-w-[320px] flex flex-col items-center justify-center max-h-[400px]">
+          <div className="bg-white shadow-lg px-3 py-9 w-[320px] flex flex-col items-center justify-center max-h-[400px]">
             <img src={abstract} className="object-contain h-12 w-[50px]" />
-            <p className="font-semibold text-2xl">600+</p>
-            <p className="font-medium text-xl">Community Connections</p>
+            <p className="font-semibold text-2xl">100+</p>
+            <p className="font-medium text-xl">Successful Campaigns</p>
           </div>
 
-          <div className="bg-white shadow-lg px-3 py-9 max-w-[320px] flex flex-col items-center justify-center max-h-[400px]">
+          <div className="bg-white shadow-lg px-3 py-9 w-[320px] flex flex-col items-center justify-center max-h-[400px]">
             <img src={abstract3} className="object-contain h-12 w-[50px]" />
-            <p className="font-semibold text-2xl">600+</p>
-            <p className="font-medium text-xl">Community Connections</p>
+            <p className="font-semibold text-2xl">10%</p>
+            <p className="font-medium text-xl">Growth</p>
           </div>
 
-          <div className="bg-white shadow-lg px-3 py-9 max-w-[320px] flex flex-col items-center justify-center max-h-[400px]">
+          <div className="bg-white shadow-lg px-3 py-9 w-[320px] flex flex-col items-center justify-center max-h-[400px]">
             <img src={abstract4} className="object-contain h-12 w-[50px]" />
-            <p className="font-semibold text-2xl">600+</p>
-            <p className="font-medium text-xl">Community Connections</p>
+            <p className="font-semibold text-2xl">10k+</p>
+            <p className="font-medium text-xl">Micro Communities</p>
           </div>
         </div>
       </div>
