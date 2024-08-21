@@ -30,7 +30,7 @@ const FeatCom = () => {
 
     <div className='flex flex-col md:flex-row items-center gap-y-4 md:gap-y-0 justify-between mt-12'>
     {communities?.map((c, index) => (
-          <Link key={c.id} to={`/communitypage/${c.id}`}>
+          <Link key={c.id}>
             <FeaturedCommCard
              name={c.name}
               description={c.description} 
