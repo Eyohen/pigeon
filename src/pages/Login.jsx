@@ -36,9 +36,6 @@ const Login = () => {
 
   const handleSubmit = async() => {
     //e.preventDefault()
-
-
-
     setIsLoading(true)
     try{
       const res = await axios.post(URL+"/api/auth/login", {email,password})
@@ -63,11 +60,6 @@ const Login = () => {
     }
 
 }
-
-
-
-
-
 
   return (
     <div className='font-nunito'>
