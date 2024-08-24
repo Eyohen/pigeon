@@ -22,18 +22,18 @@ const HowPigWorks = () => {
             {" "}
             <img src={Check} alt="check" className="inline mr-2" />
             <div className="font-normal ">
-              <p>Step 1: sign Up & Choose Your Plan - Quick</p>
-              <p>sign-up to access a diverse range of online</p>
-              <p>communities</p>
+              <p>Step 1: Browse Communities - Use our initiative</p>
+              <p>platform to explore communities that align with</p>
+              <p>your interests or business needs.</p>
             </div>
           </div>
 
           <div className="flex items-start mt-10">
             <img src={Check} alt="check" className="inline mr-2" />
             <div className="font-normal ">
-              <p>Step 2: Browse & join Communities - Use our</p>
-              <p>intuitive platform to find and join communities</p>
-              <p>that align with your interests or business needs.</p>
+              <p>Step 2: Sign Up & Choose Your Plan - Quick</p>
+              <p>sign-up to access a diverse range of online</p>
+              <p>communities.</p>
             </div>
           </div>
 
@@ -66,18 +66,19 @@ const HowPigWorks = () => {
           <div className="flex items-start mt-10">
           <img src={Check} alt="check" className="inline mr-2" />
             <div>
-              <p>Step 2: Select, PAYG & Connect - Choose</p>
-              <p>intuitive platform to find and join communities</p>
-              <p>that align with your interests or business needs.</p>
+              <p>Step 2: Select & Collaborate - Choose</p>
+              <p>the community owner you'd like to work with  and</p>
+              <p>initiate collaboration to review their one-time </p>
+              <p>partnership and promotion fees.</p>
             </div>
           </div>
 
           <div className="flex items-start mt-10">
           <img src={Check} alt="check" className="inline mr-2" />
             <div>
-              <p>Step 3: Engage & Network - Start conversations,</p>
-          <p>share insights, and build relationships within</p>
-          <p>these communities.</p>
+              <p>Step 3: Payment & Interaction - After Payment, access</p>
+          <p>the full profile of the community owner and start</p>
+          <p>engaging with them to address your service needs.</p>
             </div>
           </div>
 

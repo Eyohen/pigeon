@@ -13,9 +13,9 @@ import government from "../assets/landingpage/government.svg"
 const OurDiverseUser = () => {
   return (
     <div className='py-9 bg-white px-4 md:px-[80px] font-nunito'>
-        <p className='text-center text-[#0B0B0E] text-4xl font-bold'>Our Diverse User Community</p>
+        <p className='text-center text-[#0B0B0E] text-4xl font-bold'>What Our Users Look Like</p>
 
-        <p className='font-normal text-center text-3xl'>Our platform connects you to diverse opportunities for meaningful collaborations and partnerships, helping you engage with your target audiences and amplify their impact worldwide.</p>
+        <p className='font-normal text-center text-3xl'>Our platform connects you to diverse opportunities for meaningful collaborations and partnerships, helping you engage with your target audiences and amplify your impact worldwide.</p>
 
 <div className='font-nunito text-sm'>
   <div className='grid md:grid-cols-9 grid-cols-3 gap-5 md:h-[300px]'>
