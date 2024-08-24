@@ -48,6 +48,7 @@ import AdminRestrictedOwners from './pages/AdminRestrictedOwners'
 import AdminCommunityOwnerDetail from './pages/AdminCommunityOwnerDetail'
 import AdminRestrictedCommunities from './pages/AdminRestrictedCommunities'
 import AdminCommunityDetail from './pages/AdminCommunityDetail'
+import SuperAdmin from './pages/SuperAdmin'
 
 
 const App = () => {
@@ -92,6 +93,7 @@ const App = () => {
 
 
      <Route exact path="/admin" element={<Admin/>}/>
+     <Route exact path="/superadmin" element={<SuperAdmin/>}/>
      <Route exact path="/adminanalytics" element={<ProtectedRoute><AdminAnalytics/></ProtectedRoute>}/>
      <Route exact path="/admincommunityowner" element={<ProtectedRoute><AdminCommunityOwner /></ProtectedRoute>}/>
      <Route exact path="/admincommunityownerdetail/:id" element={<ProtectedRoute><AdminCommunityOwnerDetail /></ProtectedRoute>}/>

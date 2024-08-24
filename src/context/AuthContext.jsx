@@ -29,6 +29,8 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = (userData) => {
+    
+    // const userWithRole = {...userData, role:userData.role || 'admin'};
     setUser(userData);
     setIsAuthenticated(true);
     localStorage.setItem('user', JSON.stringify(userData));

@@ -23,6 +23,26 @@ const AdminSidebar = () => {
     setIsOpenCommunity(!isOpenCommunity);
   }
 
+  // Function to check if user has access to a specific menu item
+  const hasAccess = (menuItem) => {
+    if (user.role === 'superadmin') return true; // Superadmin can access everything
+
+      // Define access rules for regular admin
+      const adminAccess = {
+        analytics: false,
+        communityOwners: true,
+        transactions: true,
+        communities: true,
+        users: true,
+        blog: true,
+        settings: false,
+        restrictedOwners: true,
+        restrictedCommunities: true
+      };
+
+      return adminAccess[menuItem];
+    }
+
   console.log("sidebar", user)
   return (
     <div className='fixed top-0 left-0 bottom-0 h-screen bg-[#201327]'>
@@ -35,45 +55,64 @@ const AdminSidebar = () => {
             <div>
         <p className='text-[#F08E1F] font-semibold mt-6'>Menu</p>
 
-        <Link to={'/adminanalytics'}> <div className='flex gap-x-3 items-center hover:bg-[#F08E1F]  px-2 mt-6 rounded'>
+        {hasAccess('analytics') && (
+          <Link to={'/adminanalytics'}> <div className='flex gap-x-3 items-center hover:bg-[#F08E1F]  px-2 mt-6 rounded'>
         <FiUsers color='white' className='' />
         <p className='hover:bg-[#F08E1F] text-white py-1 text-center '>Analytics</p>
         </div></Link>
+            )}
 
+
+{hasAccess('communityOwners') && (
         <Link to={'/admincommunityowner'}> <div className='flex gap-x-3 items-center hover:bg-[#F08E1F] px-2 mt-5 rounded'>
         <FiUsers color='white' className='' />
         <p className='hover:bg-[#F08E1F] text-white py-1 text-center '>Community Owners</p>
         </div></Link>
+)}
 
         <Link > <div className='flex gap-x-3 items-center hover:bg-[#F08E1F] px-2 mt-5 rounded'>
         <CiSearch color='white'  size={20} className=' '/>
         <p className='hover:bg-[#F08E1F] text-white py-1 text-center'>Transactions</p>
         </div></Link>
 
+
+
+        {hasAccess('communities') && (
         <Link to={'/admincommunities'}><div className='flex gap-x-3 items-center hover:bg-[#F08E1F] px-2 mt-5 rounded'>
         <IoReceiptOutline color='white' className=''/>
         <p className='hover:bg-[#F08E1F] text-white py-1 text-center'>Communities</p>
         </div></Link>
+        )}
 
+
+{hasAccess('users') && (
         <Link to={'/adminusers'}><div className='flex gap-x-3 items-center hover:bg-[#F08E1F] px-2 mt-5 rounded'>
         <FiUsers color='white' className='' />
         <p className='hover:bg-[#F08E1F] text-white  py-1 text-center'>Users</p>
         </div></Link>
+)}
 
+
+{hasAccess('blog') && (
         <Link to={'/adminblog'}><div className='flex gap-x-3 items-center hover:bg-[#F08E1F] px-2 mt-5 rounded'>
         <IoReceiptOutline color='white' className=''/>
         <p className='hover:bg-[#F08E1F] text-white py-1 text-center'>Blog</p>
         </div></Link>
+)}
 
+{/* 
         <Link ><div className='flex gap-x-3 items-center hover:bg-[#F08E1F] px-2 mt-5 rounded'>
         <FiUsers color='white' className='' />
         <p className='hover:bg-[#F08E1F] text-white  py-1 text-center'>Messages</p>
-        </div></Link>
+        </div></Link> */}
 
+
+{hasAccess('settings') && (
         <Link to={'/adminsettings'}><div className='flex gap-x-3 items-center hover:bg-[#F08E1F] px-2 mt-5 rounded'>
         <IoSettingsOutline color='white' className=''/>
         <p className='hover:bg-[#F08E1F] text-white  py-1 text-center'>Settings</p>
         </div></Link>
+)}
 
         <Link to={'/adminrestrictedowners'}><div className='flex gap-x-3 items-center hover:bg-[#F08E1F] px-2 mt-5 rounded'>
         <RiForbidLine color='white' className=''/>
@@ -94,11 +133,12 @@ const AdminSidebar = () => {
         <p className='text-[#F08E1F] font-semibold mt-[45px] '>Profile</p>
 
 
-        <div className='flex gap-x-5 items-center mt-5'>
+        <div className='flex gap-x-5 mt-5'>
         <div className='bg-purple-900 text-white rounded-full w-11 h-11 flex justify-center text-2xl items-center'>{user?.fname.charAt()}</div>
         <div>
-            <p className='font-semibold text-white text-lg'>{user?.fname},{user?.lname}</p>
-            <p className='font-light text-gray-400'>{user?.email}</p>
+            <p className='font-semibold text-white text-lg'>{user?.fname}</p>
+            <p className='font-semibold text-white text-lg'>{user?.lname}</p>
+            <p className='font-light text-gray-400'>{user?.email?.slice(0,15)+"..."}</p>
         </div>
         </div>
 
