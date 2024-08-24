@@ -173,6 +173,8 @@ const InsideOwner = () => {
         return pages;
     };
 
+    const colors = ['bg-green-400', 'bg-red-400', 'bg-blue-400', 'bg-violet-400', 'bg-gray-400', 'bg-yellow-400'];
+
     return (
         <div className='flex-1 ml-[300px]'>
             <Navbar2 />
@@ -257,9 +259,9 @@ const InsideOwner = () => {
          </div>
 
 
-            {filteredCommunities.map((community) => (
+            {filteredCommunities.map((community, index) => (
                 <Link key={community.id} to={`/communitypage/${community.id}`}>
-                    <CommunityOwnerCard community={community} />
+                    <CommunityOwnerCard community={community} bgColor={colors[index % colors.length]} />
                 </Link>
             ))}
             <div className="flex justify-center items-center gap-x-4 mt-4">

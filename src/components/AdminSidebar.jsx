@@ -24,24 +24,24 @@ const AdminSidebar = () => {
   }
 
   // Function to check if user has access to a specific menu item
-  const hasAccess = (menuItem) => {
-    if (user.role === 'superadmin') return true; // Superadmin can access everything
+  // const hasAccess = (menuItem) => {
+  //   if (user.role === 'superadmin') return true; // Superadmin can access everything
 
-      // Define access rules for regular admin
-      const adminAccess = {
-        analytics: false,
-        communityOwners: true,
-        transactions: true,
-        communities: true,
-        users: true,
-        blog: true,
-        settings: false,
-        restrictedOwners: true,
-        restrictedCommunities: true
-      };
+  //     // Define access rules for regular admin
+  //     const adminAccess = {
+  //       analytics: false,
+  //       communityOwners: true,
+  //       transactions: true,
+  //       communities: true,
+  //       users: true,
+  //       blog: true,
+  //       settings: false,
+  //       restrictedOwners: true,
+  //       restrictedCommunities: true
+  //     };
 
-      return adminAccess[menuItem];
-    }
+  //     return adminAccess[menuItem];
+  //   }
 
   console.log("sidebar", user)
   return (
@@ -55,20 +55,20 @@ const AdminSidebar = () => {
             <div>
         <p className='text-[#F08E1F] font-semibold mt-6'>Menu</p>
 
-        {hasAccess('analytics') && (
+ 
           <Link to={'/adminanalytics'}> <div className='flex gap-x-3 items-center hover:bg-[#F08E1F]  px-2 mt-6 rounded'>
         <FiUsers color='white' className='' />
         <p className='hover:bg-[#F08E1F] text-white py-1 text-center '>Analytics</p>
         </div></Link>
-            )}
+   
 
 
-{hasAccess('communityOwners') && (
+
         <Link to={'/admincommunityowner'}> <div className='flex gap-x-3 items-center hover:bg-[#F08E1F] px-2 mt-5 rounded'>
         <FiUsers color='white' className='' />
         <p className='hover:bg-[#F08E1F] text-white py-1 text-center '>Community Owners</p>
         </div></Link>
-)}
+
 
         <Link > <div className='flex gap-x-3 items-center hover:bg-[#F08E1F] px-2 mt-5 rounded'>
         <CiSearch color='white'  size={20} className=' '/>
@@ -77,28 +77,27 @@ const AdminSidebar = () => {
 
 
 
-        {hasAccess('communities') && (
+
         <Link to={'/admincommunities'}><div className='flex gap-x-3 items-center hover:bg-[#F08E1F] px-2 mt-5 rounded'>
         <IoReceiptOutline color='white' className=''/>
         <p className='hover:bg-[#F08E1F] text-white py-1 text-center'>Communities</p>
         </div></Link>
-        )}
 
 
-{hasAccess('users') && (
+
         <Link to={'/adminusers'}><div className='flex gap-x-3 items-center hover:bg-[#F08E1F] px-2 mt-5 rounded'>
         <FiUsers color='white' className='' />
         <p className='hover:bg-[#F08E1F] text-white  py-1 text-center'>Users</p>
         </div></Link>
-)}
 
 
-{hasAccess('blog') && (
+
+
         <Link to={'/adminblog'}><div className='flex gap-x-3 items-center hover:bg-[#F08E1F] px-2 mt-5 rounded'>
         <IoReceiptOutline color='white' className=''/>
         <p className='hover:bg-[#F08E1F] text-white py-1 text-center'>Blog</p>
         </div></Link>
-)}
+
 
 {/* 
         <Link ><div className='flex gap-x-3 items-center hover:bg-[#F08E1F] px-2 mt-5 rounded'>
@@ -107,12 +106,12 @@ const AdminSidebar = () => {
         </div></Link> */}
 
 
-{hasAccess('settings') && (
+
         <Link to={'/adminsettings'}><div className='flex gap-x-3 items-center hover:bg-[#F08E1F] px-2 mt-5 rounded'>
         <IoSettingsOutline color='white' className=''/>
         <p className='hover:bg-[#F08E1F] text-white  py-1 text-center'>Settings</p>
         </div></Link>
-)}
+
 
         <Link to={'/adminrestrictedowners'}><div className='flex gap-x-3 items-center hover:bg-[#F08E1F] px-2 mt-5 rounded'>
         <RiForbidLine color='white' className=''/>

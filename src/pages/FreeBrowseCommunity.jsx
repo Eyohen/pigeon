@@ -184,7 +184,7 @@ const renderPagination = () => {
     return pages;
 };
 
-      
+const colors = ['bg-green-400', 'bg-red-400', 'bg-blue-400', 'bg-violet-400', 'bg-gray-400', 'bg-yellow-400'];
 
   return (
     <>
@@ -261,9 +261,9 @@ const renderPagination = () => {
      
         </div>
 
-    {filteredCommunities.map((community) => (
+    {filteredCommunities.map((community, index) => (
         <Link to={`/innerbrowsepage/${community.id}`}>
-    <CommunityOwnerCard key={community.id} community={community} />
+    <CommunityOwnerCard key={community.id} community={community} bgColor={colors[index % colors.length]}/>
     </Link>
     ))}
 
