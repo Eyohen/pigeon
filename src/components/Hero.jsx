@@ -1,6 +1,7 @@
 import React from "react";
 import herolady from "../assets/herolady.png";
-import HeroBottom from "../assets/heroBottom.svg";
+// import HeroBottom from "../assets/heroBottom.svg";
+import HeroBottom from "../assets/HeroBottom2.png";
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
 const Hero = () => {

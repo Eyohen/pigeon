@@ -58,7 +58,7 @@ const HowPigWorks = () => {
           <div className="flex items-start mt-10">
           <img src={Check} alt="check" className="inline mr-2" />
             <div>
-              <p>Step 1: Discover Community Leaders - Engage</p>
+              <p>Step 1: Discover Community Leaders - Explore</p>
               <p>profiles of community leaders who are open to</p>
               <p>partnerships and marketing opportunities.</p>
             </div>
@@ -66,19 +66,19 @@ const HowPigWorks = () => {
           <div className="flex items-start mt-10">
           <img src={Check} alt="check" className="inline mr-2" />
             <div>
-              <p>Step 2: Select & Collaborate - Choose</p>
-              <p>the community owner you'd like to work with  and</p>
-              <p>initiate collaboration to review their one-time </p>
-              <p>partnership and promotion fees.</p>
+              <p>Step 2: Select, PAYG & Connect - Choose</p>
+              <p>leaders whose communities match your target</p>
+              <p>audience and connect with them directly</p>
             </div>
           </div>
 
           <div className="flex items-start mt-10">
           <img src={Check} alt="check" className="inline mr-2" />
             <div>
-              <p>Step 3: Payment & Interaction - After Payment, access</p>
-          <p>the full profile of the community owner and start</p>
-          <p>engaging with them to address your service needs.</p>
+              <p>Step 3: Collaborate & Achieve Goals - Work with</p>
+          <p>leaders to promote your services, conduct</p>
+          <p>market research, or launch targeted marketing</p>
+          <p>campaigns within their communities.</p>
             </div>
           </div>
 

@@ -47,7 +47,7 @@ const Footer = () => {
               </div>
             </div>
             <div>
-              <p className="mb-10"> For Communities</p>
+              <p className="mb-6"> For Communities</p>
               <div className="font-normal text-sm tracking-tighter">
                
                 <p className="mb-4">How it Works</p>

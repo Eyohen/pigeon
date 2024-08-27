@@ -107,43 +107,43 @@ const WhyPigeonhireStands = () => {
         <div className='bg-[#F7F7F7] py-4 px-4 max-w-[220px] rounded-[20px]'>
           <TbTargetArrow size={25} color='#F08E1F'/>
           <p className='font-semibold mt-2'>Effective Targeting</p>
-          <p className=''>Gain unparalleled access to niche local groups and vast global communities, expanding your reach and impact.</p>
+          <p className=''>Utilize our platform's advanced targeting capabilities to connect with your exact audience, ensuring your message resonates with the right people.</p>
         </div>
 
         <div className='bg-[#F7F7F7] py-4 px-4 max-w-[220px] rounded-[20px]'>
           <IoPeopleOutline size={25} color='#F08E1F'/>
           <p className='font-semibold mt-2'>Community Engagement</p>
-          <p className=''>Gain unparalleled access to niche local groups and vast global communities, expanding your reach and impact.</p>
+          <p className=''>Engage deeply with communities, receiving genuine feedback and building relationships beyond mere transactions.</p>
         </div>
 
         <div className='bg-[#F7F7F7] py-4 px-4 max-w-[220px] rounded-[20px]'>
           <TbNotes size={25} color='#F08E1F' />
           <p className='font-semibold mt-2'>Flexible Solutions</p>
-          <p className=''>Gain unparalleled access to niche local groups and vast global communities, expanding your reach and impact.</p>
+          <p className=''>Choose between subscription-based access for continuous engagement or pay-as-you-go options for targeted campaigns, fitting every budget and strategy.</p>
         </div>
 
         <div className='bg-[#F7F7F7] py-4 px-4 max-w-[220px] rounded-[20px]'>
           <TbTopologyStarRing3 size={25} color='#F08E1F'/>
           <p className='font-semibold mt-2'>Diverse User Base</p>
-          <p className=''>Gain unparalleled access to niche local groups and vast global communities, expanding your reach and impact.</p>
+          <p className=''>Connect with users from different sectors and backgrounds, including tech innovators, marketers, and community leaders, fostering diverse collaborations.</p>
         </div>
 
         <div className='bg-[#F7F7F7] py-4 px-4 max-w-[220px] rounded-[20px]'>
           <IoSearchOutline size={25} color='#F08E1F'/>
           <p className='font-semibold mt-2'>Advanced Search Capabilities</p>
-          <p className=''>Gain unparalleled access to niche local groups and vast global communities, expanding your reach and impact.</p>
+          <p className=''>Leverage our advanced search tools to effortlessly navigate our extensive network, enabling you to find the perfect matches for your business needs quickly and efficiently.</p>
         </div>
 
         <div className='bg-[#F7F7F7] py-4 px-4 max-w-[220px] rounded-[20px]'>
           <TbMessageCircleQuestion size={25} color='#F08E1F'/>
           <p className='font-semibold mt-2'>Expert Support</p>
-          <p className=''>Gain unparalleled access to niche local groups and vast global communities, expanding your reach and impact.</p>
+          <p className=''>Benefit from our dedicated support team, providing you with the expertise and guidance to maximize your platform experience.</p>
         </div>
 
         <div className='bg-[#F7F7F7] py-4 px-4 max-w-[220px] rounded-[20px]'>
           <PiShieldWarning size={25} color='#F08E1F'/>
           <p className='font-semibold mt-2'>Secure Platform</p>
-          <p className=''>Gain unparalleled access to niche local groups and vast global communities, expanding your reach and impact.</p>
+          <p className=''>Trust in a platform that prioritizes your data's security and privacy, ensuring a safe and reliable environment for your interactions.</p>
         </div>
       </div>
     </div>
