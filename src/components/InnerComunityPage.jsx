@@ -43,7 +43,7 @@ const InnerComunityPage = () => {
         <p className='font-semibold'>{community.name}</p>
         </div>
 
-        <div className='bg-green-400 text-white text-4xl w-32 h-32 rounded-full items-center justify-center flex border border-gray-700 mt-9 ml-12'>{firstName?.charAt(0)}</div>
+        <div className='bg-green-400 text-white text-4xl w-32 h-32 rounded-full items-center justify-center flex border border-gray-700 mt-9 ml-12'>{community?.name?.charAt(0)}</div>
 
 
         <div className='max-w-[700px]'>

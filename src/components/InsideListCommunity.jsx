@@ -5,50 +5,49 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from '../context/AuthContext';
 import toast, {Toaster} from 'react-hot-toast';
 import { AiFillAndroid } from 'react-icons/ai';
+import CustomDropdown from './CustomDropDown';
+import usflag from '../assets/usflag.png'
+import cadflag from '../assets/cadflag.png'
+import gbpflag from '../assets/gbpflag.jpeg'
+import ngnflag from '../assets/ngnflag.png'
+
+const currencies = [
+  { id: 1, currency: "USD", image: usflag },
+  { id: 2, currency: "GBP", image: gbpflag },
+  { id: 3, currency: "CAD", image: cadflag },
+  { id: 4, currency: "NGN", image: ngnflag },
+]
 
 
 const InsideListCommunity = () => {
 const {user , logout} = useAuth();
-const [selectedCommunity, setSelectedCommunity] = useState([])
-const [communities, setCommunities] = useState([])
+// const [selectedCommunity, setSelectedCommunity] = useState([])
+// const [communities, setCommunities] = useState([])
+const [selectedCommunityOwner, setSelectedCommunityOwner] = useState([])
+const [communityOwner, setCommunityOwner] = useState([])
 const [name, setName] = useState('')
 const [description, setDescription] = useState('')
-
-
 const [selectedLocation, setSelectedLocation] = useState('');
 const [location, setLocation] = useState('');
-
 const [communicationPlatform, setCommPlatform] = useState([])
 const [selectedCommPlatform, setSelectedCommPlatform] = useState('')
-
 const [communityType, setCommType] = useState([])
 const [selectedCommType, setSelectedCommType] = useState('')
-
 const [selectedSize, setSelectedSize] = useState([])
 const [size, setSize] = useState([])
-
-
-
-// const [selectedCommInterest, setSelectedCommInterest] = useState([])
-
 const [communityInterest, setInterest] = useState([])
 const [selectedInterest, setSelectedInterest] = useState('');
-
 const [selectedEnglevel, setSelectedEnglevel] = useState([])
 const [engagementLevel, setLevel] = useState([])
 const [selectedGoal, setSelectedGoal] = useState([])
 const [communityGoal, setGoal] = useState([])
-// const [user, setUser] = useState([])
 const [content, setContent] = useState('')
 const [accessType, setAccessType] = useState('')
 const [prevCollabType, setPrevCollabType] = useState('')
-// const [preferredCollabType, setPreferredCollabType] = useState('')
 const [selectedAccess, setSelectedAccess] = useState('')
 const [collab, setCollab] = useState([])
-const [collaborationType, setCollabType] = useState([])
+const [collaborationType, setCollaborationType] = useState([])
 const [selectedCollabType, setSelectedCollabType] = useState([])
-
-
 const [additionalService, setAdditionalService] = useState('');
 const [whatsapp, setWhatsapp] = useState('')
 const [twitter, setTwitter] = useState('')
@@ -59,7 +58,10 @@ const [amount, setAmount] = useState('')
 const [selectedDuration, setSelectedDuration] = useState('')
 const [duration, setDuration] = useState('')
 const [isLoading, setIsLoading] = useState(false)
+const [isLoading2, setIsLoading2] = useState(true)
 const [error, setError] = useState(false)
+
+const [selectedCurrency, setSelectedCurrency] = useState('')
 
   const navigate = useNavigate()
 
@@ -71,19 +73,19 @@ const [error, setError] = useState(false)
 
 
 
-  const fetchMyCommunities = async () => {
+  const fetchMyCommunityOwners = async () => {
     try {
 
-      const res = await axios.get(URL + `/api/communities/user/${userId}`);
-      setCommunities(res.data);
-      console.log("Filtered communities:", communities)
+      const res = await axios.get(`${URL}/api/communities/user/${userId}`);
+      setCommunityOwner(res.data);
+      console.log("Filtered my communities:", communityOwner)
     } catch (err) {
       console.log(err);
     }
   };
 
   useEffect(() => {
-    fetchMyCommunities();
+    fetchMyCommunityOwners();
   }, []);  
 
 
@@ -183,6 +185,34 @@ useEffect(() => {
     fetchCollab();
   }, []);
 
+  const fetchCollaborationTypes = async (userId) => {
+    if(!userId){
+      setIsLoading2(false);
+      setError("User Id is not available");
+      return;
+    }
+
+    try {
+      setIsLoading2(true);
+      const res = await axios.get(`${URL}/api/collaborationTypes/user/${userId}`);
+      console.log("my collaboration types", res.data)
+      setCollaborationType(res.data);
+      setError(null)
+    } catch (err) {
+      console.log(err);
+      setError("Failed to get collaboartion types");
+
+    } finally {
+      setIsLoading2(false);
+    }
+  };
+
+  useEffect(() => {
+    if (user?.id){
+    fetchCollaborationTypes(user?.id);
+    }
+  }, [user]);
+
 
 
 
@@ -271,10 +301,13 @@ useEffect(() => {
 
       const res = await axios.post(URL+"/api/collaborationTypes/create",
       {
-      collaborationType:selectedCollabType,
-      duration:selectedDuration,
+    
+      title:selectedCollabType,
       amount,
-      communityId:selectedCommunity
+      currency:selectedCurrency,
+      userId: userId,
+      communityId:selectedCommunityOwner
+
       }, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -284,10 +317,12 @@ useEffect(() => {
       
 
       setError(false)
-      navigate("/communityowner")    
+      toast.success('Collaboration created Successfully!', toastStyles.success)
+   
     }
     catch(err){
       setError(true)
+      toast.error('Failed to create Collaboration!');
       console.log(err)
     }finally {
       setIsLoading(false)
@@ -520,8 +555,8 @@ useEffect(() => {
   const handleGoal = (e) => {
     setSelectedGoal(e.target.value);
   }
-  const handleCommunity = (e) => {
-    setSelectedCommunity(e.target.value);
+  const handleCommunityOwner = (e) => {
+    setSelectedCommunityOwner(e.target.value);
   }
     const handleCollabType = (e) => {
     setSelectedCollabType(e.target.value);
@@ -809,60 +844,62 @@ const toastStyles = {
 </div>
 
 <div className='items-center justify-center flex mt-9'>
-<button onClick={handleCreate} className='bg-[#F08E1F] text-white rounded-full px-32 py-2'>{isLoading ? "Loading..." : "List Community"}</button>
+<button onClick={handleCreate} className='bg-[#F08E1F] text-white rounded-full px-32 py-2'>{isLoading ? "Loading..." : "Create Community Owner"}</button>
       </div>
 
 
           {/* collaboration types */}
-   {/* <div className='border-2 rounded-xl mt-12 py-9 px-6 space-y-3 mb-9'>
+   <div className='border-2 rounded-xl mt-12 py-9 px-6 space-y-3 mb-9'>
         <p className='font-semibold'>Collaboration Types</p>
 
-        <p className='text-sm'>Title <span className='text-red-500 text-xl'>*</span></p>
+        <p className='text-sm'>Title</p>
         <select value={selectedCollabType} onChange={handleCollabType} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'>
             <option value="">Select Collaboration Type</option>
             {collab.map(item => (
-              <option key={item.id} value={item.collaborationType}>{item.collab}</option>
+              <option key={item.id} value={item.collab}>{item.collab}</option>
             ) )}
           </select>
 
-      
-        <p className='text-sm'>Duration<span className='text-red-500 text-xl'> *</span></p>
-        <select value={selectedInterest} onChange={handleInterest} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'>
-            <option value="">Select duration</option>
-            {durations.map(item => (
-              <option key={item.id} value={item.duration}>{item.duration}</option>
-            ) )}
-          </select>
+                   <p className='text-sm pt-2'>Select Currency</p>
+         <CustomDropdown
+   options={currencies}
+   value={selectedCurrency}
+   onChange={(value) => setSelectedCurrency(value)}
+ />
 
-          <p className='text-sm'>Amount<span className='text-red-500 text-xl'> *</span></p>
+          <p className='text-sm'>Amount</p>
           <input onChange={(e)=>setAmount(e.target.value)} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4' />
 
-          <p className='text-sm'>Community<span className='text-red-500 text-xl'> *</span></p>
-        <select value={selectedCommunity} onChange={handleCommunity} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'>
-            <option value="">Select Community You Created</option>
-            {communities?.map(item => (
-              <option key={item.id} value={item.id}>{item.name}</option>
+          <p>Community Owner</p>
+          <select value={selectedCommunityOwner} onChange={handleCommunityOwner} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'>
+            <option value="">Select Community Owner</option>
+            {communityOwner?.map(item => (
+              <option key={item.id} value={item?.id}>{item?.name}</option>
             ) )}
           </select>
 
-          <div>
-            {collaborationType.map((c) =>(
-              <div key={c.id}>{c.collaborationType}</div>
-            ))}
-          </div>
 
 
 <div className='items-center justify-center flex'>
-          <button onClick={createCollaboration} className='border border-[#F08E1F] rounded-full px-16 py-2'>Add Collaboration Type</button>
+          <button onClick={createCollaboration} className='border border-[#F08E1F] rounded-full px-16 py-2 mt-6'>Add Collaboration Type</button>
 
           </div>
-          </div> */}
+
+          <p className='text-sm'>My Collaborations Created</p>
+        <select className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'>
+            <option value="">Collaboration types created</option>
+            {collaborationType?.map(item => (
+              <option key={item.id}>{item.title}</option>
+            ) )}
+          </select>
+          </div>
 
 
 
 
       </div>
       </div>
+      <div className='mb-24'></div>
       </div>
   )
 }

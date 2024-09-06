@@ -3,7 +3,7 @@ import Sidebar from '../components/Sidebar';
 import { IoSearchOutline } from "react-icons/io5";
 import { URL } from '../url';
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CommunityOwnerCard from '../components/CommunityOwnerCard';
 import Navbar2 from '../components/Navbar2';
 import { IoFilter } from "react-icons/io5";
@@ -16,6 +16,7 @@ const user = "Registered Users"
 
 
 const AdminAnalytics = () => {
+  const navigate = useNavigate()
     const { user, logout } = useAuth();
     const [commOwner, setCommOwner] = useState([])
     const [users, setUsers] = useState(0)
@@ -81,6 +82,8 @@ const AdminAnalytics = () => {
                 <AnalyticCard name="Transactions Value by Communities"/>
 
                 </div>
+
+                <div><button onClick={() => navigate('/changeprice')} className='bg-[#F08E1F] text-white mt-6 ml-[48px] px-4 py-2 rounded-md'>Change Subscription Prices</button></div>
 
         <div>
 

@@ -20,7 +20,7 @@ console.log("userId",userId)
 
     const fetchCommunities = async () => {
         try {
-            const res = await axios.get(`${URL}/api/communities/user/${userId}`);
+            const res = await axios.get(`${URL}/api/visible/user/${userId}`);
             console.log("community", res.data)
             setCommunities(res.data);
         } catch (err) {

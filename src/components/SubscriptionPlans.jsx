@@ -52,7 +52,7 @@ const SubscriptionPlans = () => {
                 <p className='mt-3'>- Vetted connections</p>
                 <p className='mt-3'>- Quality ratings</p>
                 <p className='mt-3'>- Advanced search</p>
-                <button className='mt-[80px] bg-[#F08E1F] px-12 py-2 rounded-full'>Subscribe</button>
+                <button onClick={() => navigate('/paymentpage')} className='mt-[80px] bg-[#F08E1F] px-12 py-2 rounded-full'>Subscribe</button>
             </div>
             <div className='border border-[#F08E1F] rounded-lg px-4 max-w-[280px] py-2'> 
                <p className='font-[600]' >Bi-annual</p>
@@ -64,7 +64,7 @@ const SubscriptionPlans = () => {
                 <p className='mt-3'>- Quality ratings</p>
                 <p className='mt-3'>- Advanced search</p>
                 <p className='mt-3'>Save 30% per month</p>
-                <button className='mt-12 bg-[#F08E1F] px-12 py-2 rounded-full'>Subscribe</button>
+                <button onClick={() => navigate('/paymentpage')} className='mt-12 bg-[#F08E1F] px-12 py-2 rounded-full'>Subscribe</button>
                </div>
             <div className='border border-[#F08E1F] rounded-lg px-4 max-w-[280px] py-2'> 
                <p className='font-[600]'>Annual</p>
@@ -76,7 +76,7 @@ const SubscriptionPlans = () => {
                 <p className='mt-3'>- Quality ratings</p>
                 <p className='mt-3'>- Advanced search</p>
                 <p className='mt-3'>Save 50% per month</p>
-                <button className='mt-[29px] bg-[#F08E1F] px-12 py-2 rounded-full mb-2'>Subscribe</button>
+                <button onClick={() => navigate('/paymentpage')} className='mt-[29px] bg-[#F08E1F] px-12 py-2 rounded-full mb-2'>Subscribe</button>
                </div>
         </div>
 

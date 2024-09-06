@@ -1,8 +1,10 @@
 import React, {useState} from 'react'
 import { HiMiniXMark } from "react-icons/hi2";
 import { IoMdSquareOutline,IoMdSquare  } from "react-icons/io";
+import { useNavigate } from 'react-router-dom';
 
 const PaymentModal = ({ isOpen, onClose, title, content }) => {
+    const navigate = useNavigate()
     const [checkbox, setCheckbox] = useState(false)
     const handleToggle = (checkboxId) => {
         setCheckbox((prevCheckbox) => ({
@@ -48,9 +50,7 @@ const PaymentModal = ({ isOpen, onClose, title, content }) => {
 </div>
 
 <div className='items-center justify-center flex pb-6'>
-<button onClick={() =>{
-           onClose()
-          }} className='bg-gray-100 text-gray-400 rounded-full px-9 py-1 mt-2 '>Make Payment</button>
+<button onClick={() => navigate('/paymentpage')} className='bg-gray-100 text-gray-400 rounded-full px-9 py-1 mt-2 '>Make Payment</button>
 </div>
 
 

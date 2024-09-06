@@ -49,6 +49,8 @@ import AdminCommunityOwnerDetail from './pages/AdminCommunityOwnerDetail'
 import AdminRestrictedCommunities from './pages/AdminRestrictedCommunities'
 import AdminCommunityDetail from './pages/AdminCommunityDetail'
 import SuperAdmin from './pages/SuperAdmin'
+import ChangePrice from './pages/ChangePrice'
+import PaymentPage from './pages/PaymentPage'
 
 
 const App = () => {
@@ -94,7 +96,9 @@ const App = () => {
 
      <Route exact path="/admin" element={<Admin/>}/>
      <Route exact path="/superadmin" element={<SuperAdmin/>}/>
+     <Route exact path="/paymentpage" element={<PaymentPage/>}/>
      <Route exact path="/adminanalytics" element={<ProtectedRoute><AdminAnalytics/></ProtectedRoute>}/>
+     <Route exact path="/changeprice" element={<ProtectedRoute><ChangePrice /></ProtectedRoute>}/>
      <Route exact path="/admincommunityowner" element={<ProtectedRoute><AdminCommunityOwner /></ProtectedRoute>}/>
      <Route exact path="/admincommunityownerdetail/:id" element={<ProtectedRoute><AdminCommunityOwnerDetail /></ProtectedRoute>}/>
      <Route exact path="/adminrestrictedowners" element={<ProtectedRoute><AdminRestrictedOwners /></ProtectedRoute>}/>
