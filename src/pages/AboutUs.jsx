@@ -10,7 +10,7 @@ const AboutUs = () => {
       <div className="bg-gray-100 font-nunito">
         <Navbar />
 
-        <div className="mt-9 bg-white py-9">
+        <div className="mt-[58px] bg-white py-9">
           <p className="text-center text-6xl font-bold ">Our Story</p>
 
           <div className="flex px-4 md:px-[50px] gap-x-24 mt-9 items-start">

@@ -265,7 +265,7 @@ const [selectedInterest, setSelectedInterest] = useState('');
          accessType:selectedAccess,phone,email, 
          connCategory:selectedConnCategory, contentShared:selectedContentShared,
            prevCollabType, established:startDate,communityGoal:selectedGoal, accessRequire,
-            twitter, telegram, whatsapp, usp, recognition, additionalService, user:userId
+            twitter, telegram, whatsapp, usp, recognition, additionalService, user:user?.id
         }, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
@@ -375,86 +375,157 @@ const [selectedInterest, setSelectedInterest] = useState('');
     const countries = [
       {
         id: 1,
-        location: "Angola",
+        location: "Global",
       },
       {
         id: 2,
+        location: "Online",
+      },
+      {
+        id: 3,
         location: "Algeria",
       },
       {
-      id: 3,
-      location: "Argentina",
+        id: 4,
+        location: "Angola",
       },
       {
-      id: 4,
-      location: "Bangledesh",
-      },
-      {
-      id: 5,
-     location: "Brazil",
+        id: 5,
+        location: "Argentina",
       },
       {
         id: 6,
-        location: "Canada",
+        location: "Australia",
       },
       {
         id: 7,
+        location: "Bangladesh",
+      },
+      {
+        id: 8,
+        location: "Brazil",
+      },
+      {
+        id: 9,
+        location: "Canada",
+      },
+      {
+        id: 10,
         location: "China",
       },
       {
-      id: 8,
-      location: "Croatia",
-    },
-    {
-      id: 9,
-      location: "Dominica",
-    },
-    {
-    id: 10,
-    location: "Denmark",
-    },
+        id: 11,
+        location: "Croatia",
+      },
       {
-      id:11,
-      location: "Egypt",
-    },
-    {
-      id: 12,
-      location: "Ecuador",
-    },
-    {
-    id: 13,
-    location: "Estonia",
-    },
-    {
-      id:14,
-      location: "France",
-    },
-    {
+        id: 12,
+        location: "Denmark",
+      },
+      {
+        id: 13,
+        location: "Dominica",
+      },
+      {
+        id: 14,
+        location: "Ecuador",
+      },
+      {
         id: 15,
+        location: "Egypt",
+      },
+      {
+        id: 16,
+        location: "Estonia",
+      },
+      {
+        id: 17,
+        location: "France",
+      },
+      {
+        id: 18,
+        location: "Germany",
+      },
+      {
+        id: 19,
+        location: "Ghana",
+      },
+      {
+        id: 20,
+        location: "India",
+      },
+      {
+        id: 21,
+        location: "Indonesia",
+      },
+      {
+        id: 22,
+        location: "Italy",
+      },
+      {
+        id: 23,
+        location: "Japan",
+      },
+      {
+        id: 24,
+        location: "Kenya",
+      },
+      {
+        id: 25,
+        location: "Mexico",
+      },
+      {
+        id: 26,
         location: "Morocco",
-    },
-    {
-      id: 16,
-      location: "Nigeria",
-    },
-    {
-      id: 17,
-      location: "South Africa",
-    },
-    {
-      id: 18,
-      location: "United State of America",
-    },
-    {
-      id: 19,
-      location: "United Kingdom",
-    },
-    {
-      id: 20,
-      location: "Venezuela",
-    },
+      },
+      {
+        id: 27,
+        location: "Netherlands",
+      },
+      {
+        id: 28,
+        location: "Nigeria",
+      },
+      {
+        id: 29,
+        location: "Philippines",
+      },
+      {
+        id: 30,
+        location: "Singapore",
+      },
+      {
+        id: 31,
+        location: "South Africa",
+      },
+      {
+        id: 32,
+        location: "South Korea",
+      },
+      {
+        id: 33,
+        location: "Spain",
+      },
+      {
+        id: 34,
+        location: "United Arab Emirates",
+      },
+      {
+        id: 35,
+        location: "United Kingdom",
+      },
+      {
+        id: 36,
+        location: "United States",
+      },
+      {
+        id: 37,
+        location: "Venezuela",
+      },
+      {
+        id: 38,
+        location: "Zambia",
+      },
     ]
-  
   
   
     const accesses = [
@@ -987,49 +1058,8 @@ const [selectedInterest, setSelectedInterest] = useState('');
 <button onClick={handleCreate} className='bg-[#F08E1F] text-white rounded-full px-32 py-2'>{isLoading ? "Loading..." : "List Community"}</button>
       </div>
 
-          {/* collaboration types */}
-   {/* <div className='border-2 rounded-xl mt-12 py-9 px-6 space-y-3 mb-9'>
-        <p className='font-semibold'>Collaboration Types</p>
-
-        <p className='text-sm'>Title <span className='text-red-500 text-xl'>*</span></p>
-        <select value={selectedCollabType} onChange={handleCollabType} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'>
-            <option value="">Select Collaboration Type</option>
-            {collab.map(item => (
-              <option key={item.id} value={item.collaborationType}>{item.collab}</option>
-            ) )}
-          </select>
-
-      
-        <p className='text-sm'>Duration<span className='text-red-500 text-xl'> *</span></p>
-        <select value={selectedInterest} onChange={handleInterest} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'>
-            <option value="">Select duration</option>
-            {durations.map(item => (
-              <option key={item.id} value={item.duration}>{item.duration}</option>
-            ) )}
-          </select>
-
-          <p className='text-sm'>Amount<span className='text-red-500 text-xl'> *</span></p>
-          <input onChange={(e)=>setAmount(e.target.value)} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4' />
-
-          <p className='text-sm'>Community<span className='text-red-500 text-xl'> *</span></p>
-        <select value={selectedCommunity} onChange={handleCommunity} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'>
-            <option value="">Select Community You Created</option>
-            {communities?.map(item => (
-              <option key={item.id} value={item.id}>{item.name}</option>
-            ) )}
-          </select>
-
-          <div>
-            {collaborationType.map((c) =>(
-              <div key={c.id}>{c.collaborationType}</div>
-            ))}
-          </div>
-
-<div className='items-center justify-center flex'>
-          <button onClick={createCollaboration} className='border border-[#F08E1F] rounded-full px-16 py-2'>Add Collaboration Type</button>
-
-          </div>
-          </div> */}
+       
+       <div className='mb-24'></div>
 
 
 

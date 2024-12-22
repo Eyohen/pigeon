@@ -8,11 +8,13 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import CommunityOwnerCard from '../components/CommunityOwnerCard';
 import { IoFilter } from "react-icons/io5";
+import { useAuth } from '../context/AuthContext';
 
 
 
 
 const FreeBrowseCommunities = () => {
+    const {user} = useAuth()
     const [isOpen, setIsOpen] = useState(false);
     const [communities, setCommunities] = useState([]);
     const [search, setSearch] = useState('');
@@ -37,7 +39,7 @@ const FreeBrowseCommunities = () => {
 
     const fetchCommunities = async (searchTerm = '', page = 1, limit = 1, location = '') => {
         try {
-          const res = await axios.get(`${URL}/api/visible`, {
+          const res = await axios.get(`${URL}/api/visible?userId=${user?.id}`, {
                 params: {
                     search: searchTerm,
                     page: page,

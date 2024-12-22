@@ -1,5 +1,6 @@
 import React from "react";
 import Logo from "../assets/landingpage/whiteLogo.svg";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -19,22 +20,22 @@ const Footer = () => {
             <div>
               <p className="mb-7">Companies</p>
               <div className="font-normal text-sm tracking-tighter">
-                <p className="mb-4">About Us</p>
-                <p>Stories that Connect</p>
+                <Link to={'/aboutus'}><p className="mb-4">About Us</p></Link>
+                <Link to={'/blog'}><p>Stories that Connect</p></Link>
               </div>
             </div>
             <div>
               <p className="mb-7">Terms & Policies</p>
               <div className="font-normal text-sm tracking-tighter">
                 <p className="mb-4">Terms of Service</p>
-                <p>Privacy Policy</p>
+                <Link to={'/privacypolicy'}><p>Privacy Policy</p></Link>
               </div>
             </div>
             <div>
-              <p className="mb-7">Contacts</p>
+            <p className="mb-7">Contacts</p>
               <div className="font-normal text-sm tracking-tighter">
-                <p className="mb-4">FAQ</p>
-                <p>Contact Us</p>
+              <Link to={'/faq'}><p className="mb-4">FAQ</p></Link>
+                <Link to={'/contactus'}><p>Contact Us</p></Link>
               </div>
             </div>
             <div>
@@ -42,7 +43,7 @@ const Footer = () => {
               <div className="font-normal text-sm tracking-tighter">
                 <p className="mb-4">Explore Communities</p>
                 <p className="mb-4">Engage Community Owners</p>
-                <p className="mb-4">Pricing</p>
+                <Link to={'/pricing'}><p className="mb-4">Pricing</p></Link>
                 <p className="mb-4">How it Works</p>
               </div>
             </div>

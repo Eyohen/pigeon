@@ -16,6 +16,8 @@ import usflag from '../assets/usflag.png'
 import cadflag from '../assets/cadflag.png'
 import gbpflag from '../assets/gbpflag.jpeg'
 import ngnflag from '../assets/ngnflag.png'
+import australianflag from '../assets/australianflag.png'
+import chinaflag from '../assets/chinaflag.png'
 
 
 const currencies = [
@@ -39,6 +41,16 @@ const currencies = [
   id: 4,
   currency: "NGN",
   image:ngnflag
+},
+{
+  id: 5,
+  currency: "AUD",
+  image:australianflag
+},
+{
+  id: 6,
+  currency: "CNY",
+  image:chinaflag
 },
 
 ]

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { MdOutlineArrowDropDown } from "react-icons/md";
 import logo from "../assets/logo.svg";
 import { RiArrowDownSLine } from "react-icons/ri";
 import { RiMenuFill } from "react-icons/ri";
@@ -24,8 +24,8 @@ const Navbar = () => {
 
 
   return (
-    <div className="bg-white fixed top-0 left-0 right-0 z-50 ">
-      <div className="flex justify-between items-center px-[4px] md:px-[160px] py-5">
+    <div className="bg-white fixed top-0 left-0 right-0 z-50">
+      <div className="flex justify-between items-center px-[4px] md:px-[160px] py-3">
         <div className="">
           <img src={logo} alt="" className="" />
         </div>
@@ -45,12 +45,17 @@ const Navbar = () => {
           </p> */}
 
 
+{/* <p onClick={user ? (() => navigate('/browserowner')) : (() => navigate('/login'))} className="text-[#201327] text-base font-medium hover:text-[#F08E1F] hidden md:block cursor-pointer ">Communities</p> */}
 
-      <p onClick={user ? (() => navigate('/browserowner')) : (() => navigate('/login'))} className="text-[#201327] text-base font-medium hover:text-[#F08E1F] hidden md:block cursor-pointer">Communities</p>
+<div className="relative">
+      <div className="flex items-center gap-x-1"> <p className="text-[#201327] text-base font-medium hover:text-[#F08E1F] hidden md:block cursor-pointer ">Communities</p> <MdOutlineArrowDropDown size={22}/></div>
 
-
-
-
+      {open && <div className="border border-[#554634] bg-white px-6 py-6 z-50 absolute rounded-lg mt-5 left-1/2 transform -translate-x-1/2">
+         <p onClick={() => navigate('/browserowner')} className="text-[#F08E1F] min-w-[160px] cursor-pointer">Browse Communities</p>
+         <p onClick={() => navigate('/register')} className="text-[#F08E1F] min-w-[160px] cursor-pointer">Register Community</p>
+ 
+         </div> }
+         </div>
 
 
           <Link to={"/pricing"}>
@@ -73,9 +78,9 @@ const Navbar = () => {
 
 
          <div className="relative">
-         <p onClick={handleOpen} className="text-white px-6 py-2 rounded-full text-lg font-nunito font-normal hidden md:block bg-[#F08E1F] cursor-pointer">{user ? user?.fname : "Sign in"}</p>
+         <button onClick={handleOpen} className="text-white px-6 py-2 rounded-full text-lg font-nunito font-normal hidden md:block bg-[#F08E1F] cursor-pointer">{user ? user?.fname : "Sign in"}</button>
 
-         {open && <div className="border border-[#F08E1F] bg-white px-12 py-6 z-50 absolute rounded-lg mt-4 left-1/2 transform -translate-x-1/2">
+         {open && <div className="border border-[#554634] bg-white px-12 py-6 z-50 absolute rounded-lg mt-2 left-1/2 transform -translate-x-1/2">
          <p onClick={() => navigate('/register')} className="text-[#F08E1F] min-w-[95px] cursor-pointer">Create New</p>
         {user ? (<p onClick={logout} className="text-[#F08E1F] cursor-pointer">Logout</p>) : (<p onClick={()=> navigate('/login')} className="text-[#F08E1F] cursor-pointer">Login</p>)} 
          </div> }

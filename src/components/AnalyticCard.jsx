@@ -3,14 +3,16 @@ import { MdKeyboardArrowDown } from "react-icons/md";
 import axios from 'axios'
 import { URL } from "../url"
 
-const AnalyticCard = ({count, name}) => {
+const AnalyticCard = ({count, name, currency}) => {
 
   return (
     <div className='border rounded-xl bg-white w-[280px] h-[100px] py-3 px-2'>
+      
 
     <div className='flex justify-between'>
     <p className='text-gray-600 text-2xl font-medium'>{count}</p>
-    <button className='bg-[#F08E1F] text-white text-sm px-1 rounded-full flex items-center'>All Time<MdKeyboardArrowDown color='white' size={23}/></button>
+    <p className='text-gray-600 text-md font-normal'>{currency}</p>
+    {/* <button className='bg-[#F08E1F] text-white text-sm px-1 rounded-full flex items-center'>All Time<MdKeyboardArrowDown color='white' size={23}/></button> */}
     </div>
 
     <div className='flex justify-between mt-4'>

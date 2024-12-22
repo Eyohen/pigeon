@@ -13,7 +13,7 @@ const InsideOwner = () => {
     const [search, setSearch] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
-    const [limit, setLimit] = useState(5); // You can adjust the limit as needed
+    const [limit, setLimit] = useState(3); // You can adjust the limit as needed
     const [locations, setLocations] = useState([]);
     const [selectedLocation, setSelectedLocation] = useState('');
     const [countryFilter, setCountryFilter] = useState('')
@@ -267,6 +267,9 @@ const InsideOwner = () => {
             <div className="flex justify-center items-center gap-x-4 mt-4">
                 {renderPagination()}
             </div>
+
+
+            <div className='mb-24'></div>
         </div>
     );
 };

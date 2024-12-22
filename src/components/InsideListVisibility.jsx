@@ -103,19 +103,19 @@ const [error, setError] = useState(false)
   }, []);  
 
 
-// get collaborationTypes
-const fetchMyCollaborationTypes = async () => {
-  try {
-    const res = await axios.get(URL + "/api/engagementLevel/");
-    setLevel(res.data);
-  } catch (err) {
-    console.log(err);
-  }
-};
+// // get collaborationTypes
+// const fetchMyCollaborationTypes = async () => {
+//   try {
+//     const res = await axios.get(URL + "/api/engagementLevel/");
+//     setLevel(res.data);
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
 
-useEffect(() => {
-  fetchEnglevel();
-}, []);
+// useEffect(() => {
+//   fetchEnglevel();
+// }, []);
 
 
   const fetchCommType = async () => {
@@ -259,7 +259,7 @@ useEffect(() => {
       accessType:selectedAccess,phone,email, 
       connCategory:selectedConnCategory, contentShared:selectedContentShared,
         prevCollabType, established:startDate, communityGoal:selectedGoal, accessRequire,
-         twitter, telegram, whatsapp, usp, recognition, additionalService, user:userId
+         twitter, telegram, whatsapp, usp, recognition, additionalService, user:user?.id
       }, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -366,90 +366,160 @@ useEffect(() => {
   ]
 
 
-
   const countries = [
     {
       id: 1,
-      location: "Angola",
+      location: "Global",
     },
     {
       id: 2,
+      location: "Online",
+    },
+    {
+      id: 3,
       location: "Algeria",
     },
     {
-    id: 3,
-    location: "Argentina",
+      id: 4,
+      location: "Angola",
     },
     {
-    id: 4,
-    location: "Bangledesh",
-    },
-    {
-    id: 5,
-   location: "Brazil",
+      id: 5,
+      location: "Argentina",
     },
     {
       id: 6,
-      location: "Canada",
+      location: "Australia",
     },
     {
       id: 7,
+      location: "Bangladesh",
+    },
+    {
+      id: 8,
+      location: "Brazil",
+    },
+    {
+      id: 9,
+      location: "Canada",
+    },
+    {
+      id: 10,
       location: "China",
     },
     {
-    id: 8,
-    location: "Croatia",
-  },
-  {
-    id: 9,
-    location: "Dominica",
-  },
-  {
-  id: 10,
-  location: "Denmark",
-  },
+      id: 11,
+      location: "Croatia",
+    },
     {
-    id:11,
-    location: "Egypt",
-  },
-  {
-    id: 12,
-    location: "Ecuador",
-  },
-  {
-  id: 13,
-  location: "Estonia",
-  },
-  {
-    id:14,
-    location: "France",
-  },
-  {
+      id: 12,
+      location: "Denmark",
+    },
+    {
+      id: 13,
+      location: "Dominica",
+    },
+    {
+      id: 14,
+      location: "Ecuador",
+    },
+    {
       id: 15,
+      location: "Egypt",
+    },
+    {
+      id: 16,
+      location: "Estonia",
+    },
+    {
+      id: 17,
+      location: "France",
+    },
+    {
+      id: 18,
+      location: "Germany",
+    },
+    {
+      id: 19,
+      location: "Ghana",
+    },
+    {
+      id: 20,
+      location: "India",
+    },
+    {
+      id: 21,
+      location: "Indonesia",
+    },
+    {
+      id: 22,
+      location: "Italy",
+    },
+    {
+      id: 23,
+      location: "Japan",
+    },
+    {
+      id: 24,
+      location: "Kenya",
+    },
+    {
+      id: 25,
+      location: "Mexico",
+    },
+    {
+      id: 26,
       location: "Morocco",
-  },
-  {
-    id: 16,
-    location: "Nigeria",
-  },
-  {
-    id: 17,
-    location: "South Africa",
-  },
-  {
-    id: 18,
-    location: "United State of America",
-  },
-  {
-    id: 19,
-    location: "United Kingdom",
-  },
-  {
-    id: 20,
-    location: "Venezuela",
-  },
+    },
+    {
+      id: 27,
+      location: "Netherlands",
+    },
+    {
+      id: 28,
+      location: "Nigeria",
+    },
+    {
+      id: 29,
+      location: "Philippines",
+    },
+    {
+      id: 30,
+      location: "Singapore",
+    },
+    {
+      id: 31,
+      location: "South Africa",
+    },
+    {
+      id: 32,
+      location: "South Korea",
+    },
+    {
+      id: 33,
+      location: "Spain",
+    },
+    {
+      id: 34,
+      location: "United Arab Emirates",
+    },
+    {
+      id: 35,
+      location: "United Kingdom",
+    },
+    {
+      id: 36,
+      location: "United States",
+    },
+    {
+      id: 37,
+      location: "Venezuela",
+    },
+    {
+      id: 38,
+      location: "Zambia",
+    },
   ]
-
   const accesses = [
     {
         _id: 1,

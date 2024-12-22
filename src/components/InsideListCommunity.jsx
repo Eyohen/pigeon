@@ -10,12 +10,24 @@ import usflag from '../assets/usflag.png'
 import cadflag from '../assets/cadflag.png'
 import gbpflag from '../assets/gbpflag.jpeg'
 import ngnflag from '../assets/ngnflag.png'
+import australianflag from '../assets/australianflag.png'
+import chinaflag from '../assets/chinaflag.png'
 
 const currencies = [
   { id: 1, currency: "USD", image: usflag },
   { id: 2, currency: "GBP", image: gbpflag },
   { id: 3, currency: "CAD", image: cadflag },
   { id: 4, currency: "NGN", image: ngnflag },
+  {
+    id: 5,
+    currency: "AUD",
+    image:australianflag
+  },
+  {
+    id: 6,
+    currency: "CNY",
+    image:chinaflag
+  },
 ]
 
 
@@ -42,9 +54,7 @@ const [engagementLevel, setLevel] = useState([])
 const [selectedGoal, setSelectedGoal] = useState([])
 const [communityGoal, setGoal] = useState([])
 const [content, setContent] = useState('')
-const [accessType, setAccessType] = useState('')
 const [prevCollabType, setPrevCollabType] = useState('')
-const [selectedAccess, setSelectedAccess] = useState('')
 const [collab, setCollab] = useState([])
 const [collaborationType, setCollaborationType] = useState([])
 const [selectedCollabType, setSelectedCollabType] = useState([])
@@ -57,6 +67,11 @@ const [recognition, setRecognition] = useState('')
 const [amount, setAmount] = useState('')
 const [selectedDuration, setSelectedDuration] = useState('')
 const [duration, setDuration] = useState('')
+
+const [selectedConnCategory, setSelectedConnCategory] = useState('');
+const [connCategory, setConnCategory] = useState([]);
+
+
 const [isLoading, setIsLoading] = useState(false)
 const [isLoading2, setIsLoading2] = useState(true)
 const [error, setError] = useState(false)
@@ -68,14 +83,10 @@ const [selectedCurrency, setSelectedCurrency] = useState('')
 
   const userId = user?.id;
 
-
   console.log("Daniel check for user object", userId)
-
-
 
   const fetchMyCommunityOwners = async () => {
     try {
-
       const res = await axios.get(`${URL}/api/communities/user/${userId}`);
       setCommunityOwner(res.data);
       console.log("Filtered my communities:", communityOwner)
@@ -172,6 +183,19 @@ useEffect(() => {
     fetchCommPlatform();
   }, []);
 
+  const fetchConnectionCategories = async () => {
+    try {
+      const res = await axios.get(URL + "/api/connectioncategories/");
+      setConnCategory(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchConnectionCategories();
+  }, []);
+
   const fetchCollab = async () => {
     try {
       const res = await axios.get(URL + "/api/collabs/");
@@ -244,11 +268,8 @@ useEffect(() => {
       communicationCategory:category || null,
       engagementLevel:selectedEnglevel, 
       communityGoal:selectedGoal, 
-      accessType:selectedAccess,
-
-      //collaborationType:selectedCollabType,
-        // preferredCollabType,
         prevCollabType,
+        connCategory:selectedConnCategory,
       //  commInterest:selectedInterest,
          twitter, telegram, whatsapp, usp, recognition, additionalService, user:userId
       }, {
@@ -265,7 +286,6 @@ useEffect(() => {
       setInterest(res.data.interest)
       setLevel(res.data.engagementLevel)
       setGoal(res.data.goal)
-      setAccessType(res.data.accessType)
       // setCollabType(res.data.collabtype)
       // setCommInterest(res.data.commInterest)
       setWhatsapp(res.data.whatsapp)
@@ -332,97 +352,169 @@ useEffect(() => {
   const countries = [
     {
       id: 1,
-      location: "Angola",
+      location: "Global",
     },
     {
       id: 2,
+      location: "Online",
+    },
+    {
+      id: 3,
       location: "Algeria",
     },
     {
-    id: 3,
-    location: "Argentina",
+      id: 4,
+      location: "Angola",
     },
     {
-    id: 4,
-    location: "Bangledesh",
-    },
-    {
-    id: 5,
-   location: "Brazil",
+      id: 5,
+      location: "Argentina",
     },
     {
       id: 6,
-      location: "Canada",
+      location: "Australia",
     },
     {
       id: 7,
+      location: "Bangladesh",
+    },
+    {
+      id: 8,
+      location: "Brazil",
+    },
+    {
+      id: 9,
+      location: "Canada",
+    },
+    {
+      id: 10,
       location: "China",
     },
     {
-    id: 8,
-    location: "Croatia",
-  },
-  {
-    id: 9,
-    location: "Dominica",
-  },
-  {
-  id: 10,
-  location: "Denmark",
-  },
+      id: 11,
+      location: "Croatia",
+    },
     {
-    id:11,
-    location: "Egypt",
-  },
-  {
-    id: 12,
-    location: "Ecuador",
-  },
-  {
-  id: 13,
-  location: "Estonia",
-  },
-  {
-    id:14,
-    location: "France",
-  },
-  {
+      id: 12,
+      location: "Denmark",
+    },
+    {
+      id: 13,
+      location: "Dominica",
+    },
+    {
+      id: 14,
+      location: "Ecuador",
+    },
+    {
       id: 15,
+      location: "Egypt",
+    },
+    {
+      id: 16,
+      location: "Estonia",
+    },
+    {
+      id: 17,
+      location: "France",
+    },
+    {
+      id: 18,
+      location: "Germany",
+    },
+    {
+      id: 19,
+      location: "Ghana",
+    },
+    {
+      id: 20,
+      location: "India",
+    },
+    {
+      id: 21,
+      location: "Indonesia",
+    },
+    {
+      id: 22,
+      location: "Italy",
+    },
+    {
+      id: 23,
+      location: "Japan",
+    },
+    {
+      id: 24,
+      location: "Kenya",
+    },
+    {
+      id: 25,
+      location: "Mexico",
+    },
+    {
+      id: 26,
       location: "Morocco",
-  },
-  {
-    id: 16,
-    location: "Nigeria",
-  },
-  {
-    id: 17,
-    location: "South Africa",
-  },
-  {
-    id: 18,
-    location: "United State of America",
-  },
-  {
-    id: 19,
-    location: "United Kingdom",
-  },
-  {
-    id: 20,
-    location: "Venezuela",
-  },
+    },
+    {
+      id: 27,
+      location: "Netherlands",
+    },
+    {
+      id: 28,
+      location: "Nigeria",
+    },
+    {
+      id: 29,
+      location: "Philippines",
+    },
+    {
+      id: 30,
+      location: "Singapore",
+    },
+    {
+      id: 31,
+      location: "South Africa",
+    },
+    {
+      id: 32,
+      location: "South Korea",
+    },
+    {
+      id: 33,
+      location: "Spain",
+    },
+    {
+      id: 34,
+      location: "United Arab Emirates",
+    },
+    {
+      id: 35,
+      location: "United Kingdom",
+    },
+    {
+      id: 36,
+      location: "United States",
+    },
+    {
+      id: 37,
+      location: "Venezuela",
+    },
+    {
+      id: 38,
+      location: "Zambia",
+    },
   ]
 
 
 
-  const accesses = [
-    {
-        _id: 1,
-        accessType: "Free",
-    },
-    {
-        _id: 2,
-        accessType: "Paid",
-    },]
+  // const accesses = [
+  //   {
+  //       _id: 1,
+  //       accessType: "Free",
+  //   },
+  //   {
+  //       _id: 2,
+  //       accessType: "Paid",
+  //   },]
 
     const durations = [
       {
@@ -576,7 +668,9 @@ const handleCommunityType = (event) => {
 const handleLocation = (event) => {
   setSelectedLocation(event.target.value);
 };
-
+const handleConnCategory = (event) => {
+  setSelectedConnCategory(event.target.value);
+};
 const toastStyles = {
   success: {
 
@@ -701,7 +795,7 @@ const toastStyles = {
 
 
 
-          <p>Location</p>
+          <p className='text-sm'>Location</p>
           <select value={selectedLocation} onChange={handleLocation} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'>
             <option value="">Select Location</option>
             {countries?.map(item => (
@@ -783,12 +877,7 @@ const toastStyles = {
                     </optgroup>
                 ))}
             </select>
-        {/* <select value={selectedCommPlatfrom} onChange={handleCommPlatform} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'>
-            <option value=""></option>
-            {communicationPlatform.map(item => (
-              <option key={item.id} value={item.communicationPlatform}>{item.communicationPlatform}</option>
-            ) )}
-          </select> */}
+
 
           <p className='text-sm'>Community Goals/Content<span className='text-red-500 text-xl'> *</span></p>
         <select value={selectedGoal} onChange={handleGoal} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'>
@@ -798,13 +887,15 @@ const toastStyles = {
             ) )}
           </select>
 
-          <p className='text-sm'>Access Type<span className='text-red-500 text-xl'> *</span></p>
-        <select value={selectedAccess} onChange={handleAccess} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'>
-            <option value="">Select Access  Type</option>
-            {accesses?.map(item => (
-              <option key={item._id} value={item.accessType}>{item.accessType}</option>
+          <p>Connection Category</p>
+          <select value={selectedConnCategory} onChange={handleConnCategory} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'>
+            <option value="">Connection categories</option>
+            {connCategory?.map(item => (
+              <option key={item.id} value={item.connCategory}>{item.connCategory}</option>
             ) )}
           </select>
+
+        
 
        
 </div>

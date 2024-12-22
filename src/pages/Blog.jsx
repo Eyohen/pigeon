@@ -29,7 +29,7 @@ const Blog = () => {
     <div className="font-nunito bg-gray-100">
       <Navbar />
 
-      <div className="bg-white pb-10">
+      <div className="bg-white pb-10 mt-[58px]">
       <p className="text-center text-6xl font-bold my-9 py-9">
         Stories that connect
       </p>

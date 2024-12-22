@@ -52,7 +52,7 @@ const InnerComunityPage = () => {
             <p className=' text-lg ml-12  mt-4'>Previous Collaboration Experience : {community.prevCollabType}</p>
             {/* <p className=' text-lg ml-12  mt-4'>Description: Description: At Green Earth Advocates we are at the forefront of financial technology, revolutionizing the way you manage and grow your wealth. Our cutting-edge platform seamlessly integrates innovative solutions to simplify your financial journey.</p> */}
             {/* <p className=' text-lg ml-12  mt-4'>Active Since: Jan 20, 2021</p> */}
-            <p className=' text-lg ml-12  mt-4'>Access Type : {community.accessType}</p>
+     
             <p className=' text-lg ml-12  mt-4'>Date Launched : January 2021</p>
             <p className=' text-lg ml-12  mt-4'>Special Achievements or Recognitions : {community?.recognition}</p>
             <p className=' text-lg ml-12  mt-4'>Ratings or Endorsements : 

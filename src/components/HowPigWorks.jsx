@@ -3,92 +3,21 @@ import Check from "../assets/landingpage/check.svg";
 import World from "../assets/landingpage/worldSearch.svg";
 import Community from "../assets/landingpage/communityOwners.svg"
 import { useNavigate } from "react-router-dom";
+import multiple from "../assets/multipleimages.png"
 
 const HowPigWorks = () => {
   const navigate = useNavigate()
 
 
   return (
-    <div className="bg-white py-9 px-[4px] md:px-[240px] font-nunito">
-      <p className="text-6xl font-bold text-center">How Pigeonhire Works</p>
+    <div className="py-9 px-[4px] md:px-[240px] font-nunito">
+      <p className="text-6xl font-bold text-center">One signup, multiple connections</p>
       <p className="text-3xl font-normal text-center mt-4">
-        Two Simple Ways to Expand Your Reach
+      Gain access to vibrant communities and their leaders with one simple subscription
       </p>
 
-      <div className="flex flex-col md:flex-row items-center justify-between mt-9 px-4">
-        <div>
-          <p className="text-4xl font-medium my-5"> <img src={World} alt="check" className="inline mr-2" />Explore Communities</p>
-          <div className="flex items-start mt-10">
-            {" "}
-            <img src={Check} alt="check" className="inline mr-2" />
-            <div className="font-normal ">
-              <p>Step 1: Browse Communities - Use our initiative</p>
-              <p>platform to explore communities that align with</p>
-              <p>your interests or business needs.</p>
-            </div>
-          </div>
+    <div className="flex justify-center"><img src={multiple} alt="multiple" /></div>
 
-          <div className="flex items-start mt-10">
-            <img src={Check} alt="check" className="inline mr-2" />
-            <div className="font-normal ">
-              <p>Step 2: Sign Up & Choose Your Plan - Quick</p>
-              <p>sign-up to access a diverse range of online</p>
-              <p>communities.</p>
-            </div>
-          </div>
-
-          <div className="flex items-start mt-10">
-          <img src={Check} alt="check" className="inline mr-2" />
-            <div>
-              <p>Step 3: Engage & Network - Start conversations,</p>
-              <p>share insights, and build relationships within</p>
-              <p>these communities.</p>
-            </div>
-          </div>
-
-          <div className="flex justify-center">
-          <button onClick={()=> navigate('/freebrowsecommunity')}  className="bg-[#F08E1F] text-white px-6 py-2 rounded-full mt-9">Explore Connections</button>
-          </div>
-
-
-        </div>
-
-        <div>
-          <p className="text-4xl font-medium my-5"><img src={Community} alt="check" className="inline mr-2" />Engage Community Owners</p>
-          <div className="flex items-start mt-10">
-          <img src={Check} alt="check" className="inline mr-2" />
-            <div>
-              <p>Step 1: Discover Community Leaders - Explore</p>
-              <p>profiles of community leaders who are open to</p>
-              <p>partnerships and marketing opportunities.</p>
-            </div>
-          </div>
-          <div className="flex items-start mt-10">
-          <img src={Check} alt="check" className="inline mr-2" />
-            <div>
-              <p>Step 2: Select, PAYG & Connect - Choose</p>
-              <p>leaders whose communities match your target</p>
-              <p>audience and connect with them directly</p>
-            </div>
-          </div>
-
-          <div className="flex items-start mt-10">
-          <img src={Check} alt="check" className="inline mr-2" />
-            <div>
-              <p>Step 3: Collaborate & Achieve Goals - Work with</p>
-          <p>leaders to promote your services, conduct</p>
-          <p>market research, or launch targeted marketing</p>
-          <p>campaigns within their communities.</p>
-            </div>
-          </div>
-
-          <div className="flex justify-center">
-          <button onClick={()=> navigate('/freecommunityowners')} className="bg-[#F08E1F] text-white px-6 py-2 rounded-full mt-9">Start Connecting</button>
-          </div>
-
-          
-        </div>
-      </div>
     </div>
   );
 };

@@ -48,7 +48,14 @@ const Login = () => {
         login(user)
         setError(false)
         console.log(res.data)
-        navigate("/communityowner")
+
+
+        //check if theres a from parameter in the url
+        const params = new URLSearchParams(location.search);
+        const from = params.get('from');
+
+        //redirect to 'from' if it exists, otherwise got to the default page
+        navigate(from || "/communityowner")
       }
 
     }

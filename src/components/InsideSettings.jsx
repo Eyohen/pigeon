@@ -37,7 +37,7 @@ const InsideSettings = () => {
         setToggle4(true);
       };
   return (
-    <div className='flex-1'>
+    <div className='flex-1 ml-[200px]'>
 
      <div className='flex justify-evenly px-9'>
     

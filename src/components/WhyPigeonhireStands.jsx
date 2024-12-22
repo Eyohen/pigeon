@@ -94,7 +94,7 @@ import { TbMessageCircleQuestion } from "react-icons/tb";
 
 const WhyPigeonhireStands = () => {
   return (
-    <div className='flex flex-col items-center justify-center min-h-screen bg-white px-4 md:px-[80px] font-nunito'>
+    <div className='flex flex-col items-center justify-center min-h-screen bg-[#F7F7F7] px-4 md:px-[80px] font-nunito'>
       <p className='text-center text-6xl font-bold mb-12'>Why Pigeonhire Stands Out</p>
 
       <div className='grid md:grid-cols-4 grid-cols-2 gap-y-12 gap-x-[120px]'>

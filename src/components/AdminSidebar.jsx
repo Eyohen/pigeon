@@ -99,11 +99,11 @@ const AdminSidebar = () => {
         </div></Link>
 
 
-{/* 
-        <Link ><div className='flex gap-x-3 items-center hover:bg-[#F08E1F] px-2 mt-5 rounded'>
+
+        <Link to={'/adminmessage'}><div className='flex gap-x-3 items-center hover:bg-[#F08E1F] px-2 mt-5 rounded'>
         <FiUsers color='white' className='' />
         <p className='hover:bg-[#F08E1F] text-white  py-1 text-center'>Messages</p>
-        </div></Link> */}
+        </div></Link>
 
 
 

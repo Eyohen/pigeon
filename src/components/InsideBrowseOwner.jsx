@@ -6,8 +6,11 @@ import { Link } from "react-router-dom";
 import CommunityOwnerCard from './CommunityOwnerCard';
 import Navbar2 from './Navbar2';
 import { IoFilter } from "react-icons/io5";
+import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const InsideBrowseOwner = () => {
+    const {user} = useAuth()
     const [isOpen, setIsOpen] = useState(false);
     const [communities, setCommunities] = useState([]);
     const [search, setSearch] = useState('');
@@ -26,9 +29,11 @@ const InsideBrowseOwner = () => {
     const [commTypeFilter, setCommTypeFilter] = useState('')
     const [connectionFilter, setConnectionFilter] = useState('')
 
+    const navigate = useNavigate()
+
     const fetchCommunities = async (searchTerm = '', page = 1, limit = 1, location = '') => {
         try {
-            const res = await axios.get(`${URL}/api/visible`, {
+            const res = await axios.get(`${URL}/api/visible?userId=${user?.id}`, {
                 params: {
                     search: searchTerm,
                     page: page,
@@ -185,6 +190,32 @@ const InsideBrowseOwner = () => {
 
     const colors = ['bg-green-400', 'bg-red-400', 'bg-blue-400', 'bg-violet-400', 'bg-gray-400', 'bg-yellow-400'];
 
+
+    const [subscription, setSubscription] = useState(null);
+
+
+    console.log(user?.id)
+  
+    const fetchCurrentSubscription = async () => {
+      try {
+      const res = await axios.get(`${URL}/api/subpurchases/current-subscription/${user?.id}`)
+      console.log("see current subscription",res.data);
+      setSubscription(res.data.subscription);
+      } catch (error){
+        console.error("Error fetching subscription:", error);
+        setSubscription(null);
+      }
+    }
+    useEffect(() => {
+      if (user?.id){
+        fetchCurrentSubscription()
+      }
+    },[user?.id])
+  
+
+
+
+
     return (
         <div className='flex-1 ml-[300px]'>
             <Navbar2 />
@@ -282,9 +313,13 @@ const InsideBrowseOwner = () => {
                     <CommunityOwnerCard community={community} bgColor={colors[index % colors.length]} />
                 </Link>
             ))}
-            <div className="flex justify-center items-center gap-x-4 mt-4">
-                {renderPagination()}
+            <div className="flex justify-center items-center gap-x-4 mt-9">
+                {subscription ? renderPagination(): (<button onClick={() => navigate('/switchpremium')} className='bg-[#F08E1F] text-white px-4 py-2 rounded-xl'>Please Subscribe to see more</button>)}
             </div>
+
+
+            
+            <div className='mb-24'></div>
         </div>
     );
 };

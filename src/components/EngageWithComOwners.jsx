@@ -5,6 +5,17 @@ import { useAuth } from '../context/AuthContext';
 const EngageWithComOwners = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate()
+
+  const handleRegisterVisibility = () => {
+    if (user) {
+      navigate('/freeregistervisibility');
+    } else {
+      // redirect to login with a 'from' parameter
+      navigate('/login?from=/freeregistervisibility');
+    }
+  }
+
+
   return (
     <div className='py-9 bg-white px-4 md:px-[120px] font-nunito'>
     <p className='text-center text-6xl font-bold'>Engage with Community Owners</p>
@@ -17,7 +28,7 @@ const EngageWithComOwners = () => {
         </div>
 
         <div>
-        <button onClick={() => navigate('/freeregistervisibility')} className='border border-[#F08E1F] text-gray-600 rounded-full px-6 py-4'>Register your Community</button>
+        <button onClick={handleRegisterVisibility} className='border border-[#F08E1F] text-gray-600 rounded-full px-6 py-4'>Register your Community</button>
         </div>
 
         </div>

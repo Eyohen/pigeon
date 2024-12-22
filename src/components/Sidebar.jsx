@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import logo from "../assets/LOGO-BLACK1.png"
 import { CiLogout } from "react-icons/ci";
 import { FiUsers,FiUser } from "react-icons/fi";
@@ -8,8 +8,11 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { IoChatboxOutline } from "react-icons/io5";
 import { IoChevronDown } from "react-icons/io5";
 import { IoChevronForward } from "react-icons/io5";
+import { LuArrowUpFromLine } from "react-icons/lu";
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { URL } from '../url';
+import axios from 'axios';
 
 
 const Sidebar = () => {
@@ -21,8 +24,28 @@ const Sidebar = () => {
   const handleToggleCommunity = () => {
     setIsOpenCommunity(!isOpenCommunity);
   }
+  const [subscription, setSubscription] = useState(null);
 
-  console.log("sidebar", user)
+
+  console.log(user?.id)
+
+  const fetchCurrentSubscription = async () => {
+    try {
+    const res = await axios.get(`${URL}/api/subpurchases/current-subscription/${user?.id}`)
+    console.log("see current subscription",res.data);
+    setSubscription(res.data.subscription);
+    } catch (error){
+      console.error("Error fetching subscription:", error);
+      setSubscription(null);
+    }
+  }
+  useEffect(() => {
+    if (user?.id){
+      fetchCurrentSubscription()
+    }
+  },[user?.id])
+
+
   return (
     <div className='fixed top-0 left-0 bottom-0 h-screen bg-[#FAFAFA]'>
       {/* className='fixed top-0 left-0 w-[250px] h-screen bg-[#FAFAFA] px-[30px] shadow-lg z-10' */}
@@ -61,10 +84,10 @@ const Sidebar = () => {
     <IoChevronForward size={20} />
     </div></Link>
    
-    <div className='flex justify-between items-center py-2'>
+    <Link to={'/requests'}><div className='flex justify-between items-center py-2'>
     <p className=''>Requests</p>
         <button className='text-white bg-black rounded px-2'>8</button>
-    </div>
+    </div></Link>
   
 </div>)}
 
@@ -82,11 +105,33 @@ const Sidebar = () => {
         }
         
         {/* </Link> */}
-
+{/* 
         <Link to={'/switchpremium'}><div className='flex gap-x-3 items-center hover:bg-[#F3D8A7] px-2 mt-6 rounded'>
         <FiUsers className='' />
         <p className='hover:bg-[#F3D8A7]  py-1 text-center'>Switch to premium</p>
         </div></Link>
+
+        <Link to={'/subdetails'}><div className='flex gap-x-3 items-center hover:bg-[#F3D8A7] px-2 mt-6 rounded'>
+       <LuArrowUpFromLine className=''/>
+        <p className='hover:bg-[#F3D8A7]  py-1 text-center'>Subscription Details </p>
+        </div></Link> */}
+        
+        {subscription ? (
+  <Link to={'/subdetails'}>
+    <div className='flex gap-x-3 items-center hover:bg-[#F3D8A7] px-2 mt-6 rounded'>
+      <LuArrowUpFromLine className=''/>
+      <p className='hover:bg-[#F3D8A7] py-1 text-center'>Subscription Details</p>
+    </div>
+  </Link>
+) : (
+  <Link to={'/switchpremium'}>
+    <div className='flex gap-x-3 items-center hover:bg-[#F3D8A7] px-2 mt-6 rounded'>
+      <FiUsers className='' />
+      <p className='hover:bg-[#F3D8A7] py-1 text-center'>Switch to premium</p>
+    </div>
+  </Link>
+)}
+
 
         <Link to={'/settings'}><div className='flex gap-x-3 items-center hover:bg-[#F3D8A7] px-2 mt-6 rounded'>
         <IoSettingsOutline className=''/>

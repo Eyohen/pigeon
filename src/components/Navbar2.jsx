@@ -15,6 +15,7 @@ const Navbar2 = () => {
 
 
 
+  
 
   // const fetchProfile = async () => {
   //   try{

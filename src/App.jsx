@@ -51,6 +51,12 @@ import AdminCommunityDetail from './pages/AdminCommunityDetail'
 import SuperAdmin from './pages/SuperAdmin'
 import ChangePrice from './pages/ChangePrice'
 import PaymentPage from './pages/PaymentPage'
+import ChatRoom from './pages/ChatRoom'
+import AdminMessage from './pages/AdminMessage'
+import SubscriptionDetails from './pages/SubscriptionDetails'
+import Request from './pages/Request'
+import UpgradePlan from './pages/UpgradePlan'
+import PrivacyPolicy from './pages/PrivacyPolicy'
 
 
 const App = () => {
@@ -66,6 +72,7 @@ const App = () => {
      <Route exact path="/contactus" element={<ContactUs />}/>
      <Route exact path="/blog" element={<Blog />}/>
      <Route exact path="/aboutus" element={<AboutUs />}/>
+     <Route exact path="/privacypolicy" element={<PrivacyPolicy />}/>
      <Route exact path="/faq" element={<Faq />}/>
      <Route exact path="/freebrowsecommunity" element={<FreeBrowseCommunity />}/>
      <Route exact path="/freeregisterVisibility" element={<FreeRegisterVisibility />}/>
@@ -73,6 +80,7 @@ const App = () => {
      <Route exact path="/verify" element={<VerifyEmail/>}/>
      <Route exact path="/otp" element={<OTP/>}/>
      <Route exact path="/blogdetails/:id" element={<BlogDetails/>}/>
+     <Route exact path="/chatroom" element={<ChatRoom/>}/>
 
   
      <Route exact path="/communityowner" element={ <ProtectedRoute><CommunityOwner /></ProtectedRoute> }/>
@@ -82,6 +90,7 @@ const App = () => {
      <Route exact path="/innerbrowsepage/:id" element={<BrowserPage />}/>
      <Route exact path="/subscriptionplans/:id" element={<BrowserSubPlans />}/>
      <Route exact path="/purchasehistory" element={<PurchaseHistory />}/>
+     <Route exact path="/requests" element={<Request />}/>
      <Route exact path="/listcommunity" element={<ListCommunity />}/>
      <Route exact path="/listvisibility" element={<ListVisibility />}/>
 
@@ -92,6 +101,8 @@ const App = () => {
      <Route exact path="/test" element={<Test />}/>
      <Route exact path="/insidebrowseowner" element={<InsideBrowseOwner />}/>
      <Route exact path="/innerbrowsepage" element={<InnerBrowsePage />}/>
+     <Route exact path="/subdetails" element={<SubscriptionDetails />}/>
+     <Route exact path="/upgradeplan" element={<UpgradePlan />}/>
 
 
      <Route exact path="/admin" element={<Admin/>}/>
@@ -107,6 +118,7 @@ const App = () => {
      <Route exact path="/admincommunitydetail/:id" element={<ProtectedRoute><AdminCommunityDetail /></ProtectedRoute>}/>
      <Route exact path="/adminusers" element={<ProtectedRoute><AdminUsers /></ProtectedRoute>}/>
      <Route exact path="/adminblog" element={<ProtectedRoute><AdminBlog /></ProtectedRoute>}/>
+     <Route exact path="/adminmessage" element={<ProtectedRoute><AdminMessage /></ProtectedRoute>}/>
      <Route exact path="/adminsettings" element={<ProtectedRoute><AdminSettings /></ProtectedRoute>}/>
      <Route exact path="/admintransaction" element={<AdminTransactions />}/>
      <Route exact path="/adminownerpage" element={<AdminOwnerPage />}/>

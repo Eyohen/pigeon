@@ -20,9 +20,9 @@ console.log("userId",userId)
 
     const fetchCommunities = async () => {
         try {
-            const res = await axios.get(`${URL}/api/visible/user/${userId}`);
+            const res = await axios.get(`${URL}/api/visible/user/${user?.id}`);
             console.log("community", res.data)
-            setCommunities(res.data);
+            setCommunities(res.data.visibles);
         } catch (err) {
             console.log(err);
         }
@@ -32,7 +32,8 @@ console.log("userId",userId)
         fetchCommunities()
     },[])
 
-    // console.log("commmunities", communities)
+    const colors = ['bg-green-400', 'bg-red-400', 'bg-blue-400', 'bg-violet-400', 'bg-gray-400', 'bg-yellow-400'];
+
 
 
 
@@ -47,9 +48,9 @@ console.log("userId",userId)
                 <p className='ml-12 font-semibold text-4xl mt-9'>My Communities </p>
               
 
-            {communities?.map((community) => (
+            {communities?.map((community, index) => (
                 <Link key={community.id} to={`/mycommunitydetail/${community.id}`}>
-                    <CommunityOwnerCard community={community} />
+                    <CommunityOwnerCard community={community} bgColor={colors[index % colors.length]}/>
                 </Link>
             ))}
        
