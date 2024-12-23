@@ -1,5 +1,7 @@
 import React from "react";
 import frame3 from "../assets/Frame3.png";
+import vision from "../assets/vision.png";
+import mission from "../assets/mission.png";
 import values from "../assets/aboutpage/values.png"
 import Navbar from "../components/Navbar";
 import Footer from "../components/footer";
@@ -13,7 +15,7 @@ const AboutUs = () => {
         <div className="mt-[58px] bg-white py-9">
           <p className="text-center text-6xl font-bold ">Our Story</p>
 
-          <div className="flex px-4 md:px-[50px] gap-x-24 mt-9 items-start">
+          <div className="flex px-4 md:px-[200px] gap-x-24 mt-9 items-start">
             <img src={frame3} className="object-contain rounded-b-2xl" />
             <div className="font-medium">
               <p className="text-xl mt-2">
@@ -50,7 +52,7 @@ const AboutUs = () => {
 
         <div className="mt-9 bg-white py-9">
           <p className="text-center text-6xl font-bold ">Our Vison</p>
-          <div className="flex px-4 md:px-[120px] gap-x-24 mt-9 items-start">
+          <div className="flex px-4 md:px-[200px] gap-x-24 mt-9 items-start">
             <div className="font-medium">
               <p className="text-xl mt-2">
                 At Pigeonhire is to create a world where every business and
@@ -59,15 +61,15 @@ const AboutUs = () => {
                 and collaborative success.
               </p>
             </div>
-            <img src={frame3} className="object-contain rounded-b-2xl" />
+            <img src={vision} className="object-contain rounded-b-2xl" />
           </div>
         </div>
 
         <div className="mt-9 bg-white py-9">
           <p className="text-center text-6xl font-bold ">Our Mission</p>
 
-          <div className="flex px-4 md:px-[120px] gap-x-24 mt-9 items-start">
-            <img src={frame3} className="object-contain rounded-b-2xl" />
+          <div className="flex px-4 md:px-[200px] gap-x-24 mt-9 items-start">
+            <img src={mission} className="object-contain rounded-b-2xl" />
             <div className="font-medium">
               <p className="text-xl mt-2">
                 We aim to revolutionize how businesses and communities interact,
@@ -82,7 +84,7 @@ const AboutUs = () => {
         <div className="mt-9 bg-white py-9">
           <p className="text-center text-6xl font-bold ">Our Values</p>
 
-          <div className="flex px-4 md:px-[120px] gap-x-24 mt-9 mb-9 items-start">
+          <div className="flex px-4 md:px-[200px] gap-x-24 mt-9 mb-9 items-start">
             <div className="font-medium">
               <ul className="text-xl mt-2 list-disc">
                 <li className="mb-2">
@@ -110,7 +112,7 @@ const AboutUs = () => {
             <img src={values} className="object-contain rounded-b-2xl" />
           </div>
         </div>
-        <div className="bg-white p-8 mt-10">
+        <div className="bg-white p-8 md:px-[200px] mt-10">
           <div className="mt-9 bg-[#201327] text-white p-5">
             <div className="">
               <div className="">
@@ -146,7 +148,7 @@ const AboutUs = () => {
             </span>
           </p>
 
-          <div className=" px-4 md:px-8 gap-x-24 mt-9 items-start">
+          <div className=" px-4 md:px-[200px] gap-x-24 mt-9 items-start">
             <div className="font-medium">
               <p className="text-4xl text-center mt-2">
                 Embark on a journey with Pigeonhire, where your aspirations meet

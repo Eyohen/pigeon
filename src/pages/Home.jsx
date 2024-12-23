@@ -21,7 +21,6 @@ const Home = () => {
        <div className='mt-6'><OurDiverseUser/></div>
        <div className='mt-6'><WhyPigeonhireStands /></div>
        <div className='mt-6'><FeatCom /></div>
-       <div className='mt-6'><EngageWithComOwners /></div>
        <div className='mt-6'><HowBusinessThrive /></div>
        <div className='mt-6'><StoriesConnect/></div> 
        <div className='mt-6'><FAQ/></div>

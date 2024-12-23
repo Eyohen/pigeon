@@ -32,7 +32,7 @@ const navigate = useNavigate()
               communities across 20+ countries
             </p>
 
-            <div className="md:flex gap-x-0 md:gap-x-9 md:space-y-0 space-y-4 mt-9 text-center ">
+            <div className="md:flex gap-x-0 md:gap-x-9 md:space-y-0 space-y-4 mt-9 text-center">
 
               <div>
                 <button onClick={()=> navigate('/freebrowsecommunity')} className="bg-[#F08E1F] text-white rounded-full px-6 py-4">
@@ -42,7 +42,7 @@ const navigate = useNavigate()
 
               <div>
                 <button onClick={()=> navigate('/freeregistervisibility')} className="border border-[#F08E1F] text-white rounded-full px-6 py-4">
-                  For Community owners
+                  Signup for Free
                 </button>
               </div>
             </div>
@@ -63,7 +63,7 @@ const navigate = useNavigate()
       <div className="bg-[#ffffff] p-8">
         <div>
           <div className="font-nunito font-semibold text-3xl text-center">
-            Discover over 10,000 groups, stores, influencers, services,
+            Discover over thousands groups, stores, influencers, services,
             conveners on these platforms
           </div>
           <div className="flex justify-center">

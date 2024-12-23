@@ -10,6 +10,8 @@ const FAQ = () => {
   const [toggle6, setToggle6] = useState(true);
   const [toggle7, setToggle7] = useState(true);
   const [toggle8, setToggle8] = useState(true);
+  const [toggle9, setToggle9] = useState(true);
+  const [toggle10, setToggle10] = useState(true);
 
 
   const handleToggle = () => {
@@ -43,6 +45,13 @@ const FAQ = () => {
     setToggle8(!toggle8);
   };
 
+  const handleToggle9 = () => {
+    setToggle9(!toggle9);
+  };
+
+  const handleToggle10 = () => {
+    setToggle10(!toggle10);
+  };
 
 
 
@@ -71,12 +80,7 @@ const FAQ = () => {
               </div>
 
               <p className="text-gray-400 text-left">
-                Pigeonhire connects your business with targeted communities and
-                professionals across the globe, enabling you to expand yur
-                reach, engage with key audiences, and foster strategic
-                partnerships. Whether you're looking to increase brand
-                awareness, drive sales, or build relationships, our platform
-                provides the tools and access necessary to achieve your goals.
+              Pigeonhire connects your business with targeted communities and professionals across the globe, enabling you to expand your reach, engage with key audiences, and foster strategic partnerships. Whether you're looking to increase brand awareness, drive sales, or build relationships, our platform provides the tools and access necessary to achieve your goals.
               </p>
             </div>
           )}
@@ -142,7 +146,7 @@ const FAQ = () => {
           {toggle4 ? (
             <div className="flex justify-between  space-x-[94px] px-2 border-b-2 py-6">
               <p className="text-xl font-medium ">
-                How do the subscription and pay-as-you-go options work?
+                How Can I List My Community on Pigeonhire?
 
               </p>
               <TbCirclePlus color="#F08E1F" size={24} />
@@ -151,14 +155,14 @@ const FAQ = () => {
             <div className="border-b-2 py-6">
               <div className="flex justify-between space-x-[94px] px-2">
                 <p className="text-xl font-medium text-left">
-                  How do the subscription and pay-as-you-go options work?
+                How Can I List My Community on Pigeonhire?
 
                 </p>
                 <TbCircleMinus color="#F08E1F" size={24} />
               </div>
 
               <p className="text-gray-400 text-left">
-              Our subscription option grants unlimited access to all platform features and communities, perfect for businesses seeking ongoing engagement and broad reach. On the other hand, our pay-as-you-go option is tailored for targeted interaction, allowing you to connect with community owners directly. This approach offers the flexibility and precision needed for specific campaigns or projects, ensuring you effectively engage with the most relevant audiences.
+              Listing your community on PigeonHire is simple! Sign up for an account, provide key details about your community, such as its focus, audience, and engagement goals, and submit your listing for approval. Once approved, your community will be discoverable by users looking for connections aligned with their interests or business needs.
 
               </p>
             </div>
@@ -250,6 +254,36 @@ const FAQ = () => {
         </button>
       </div>
 
+
+
+      <div className="">
+        <button onClick={handleToggle9} className="w-full">
+          {toggle9 ? (
+            <div className="flex justify-between  space-x-[94px] px-2 border-b-2 py-6">
+              <p className="text-xl font-medium ">
+               How does the Subscription Work?
+              </p>
+              <TbCirclePlus color="#F08E1F" size={24} />
+            </div>
+          ) : (
+            <div className="border-b-2 py-6">
+              <div className="flex justify-between space-x-[94px] px-2">
+                <p className="text-xl font-medium text-left">
+                How does the Subscription Work?
+                </p>
+                <TbCircleMinus color="#F08E1F" size={24} />
+              </div>
+
+              <p className="text-gray-400 text-left">
+              Our subscription plan provides unlimited access to all platform features, communities, and connections. This option is ideal for businesses and individuals seeking continuous engagement, broad reach, and long-term opportunities to connect with communities and key individuals, ensuring you effectively engage with the most relevant audiences to achieve your goals.
+              </p>
+            </div>
+          )}
+        </button>
+      </div>
+
+
+
       <div className="">
         <button onClick={handleToggle8} className="w-full">
           {toggle8 ? (
@@ -271,7 +305,36 @@ const FAQ = () => {
               </div>
 
               <p className="text-gray-400 text-left">
-              Yes, we offer personalized support to all our users. Our dedicated team can assist you in developing effective engagement strategies, utilizing our platform's features to their fullest potential, and interpreting analytics to refine your approach and achieve better results.
+              Yes, we offer personalized support tailored to your needs. For an additional fee, our dedicated team can help you develop effective engagement strategies, maximize the use of our platform's features, and analyze data to refine your approach and achieve better results. To learn more, email us at hello@pigeonhire.com.
+              </p>
+            </div>
+          )}
+        </button>
+      </div>
+
+
+      <div className="">
+        <button onClick={handleToggle10} className="w-full">
+          {toggle10 ? (
+            <div className="flex justify-between  space-x-[94px] px-2 border-b-2 py-6">
+              <p className="text-xl font-medium text-left">
+                Is it Free to List My Community on Pigeonhire?
+
+              </p>
+              <TbCirclePlus color="#F08E1F" size={24} />
+            </div>
+          ) : (
+            <div className="border-b-2 py-6">
+              <div className="flex justify-between space-x-[94px] px-2">
+                <p className="text-xl font-medium text-left">
+                Is it Free to List My Community on Pigeonhire?
+
+                </p>
+                <TbCircleMinus color="#F08E1F" size={24} />
+              </div>
+
+              <p className="text-gray-400 text-left">
+              Yes, listing your community on PigeonHire is completely free! Simply sign up, provide the necessary details about your community, and submit your listing for approval. Once approved, your community will be accessible to users seeking relevant connections.
               </p>
             </div>
           )}

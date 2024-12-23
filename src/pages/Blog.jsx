@@ -34,7 +34,7 @@ const Blog = () => {
         Stories that connect
       </p>
 
-      <div className="">
+      <div className="md:px-[200px]">
         <div className="grid grid-cols-3 gap-5 px-4 md:px-[80px] mt-12">
         {posts?.map((p) => (
           <Link to={`/blogdetails/${p.id}`}>

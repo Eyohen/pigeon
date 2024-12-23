@@ -6,19 +6,19 @@ const Footer = () => {
   return (
     <div className="bg-[#201327] text-white mt-10 font-nunito md:h-[377px]">
       <div className="flex flex-col justify-between items-center h-full py-7">
-        <div className="flex flex-col md:flex-row justify-between items-start gap-10 py-5 px-4 md:px-[50px]">
+        <div className="flex flex-col md:flex-row justify-between items-start gap-y-10 gap-x-[650px] py-5 px-4 md:px-[50px]">
           <div>
             
             <div>
               <img src={Logo} alt="logo" className="" />
             </div>
-            <div>
-              Connect with your target audience, right where they engage.
+            <div className="mt-6">
+              <p>Connect with your target audience, right</p> where they engage.
             </div>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-x-5">
+          <div className="grid grid-cols-2 md:grid-cols-4">
             <div>
-              <p className="mb-7">Companies</p>
+              <p className="mb-7 font-bold text-xl">Company</p>
               <div className="font-normal text-sm tracking-tighter">
                 <Link to={'/aboutus'}><p className="mb-4">About Us</p></Link>
                 <Link to={'/blog'}><p>Stories that Connect</p></Link>
@@ -34,7 +34,7 @@ const Footer = () => {
             <div>
             <p className="mb-7">Contacts</p>
               <div className="font-normal text-sm tracking-tighter">
-              <Link to={'/faq'}><p className="mb-4">FAQ</p></Link>
+              <Link to={'/faq'}><p className="mb-4">FAQs</p></Link>
                 <Link to={'/contactus'}><p>Contact Us</p></Link>
               </div>
             </div>
@@ -47,15 +47,7 @@ const Footer = () => {
                 <p className="mb-4">How it Works</p>
               </div>
             </div>
-            <div>
-              <p className="mb-6"> For Communities</p>
-              <div className="font-normal text-sm tracking-tighter">
-               
-                <p className="mb-4">How it Works</p>
-                <p className="mb-4">Register as Community Owners</p>
-                <p className="mb-4">List Community</p>
-              </div>
-            </div>
+        
           </div>
         </div>
         <div className="text-center text-sm">
