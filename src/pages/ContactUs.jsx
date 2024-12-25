@@ -1,8 +1,48 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/footer'
 
+
+const reasons = [
+
+  {id:1,
+   item:'Add or Update a Listing'
+  },
+  {id:2,
+  item:'Billing or Subscription'
+  },
+  {id:3,
+  item:'Advertising or Sponsorship'
+  },
+  {id:4,
+  item:'Volunteer or Partnership'
+  },
+  {id:5,
+  item:'Event Submission'
+  },
+  {id:6,
+  item:'Report an Issue'
+  },
+  {id:7,
+  item:'General Feedback'
+  },
+  {id:8,
+  item:'Other'
+  },
+
+]
+
 const ContactUs = () => {
+
+
+  const [reason, setReason] = useState('')
+  const [selectedReason, setSelectedReason] = useState('')
+
+  const handleReasons = (e) => {
+    setSelectedReason(e.target.value);
+  }
+
+
   return (
     <>
        <Navbar />
@@ -20,7 +60,13 @@ const ContactUs = () => {
 
 
       <p className='text-[#2A2B2B] mt-4 text-3xl font-normal'>Select Reason</p>
-      <input className='w-[900px] px-2 py-3 bg-white border border-gray-200 rounded-lg mb-4' />
+      
+      <select value={selectedReason} onChange={handleReasons} className='border border-gray-200 w-full md:w-[900px] py-3 px-3 rounded-lg'>
+            <option value="">Select Reason</option>
+            {reasons.map(item => (
+              <option key={item.id} value={item.item}>{item.item}</option>
+            ) )}
+          </select>
 
       <p className='text-[#2A2B2B] mt-4 text-3xl font-normal'>Subject</p>
       <input className='w-[900px] px-2 py-3 bg-white border border-gray-200 rounded-lg mb-4' />
