@@ -57,6 +57,7 @@ import SubscriptionDetails from './pages/SubscriptionDetails'
 import Request from './pages/Request'
 import UpgradePlan from './pages/UpgradePlan'
 import PrivacyPolicy from './pages/PrivacyPolicy'
+import TermsOfService from './pages/TermsOfService'
 
 
 const App = () => {
@@ -73,6 +74,7 @@ const App = () => {
      <Route exact path="/blog" element={<Blog />}/>
      <Route exact path="/aboutus" element={<AboutUs />}/>
      <Route exact path="/privacypolicy" element={<PrivacyPolicy />}/>
+     <Route exact path="/termsofservice" element={<TermsOfService />}/>
      <Route exact path="/faq" element={<Faq />}/>
      <Route exact path="/freebrowsecommunity" element={<FreeBrowseCommunity />}/>
      <Route exact path="/freeregisterVisibility" element={<FreeRegisterVisibility />}/>

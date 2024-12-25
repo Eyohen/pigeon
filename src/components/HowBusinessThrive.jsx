@@ -6,8 +6,10 @@ import abstract2 from "../assets/abstract2.png";
 import abstract3 from "../assets/abstract3.png";
 import abstract4 from "../assets/abstract4.png";
 import { BsArrowRight } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const HowBusinessThrive = () => {
+
   return (
     <div className="py-9 bg-white px-4 md:px-[240px] font-nunito">
       <p className="text-center text-6xl font-bold">
@@ -24,22 +26,21 @@ const HowBusinessThrive = () => {
               program was a game-changer. The access to a wide array of
               communities resulted in unprecedented engagement and sales.
             </p>
-            <p className="text-[#F08E1F] flex gap-x-2 items-center">
-              Boost your market and brand visibility{" "}
+          <Link to="/register"><p className="text-[#F08E1F] flex gap-x-2 items-center cursor-pointer">
+              Boost your market and brand visibility
               <BsArrowRight color="#F08E1F" />
-            </p>
+            </p></Link>
           </div>
           <div className="max-w-[350px] mt-9">
             <img src={people} className="object-contain h-12 w-[50px]" />
             <p className="text-gray-700 text-md mt-2">
-              As a community leader, the PAYG model has been transformative.
-              We've partnered with businesses that truly resonate with our
-              audience, enhancing both our community's value and our
-              collaboration
+            As a community leader, the visibility model has been transformative.
+             We've partnered with businesses that truly resonate with our audience,
+              enhancing both our community's value and our collaboration.
             </p>
-            <p className="text-[#F08E1F] flex gap-x-2 items-center">
+           <Link to={"/freeregistervisibility"}> <p className="text-[#F08E1F] flex gap-x-2 items-center cursor-pointer">
               Get connected to your tribe <BsArrowRight color="#F08E1F" />
-            </p>
+            </p></Link>
           </div>
         </div>
 
