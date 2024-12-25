@@ -41,7 +41,7 @@ const navigate = useNavigate()
               </div>
 
               <div>
-                <button onClick={()=> navigate('/freeregistervisibility')} className="border border-[#F08E1F] text-white rounded-full px-6 py-4">
+                <button onClick={()=> navigate('/register')} className="border border-[#F08E1F] text-white rounded-full px-6 py-4">
                   Signup for Free
                 </button>
               </div>

@@ -777,7 +777,7 @@ const [selectedInterest, setSelectedInterest] = useState('');
      />
 
 
-<div className='flex justify-evenly'>
+<div className='flex justify-evenly mt-12'>
 
   <div className='mt-12 hidden md:block'>
     <div className='flex gap-x-4 items-center'>
