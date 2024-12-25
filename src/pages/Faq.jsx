@@ -57,6 +57,7 @@ const Faq = () => {
 
 
   return (
+    <>
     <div className="bg-white px-4 mx-auto lg:px-[300px] py-9 mt-16 font-nunito">
       <Navbar />
       <p className="text-6xl font-bold text-center md:tracking-wide">
@@ -350,6 +351,8 @@ const Faq = () => {
 
       {/* <TbCircleMinus /> */}
     </div>
+    <Footer/>
+    </>
   );
 };
 
