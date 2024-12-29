@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Navbar from "../components/Navbar";
 import { PiCheckCircleDuotone } from "react-icons/pi";
 import check from "../assets/orangecheck.png";
@@ -6,8 +6,35 @@ import close from "../assets/landingpage/close.svg";
 import Footer from "../components/footer";
 import { MdKeyboardArrowDown } from "react-icons/md";
 
+const symbols = [
+
+  {id:1,
+   item:'United States Dollars($)',
+  },
+  {id:2,
+  item:'Canadian Dollars($)',
+  },
+  {id:3,
+  item:'British Pounds(£)',
+  },
+  {id:4,
+  item:'Chinese yen(¥)',
+  },
+  {id:5,
+  item:'Naira(₦)',
+  },
+
+
+]
+
 const Pricing = () => {
   const [show, setShow] = React.useState(false);
+  const [symbol, setSymbol] = useState('')
+  const [selectedSymbol, setSelectedSymbol] = useState('')
+
+  const handleSymbols = (e) => {
+    setSelectedSymbol(e.target.value);
+  }
 
   const handleClose = () => setShow(true);
   const handleShow = () => setShow(false);
@@ -31,7 +58,13 @@ const Pricing = () => {
 
                 <div className="flex justify-between px-4">
                 <p className="text-2xl font-bold">Essentials</p>
-                <div className="border border-[#F08E1F] bg-white px-2 py-1 rounded-2xl flex w-[190px]"><p className="text-sm">United States Dollars($)</p> <MdKeyboardArrowDown /> </div>
+ 
+                <select value={selectedSymbol} onChange={handleSymbols} className='border border-[#F08E1F] bg-white px-2 py-1 rounded-2xl flex w-[190px] text-sm'>
+
+            {symbols.map(item => (
+              <option key={item.id} value={item.item}>{item.item}</option>
+            ) )}
+          </select>
                 </div>
 
                 <p className="text-lg tracking-tighter px-4">Monthly Subscription</p>
@@ -90,7 +123,12 @@ const Pricing = () => {
 
               <div className="flex justify-between px-4">
                 <p className="text-2xl font-bold text-center text-white">Premier</p>
-                <div className="border border-[#F08E1F] bg-white text-black px-2 py-1 rounded-2xl flex w-[190px]"><p className="text-sm">United States Dollars($)</p> <MdKeyboardArrowDown /> </div>
+                <select value={selectedSymbol} onChange={handleSymbols} className='border border-[#F08E1F] bg-white px-2 py-1 rounded-2xl flex w-[190px] text-sm text-black'>
+
+{symbols.map(item => (
+  <option key={item.id} value={item.item}>{item.item}</option>
+) )}
+</select>
                 </div>
 
                 <p className="text-lg px-4 tracking-tighter">
@@ -152,7 +190,12 @@ const Pricing = () => {
 
               <div className="flex justify-between px-4">
                 <p className="text-2xl font-medium ">Pro</p>
-                <div className="border border-[#F08E1F] bg-white text-black px-2 py-1 rounded-2xl flex w-[190px]"><p className="text-sm">United States Dollars($)</p> <MdKeyboardArrowDown /> </div>
+
+                <select value={selectedSymbol} onChange={handleSymbols} className='border border-[#F08E1F] bg-white px-2 py-1 rounded-2xl flex w-[190px] text-sm text-black'>
+              {symbols.map(item => (
+               <option key={item.id} value={item.item}>{item.item}</option>
+) )}
+</select>
                 </div>
 
                 <p className="text-lg px-4 tracking-tighter">
