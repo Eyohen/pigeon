@@ -29,21 +29,21 @@ const Sidebar = () => {
 
   console.log(user?.id)
 
-  const fetchCurrentSubscription = async () => {
-    try {
-    const res = await axios.get(`${URL}/api/subpurchases/current-subscription/${user?.id}`)
-    console.log("see current subscription",res.data);
-    setSubscription(res.data.subscription);
-    } catch (error){
-      console.error("Error fetching subscription:", error);
-      setSubscription(null);
-    }
-  }
-  useEffect(() => {
-    if (user?.id){
-      fetchCurrentSubscription()
-    }
-  },[user?.id])
+  // const fetchCurrentSubscription = async () => {
+  //   try {
+  //   const res = await axios.get(`${URL}/api/subpurchases/current-subscription/${user?.id}`)
+  //   console.log("see current subscription",res.data);
+  //   setSubscription(res.data.subscription);
+  //   } catch (error){
+  //     console.error("Error fetching subscription:", error);
+  //     setSubscription(null);
+  //   }
+  // }
+  // useEffect(() => {
+  //   if (user?.id){
+  //     fetchCurrentSubscription()
+  //   }
+  // },[user?.id])
 
 
   return (
@@ -65,11 +65,8 @@ const Sidebar = () => {
         <p className='hover:bg-[#F3D8A7] py-1 text-center'>Browse Communities</p>
         </div></Link>
 
-        <Link to={'/purchasehistory'}><div className='flex gap-x-3 items-center hover:bg-[#F3D8A7] px-2 mt-6 rounded'>
-        <IoReceiptOutline className=''/>
-        <p className='hover:bg-[#F3D8A7] py-1 text-center'>Purchase History</p>
-        </div></Link>
-        
+
+{/* 
         <div className='flex gap-x-3 items-center justify-between hover:bg-[#F3D8A7] px-2 mt-6 rounded cursor-pointer' onClick={() => setIsOpen((prev) => !prev)}>
           <div className='flex items-center gap-x-3 cursor-pointer'  >
         <FiUser className='' />
@@ -89,34 +86,23 @@ const Sidebar = () => {
         <button className='text-white bg-black rounded px-2'>8</button>
     </div></Link>
   
-</div>)}
+</div>)} */}
 
-        {/* <Link to={'/listcommunity'}> */}
-          <div onClick={handleToggleCommunity} className='flex gap-x-3 items-center px-2 mt-6 rounded cursor-pointer'>
-        <FiUsers className='' />
-        <p className='py-1 text-center'>Create Community</p>
-        <IoChevronDown onClick={() => setIsOpen((prev) => !prev)}  size={20} className='' />
-        </div>
-        {
-          isOpenCommunity && <div className='ml-9 text-left'>
-          <Link to={'/listcommunity'}><p className='hover:bg-[#F3D8A7] py-1 px-2 rounded cursor-pointer'>As community owner</p></Link>
-          <Link to={'/listvisibility'}><p className='hover:bg-[#F3D8A7] py-1 px-2 rounded cursor-pointer'>For visibility</p></Link>
-        </div>
-        }
-        
-        {/* </Link> */}
-{/* 
-        <Link to={'/switchpremium'}><div className='flex gap-x-3 items-center hover:bg-[#F3D8A7] px-2 mt-6 rounded'>
-        <FiUsers className='' />
-        <p className='hover:bg-[#F3D8A7]  py-1 text-center'>Switch to premium</p>
+        {/* create community */}
+        <Link to={'/myprofile'}>  <div className='flex gap-x-3 items-center px-2 mt-6 rounded cursor-pointer'>
+        <FiUsers />
+      <p className='py-1 text-center'>My Profile</p>
+
         </div></Link>
 
-        <Link to={'/subdetails'}><div className='flex gap-x-3 items-center hover:bg-[#F3D8A7] px-2 mt-6 rounded'>
-       <LuArrowUpFromLine className=''/>
-        <p className='hover:bg-[#F3D8A7]  py-1 text-center'>Subscription Details </p>
-        </div></Link> */}
-        
-        {subscription ? (
+        {/* create community */}
+        <Link to={'/listvisibility'}>  <div className='flex gap-x-3 items-center px-2 mt-6 rounded cursor-pointer'>
+        <FiUsers />
+      <p className='py-1 text-center'>Create Community</p>
+
+        </div></Link>
+
+        {/* {subscription ? (
   <Link to={'/subdetails'}>
     <div className='flex gap-x-3 items-center hover:bg-[#F3D8A7] px-2 mt-6 rounded'>
       <LuArrowUpFromLine className=''/>
@@ -130,7 +116,13 @@ const Sidebar = () => {
       <p className='hover:bg-[#F3D8A7] py-1 text-center'>Switch to premium</p>
     </div>
   </Link>
-)}
+)} */}
+  <Link to={'/switchpremium'}>
+    <div className='flex gap-x-3 items-center hover:bg-[#F3D8A7] px-2 mt-6 rounded'>
+      <FiUsers className='' />
+      <p className='hover:bg-[#F3D8A7] py-1 text-center'>Switch to premium</p>
+    </div>
+  </Link>
 
 
         <Link to={'/settings'}><div className='flex gap-x-3 items-center hover:bg-[#F3D8A7] px-2 mt-6 rounded'>

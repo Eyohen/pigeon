@@ -21,7 +21,7 @@ const AdminCommunityOwner = () => {
     const { user, logout } = useAuth();
     const [selectedItem, setSelectedItem] = useState(null);
     const [users, setUsers] = useState([]);
-    const [communities, setCommunities] = useState([]);
+    const [owners, setOwner] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedCommunityId, setSelectedCommunityId] = useState(null)
     const [isRestrictModalOpen, setIsRestrictModalOpen] = useState(false);
@@ -51,18 +51,18 @@ const AdminCommunityOwner = () => {
 
 console.log("userId",user)
 
-    const fetchCommunities = async () => {
+    const fetchOwners = async () => {
         try {
-            const res = await axios.get(`${URL}/api/communities`);
-            console.log("community", res.data.communities)
-            setCommunities(res.data.communities);
+            const res = await axios.get(`${URL}/api/owners`);
+            console.log("owner", res.data)
+            setOwner(res.data.owners);
         } catch (err) {
             console.log(err);
         }
     };
 
     useEffect(() =>{
-        fetchCommunities()
+        fetchOwners()
     },[])
 
 
@@ -86,11 +86,16 @@ console.log("userId",user)
     <div className='flex justify-between bg-[#FAFAFA] h-screen font-nunito'>
 <AdminSidebar/>
 
-<div className='flex-1 ml-[330px] '> 
+<div className='flex-1 px-[330px] '> 
     <Navbar2/>
+
+    <div className='flex justify-between pt-9'>
         <p className='text-3xl ml-[48px]'>Community Owners</p>
 
-           <div className='max-w-[1100px] bg-white ml-[48px] border mt-9 rounded-lg'>
+        <div><button onClick={()=>navigate('/adminaddcommunityowner')} className='bg-[#F08E1F] text-white px-3 py-2 rounded-full mr-[100px]'>Add Community Owner</button></div>
+        </div>
+
+           <div className='w-full md:w-[1300px] bg-white ml-[48px] border mt-9 rounded-lg'>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-1">
 
 <div>
@@ -112,7 +117,7 @@ console.log("userId",user)
               ID
             </th>
             <th scope="col" class="px-6 py-3 font-semibold text-gray-500">
-              Community Name
+              Community Owner
             </th>
             <th scope="col" class="px-6 py-3 font-semibold text-gray-500">
             Date Created
@@ -120,9 +125,7 @@ console.log("userId",user)
             <th scope="col" class="px-6 py-3 font-semibold text-gray-500">
             Email Address
             </th>
-            <th scope="col" class="px-6 py-3 font-semibold text-gray-500">
-            Access Type
-            </th>
+ 
             <th scope="col" class="px-6 py-3 font-semibold text-gray-500">
             Status
             </th>
@@ -144,21 +147,23 @@ console.log("userId",user)
  <tbody>
 
       
-     {communities?.map((item) => (
+     {owners?.map((item) => (
        <tr onClick={() => setShowModal(!showModal)} class="bg-white border-b dark:bg-gray-900 dark:border-gray-700 hover:bg-gray-100"
                 key={item.id}>
                  <td class="px-6 py-4">{item.id?.slice(0, 7)}</td>
 
                <td class="px-6 py-2">{item.name}</td>
                 <td class="px-6 py-2">{new Date(item.createdAt).toDateString()}</td>
-                <td class="px-6 py-2">{item.user}</td>
-                <td class="px-6 py-2">{item.accessType}</td>
+                <td class="px-6 py-2">{item.email}</td>
+           
 
                <td className='px-6 py-2'>{item.verified === false ? <button onClick={() => openModal(item.id)} class="px-6 py-1 bg-red-100 rounded-lg text-red-500 mt-3">Unverified</button> : <button onClick={() => openModal(item.id)} class="px-6 py-1 bg-green-100 rounded-lg text-green-500 mt-3">Verified</button> }</td>
                <div onClick={() => handlePress(item)} className='cursor-pointer mt-4'>
                <td class="px-9 py-2"><IoEllipsisVerticalSharp /> </td> 
                {selectedItem && selectedItem.id === item.id && showModal && (<div className="bg-white absolute z-50 border rounded-lg right-0 top-[50px] shadow-lg">
                       <p onClick={() => {navigate(`/admincommunityownerdetail/${selectedItem.id}`) }} className="hover:text-[#F08E1F] px-9 py-2">View</p>
+                      <p onClick={() => {navigate(`/admineditcommunityowner/${selectedItem.id}`) }} className="hover:text-[#F08E1F] px-9 py-2">Edit</p>
+                      <p onClick={() => {navigate(`/adminaddcommunity/${selectedItem.id}`) }} className="hover:text-[#F08E1F] px-9 py-2">Add community</p>
                       {/* <p onClick={() => openViewModal()}  className="hover:bg-blue-100 hover:text-blue-600 px-9 py-2">View</p>
                       <p onClick={() => openModal()}  className="hover:bg-blue-100 hover:text-blue-600 px-9 py-2">Edit</p> */}
                       <p onClick={() => openRestrictModal(item.id)}  className="bg-gray-100 px-9 py-2">Restrict</p>
@@ -184,10 +189,10 @@ console.log("userId",user)
     isOpen={isModalOpen}
      onClose={closeModal} 
      communityId={selectedCommunityId}
-     onVerificationUpdate={fetchCommunities}
+     onVerificationUpdate={fetchOwners}
      />
 
-<RestrictModal isOpen={isRestrictModalOpen} onClose={() => setIsRestrictModalOpen(false)} onRestrictionUpdate={fetchCommunities}   communityId={selectedCommunityId} onConfirm={() => {
+<RestrictModal isOpen={isRestrictModalOpen} onClose={() => setIsRestrictModalOpen(false)} onRestrictionUpdate={fetchOwners}   communityId={selectedCommunityId} onConfirm={() => {
           setCommunities(communities.filter(c => c !== selectedCommunityId));
           setIsRestrictModalOpen(false);
         }}/>

@@ -10,7 +10,7 @@ import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 const InsideBrowseOwner = () => {
-    const {user} = useAuth()
+    const {user} = useAuth();
     const [isOpen, setIsOpen] = useState(false);
     const [communities, setCommunities] = useState([]);
     const [search, setSearch] = useState('');

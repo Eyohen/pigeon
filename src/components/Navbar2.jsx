@@ -58,7 +58,7 @@ const Navbar2 = () => {
   return (
     <div className='flex justify-between gap-x-9 items-center px-12 '>
           <Link to={'/'}> <p className="text-xl">Home</p></Link>
-        <div className='flex justify-end gap-x-9 items-center px-12 mt-9'>
+        <div className='flex justify-end gap-x-9 items-center px-12 mt-3'>
         <p className='font-semibold text-xl'></p>
    
        

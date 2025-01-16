@@ -48,7 +48,8 @@ console.log("userId",user)
 
     const fetchCommunities = async () => {
         try {
-            const res = await axios.get(`${URL}/api/visible/free`);
+            // const res = await axios.get(`${URL}/api/visible/free`);
+            const res = await axios.get(`${URL}/api/comunities`);
             console.log("community", res.data.communities)
             setCommunities(res.data.communities);
         } catch (err) {
@@ -82,11 +83,13 @@ console.log("userId",user)
 
 <AdminSidebar/>
 
-<div className='flex-1 ml-[330px] '> 
+<div className='flex-1 px-[330px] '> 
     <Navbar2/>
+
+ 
         <p className='text-3xl ml-[48px]'>Communities</p>
 
-           <div className='max-w-[1100px] bg-white ml-[48px] border mt-9 rounded-lg'>
+           <div className='max-w-[1300px] bg-white ml-[48px] border mt-9 rounded-lg'>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-1">
 
 <div>
@@ -98,7 +101,7 @@ console.log("userId",user)
     </div>
 
 </div>
-</div>-
+</div>
 
       <div class="max-h-60 overflow-y-auto">
       <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 mt-5 relative">
@@ -146,10 +149,10 @@ console.log("userId",user)
                 key={item.id}>
                  <td class="px-6 py-4">{item.id?.slice(0, 7)}</td>
 
-               <td class="px-6 py-2">{item.name}</td>
+               <td class="px-6 py-2">{item.title}</td>
                 <td class="px-6 py-2">{new Date(item.createdAt).toDateString()}</td>
                 <td class="px-6 py-2">example@gmail.com</td>
-                <td class="px-6 py-2">{item.accessType}</td>
+                <td class="px-6 py-2">{item.accessRe}</td>
 
                 <td className='px-6 py-2'>{item.verified === false ? <button onClick={() => openModal(item.id)} class="px-6 py-1 bg-red-100 rounded-lg text-red-500 mt-3">Unverified</button> : <button onClick={() => openModal(item.id)} class="px-6 py-1 bg-green-100 rounded-lg text-green-500 mt-3">Verified</button> }</td>
                 <div onClick={() => handlePress(item)} className='cursor-pointer mt-4'>

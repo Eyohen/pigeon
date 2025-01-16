@@ -32,7 +32,7 @@ const StoriesConnect = () => {
         <p className="text-center text-6xl font-bold mx-auto ">
           Stories that connect
         </p>
-        <Link to={'/blog'}><button className="text-[#F08E1F] text-xl ">View all</button></Link>
+        <Link to={'/blog'}><button className="text-[#F08E1F] text-md md:text-xl min-w-[70px]">View all</button></Link>
       </div>
 
       <div className="flex flex-col md:flex-row items-center gap-y-4 md:gap-y-0 justify-between ">

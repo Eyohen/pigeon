@@ -5,21 +5,22 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { URL } from "../url";
 import axios from "axios";
 import { useAuth } from '../context/AuthContext';
+import { IoMdArrowDropright } from "react-icons/io";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import AdminSidebar from '../components/AdminSidebar';
-
 
 const AdminCommunityOwnerDetail = () => {
   const { user, logout } = useAuth();
-  const communityId = useParams().id
-  const [community, setCommunity] = useState([])
+  const ownerId = useParams().id
+  const [owner, setOwner] = useState([])
   const [firstName, setFirstName] = useState("")
     const navigate = useNavigate()
 
-    const fetchCommunity = async () => {
+    const fetchOwner = async () => {
       try{
-        const res = await axios.get(URL+"/api/communities/"+communityId)
-        // console.log("this is community henry",res.data)
-        setCommunity(res.data)
+        const res = await axios.get(URL+"/api/owners/"+ownerId)
+        // console.log("this is owner henry",res.data)
+        setOwner(res.data)
       }
       catch(err){
         console.log(err)
@@ -27,57 +28,64 @@ const AdminCommunityOwnerDetail = () => {
     }
 
     useEffect(()=>{
-      fetchCommunity()
+      fetchOwner()
   
-    },[communityId])
+    },[ownerId])
 
 
 
    
   return (
-    <div className='flex justify-between bg-[#FAFAFA]  font-nunito'>
-<AdminSidebar/>
-    <div className='flex-1 ml-[330px]'>
+    <div className='flex-1 ml-[320px]'>
+      <AdminSidebar/>
         <Navbar2 />
 
         <div className='flex gap-x-4 ml-12 mt-9 items-center'>
-        <p className='text-gray-400 cursor-pointer' onClick={() => navigate(-1)}>Community Owners</p>
-        <IoChevronForward />
-        <p className='font-semibold'>{community.name}</p>
+        <p className='text-gray-400 cursor-pointer' onClick={() => navigate(-1)}>Back</p>
         </div>
 
-        <div className=' text-white text-4xl w-32 h-32 rounded-full items-center justify-center flex border border-[#F08E1F] mt-9 ml-12'>{firstName?.charAt(0)}</div>
+        <div className='bg-green-400 text-white text-4xl w-32 h-32 rounded-full items-center justify-center flex border border-gray-700 mt-9 ml-12'>{owner?.name?.charAt(0)}</div>
 
 
         <div className='max-w-[700px]'>
-            <p className=' text-lg ml-12 mt-4'>Name: {community.name}</p>
-            <p className=' text-lg ml-12  mt-4'>Community Type : {community.communityType}</p>
-            <p className=' text-lg ml-12  mt-4'>Previous Collaboration Experience : {community.prevCollabType}</p>
-            <p className=' text-lg ml-12  mt-4'>Unique Selling Points : {community.prevCollabType}</p>
-            {/* <p className=' text-lg-12  mt-4'>Description: Description: At Green Earth Advocates we are at the forefront of financial technology, revolutionizing the way you manage and grow your wealth. Our cutting-edge platform seamlessly integrates innovative solutions to simplify your financial journey.</p> */}
-            {/* <p className=' text-lg ml-12  mt-4'>Active Since: Jan 20, 2021</p> */}
-            <p className=' text-lg ml-12  mt-4'>Location : {community.location}</p>
-            <p className=' text-lg ml-12  mt-4'>Access Type : {community.accessType}</p>
-            <p className=' text-lg ml-12  mt-4'>Date Launched : January 2021</p>
-            <p className=' text-lg ml-12  mt-4'>Size of Community : {community.size} members/visitors</p>
-            <p className=' text-lg ml-12  mt-4'>Engagement Level : {community.engagementLevel}</p>
-            <p className=' text-lg ml-12  mt-4'>Community Interests: {community.communityInterest}</p>
-            <p className=' text-lg ml-12  mt-4'>Communication Platforms Used : {community.communicationPlatform}</p>
-            <p className=' text-lg ml-12  mt-4'>Community Goal/Content : {community.communityGoal}</p>
-            <p className=' text-lg ml-12  mt-4'>Special Achievements or Recognitions : {community?.recognition}</p>
-            <p className=' text-lg ml-12  mt-4'>Ratings or Endorsements : Endorsed by leading conservation organizations, our company is recognized for our dedication to preserving biodiversity and implementing effective environmental conservation strategies.</p>
-            <p className=' text-lg ml-12  mt-4'>Contact Information :</p>
-            <p className=' text-lg ml-12  mt-4 text-[#F08E1F]'>Whatsapp : <span className='text-gray-500'>{community.whatsapp}</span></p>
-            <p className=' text-lg ml-12  mt-4 text-[#F08E1F]'>Telegram : <span className='text-gray-500'>{community.telegram}</span></p>
-            <p className=' text-lg ml-12  mt-4 text-[#F08E1F]'>Twitter: <span className='text-gray-500'>{community.twitter}</span></p>
+            <p className=' text-lg ml-12 mt-4'>Name: {owner.name}</p>
+            <p className=' text-lg ml-12  mt-4'>Description : {owner.description}</p>
+            <p className=' text-lg ml-12  mt-4'>Date Created : {new Date(owner.createdAt).toDateString()}</p>
+            <p className=' text-lg ml-12  mt-4'>Special Achievements or Recognitions : {owner?.recognition}</p>
+            <p className=' text-lg ml-12  mt-4'>Communication Platform Used : <span className='text-[#F08E1F]'>Whatsapp, Telegram</span> and <span className='text-[#F08E1F]'>Twitter</span></p>
+            <p className=' text-lg ml-12  mt-4'>Contact Information : <span className='text-[#F08E1F]'>Whatsapp, Telegram, Email, Website, Twitter</span> and <span className='text-[#F08E1F]'>Phone Number</span></p>
+            <p className=' text-lg ml-12  mt-4 flex items-center'>Reviews and Testimonials : <IoMdArrowDropright size={25} /></p>
+            <p className=' text-lg ml-12  mt-4'>Submit a review</p>
+            <div className='flex mt-2 gap-x-4 items-center'>
+            <textarea className='ml-12 border rounded-lg px-3 w-[400px] h-[100px]'/> <div><button className='bg-[#F08E1F] rounded-xl text-white px-8 py-2 mb-4'>Submit Review</button></div>
+            </div>
+
+
+            <div className='flex gap-x-4 items-center ml-12 mt-8'>
+
+            <div className='bg-black text-white h-[40px] w-[40px] rounded-full font-bold text-2xl flex justify-center items-center'>V</div>
+            <p className='text-lg text-gray-600'>Victor Ilesanmi</p>
+            </div>
+
+
+            <div className='flex gap-x-2 items-center ml-12 mt-4'>
+            <AiFillStar />
+            <AiFillStar />
+            <AiFillStar />
+            <AiFillStar />
+            <AiOutlineStar />
+            <p className='text-sm text-gray-600'>February 3, 2024</p>
+            </div>
+
+            <p className='ml-12 mt-4'>Korem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+          
 
         </div>
-    
 
-        <div className='mb-24'></div>
-    </div>
 
-  
+
+
+
     </div>
   )
 }

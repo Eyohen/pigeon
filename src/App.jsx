@@ -58,11 +58,17 @@ import Request from './pages/Request'
 import UpgradePlan from './pages/UpgradePlan'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 import TermsOfService from './pages/TermsOfService'
+import AdminAddCommunityOwner from './pages/AdminAddCommunityOwner'
+import AdminEditCommunityOwner from './pages/AdminEditCommunityOwner'
+import AdminAddCommunity from './pages/AdminAddCommunity'
+import AdminUserDetail from './pages/AdminUserDetail'
+import MyProfile from './pages/MyProfile'
+import EditProfile from './pages/EditProfile'
 
 
 const App = () => {
   return (
-    // <UserContextProvider>
+
       <Routes>
      <Route exact path="/" element={<Home/>}/>
      <Route exact path="/login" element={<Login/>}/>
@@ -105,7 +111,8 @@ const App = () => {
      <Route exact path="/innerbrowsepage" element={<InnerBrowsePage />}/>
      <Route exact path="/subdetails" element={<SubscriptionDetails />}/>
      <Route exact path="/upgradeplan" element={<UpgradePlan />}/>
-
+     <Route exact path="/myprofile" element={<MyProfile />}/>
+     <Route exact path="/editprofile/:id" element={<EditProfile />}/>
 
      <Route exact path="/admin" element={<Admin/>}/>
      <Route exact path="/superadmin" element={<SuperAdmin/>}/>
@@ -124,9 +131,13 @@ const App = () => {
      <Route exact path="/adminsettings" element={<ProtectedRoute><AdminSettings /></ProtectedRoute>}/>
      <Route exact path="/admintransaction" element={<AdminTransactions />}/>
      <Route exact path="/adminownerpage" element={<AdminOwnerPage />}/>
+     <Route exact path="/adminaddcommunityowner" element={<AdminAddCommunityOwner />}/>
+     <Route exact path="/admineditcommunityowner/:id" element={<AdminEditCommunityOwner />}/>
+     <Route exact path="/adminaddcommunity/:id" element={<AdminAddCommunity />}/>
+     <Route exact path="/adminuserdetail/:id" element={<AdminUserDetail />}/>
 
       </Routes>
-      // </UserContextProvider>
+ 
 
   )
 }

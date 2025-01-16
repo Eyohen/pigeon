@@ -9,7 +9,7 @@ import { IoFilter } from "react-icons/io5";
 
 const InsideOwner = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const [communities, setCommunities] = useState([]);
+    const [owners, setOwner] = useState([]);
     const [search, setSearch] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
@@ -25,9 +25,9 @@ const InsideOwner = () => {
     const [commTypeFilter, setCommTypeFilter] = useState('')
 
 
-    const fetchCommunities = async (searchTerm = '', page = 1, limit = 1, location = '') => {
+    const fetchOwners = async (searchTerm = '', page = 1, limit = 1, location = '') => {
         try {
-            const res = await axios.get(`${URL}/api/communities`, {
+            const res = await axios.get(`${URL}/api/owners`, {
                 params: {
                     search: searchTerm,
                     page: page,
@@ -35,12 +35,12 @@ const InsideOwner = () => {
                     location: location
                 }
             });
-            setCommunities(res.data.communities);
+            setOwner(res.data.owners);
             // if(res.data.communities.location.length > 0) {
             //     console.log("see info",res.data.communities);
             //   }
             console.log("to see communities come here", res.data)
-            console.log("see info",res.data.communities[0].location);
+            console.log("see info",res.data.owners[0].location);
             setTotalPages(res.data.totalPages);
         } catch (err) {
             console.log(err);
@@ -50,12 +50,12 @@ const InsideOwner = () => {
     const handleSearch = (e) => {
         const searchTerm = e.target.value;
         setSearch(searchTerm);
-        fetchCommunities(searchTerm, 1, limit, selectedLocation);
+        fetchOwners(searchTerm, 1, limit, selectedLocation);
     };
 
     const handlePageChange = (page) => {
         setCurrentPage(page);
-        fetchCommunities(search, page, limit, selectedLocation);
+        fetchOwners(search, page, limit, selectedLocation);
     };
 
 
@@ -66,7 +66,7 @@ const InsideOwner = () => {
     const handleLocationFilter = (location) => {
         setSelectedLocation(location);
         setIsOpen(false); // Close dropdown after selecting location
-        fetchCommunities(search, 1, limit, location, selectedLocation);
+        fetchOwners(search, 1, limit, location, selectedLocation);
     };
 
     const handleCountryFilter = (e) => {
@@ -98,7 +98,7 @@ const InsideOwner = () => {
     }
 
 
-      const filteredCommunities = communities.filter(c =>
+      const filteredCommunities = owners?.filter(c =>
     Object.keys(c).some(key =>
       c[key].toString().toLowerCase().includes(search.toLowerCase())
     ) && (!countryFilter || c.location === countryFilter) && (!sizeFilter || c.size === sizeFilter)
@@ -108,23 +108,23 @@ const InsideOwner = () => {
    
   );
 
-  const uniqueCommunityTypes = [...new Set(communities.map(c => c.commTypeCategory))];
+  const uniqueCommunityTypes = [...new Set(owners.map(c => c.commTypeCategory))];
 
-  const uniqueCountries = [...new Set(communities.map(c => c.location))];
+  const uniqueCountries = [...new Set(owners.map(c => c.location))];
 
-  const uniqueSizes = [...new Set(communities.map(c => c.size))];
+  const uniqueSizes = [...new Set(owners.map(c => c.size))];
 
-  const uniqueInterests = [...new Set(communities.map(c => c.interestCategory))];
+  const uniqueInterests = [...new Set(owners.map(c => c.interestCategory))];
 
-  const uniqueEngagements = [...new Set(communities.map(c => c.engagementLevel))];
+  const uniqueEngagements = [...new Set(owners.map(c => c.engagementLevel))];
 
-  const uniqueGoals = [...new Set(communities.map(c => c.communityGoal))];
+  const uniqueGoals = [...new Set(owners.map(c => c.communityGoal))];
 
-  const uniquePlatforms = [...new Set(communities.map(c => c.communicationCategory))];
+  const uniquePlatforms = [...new Set(owners.map(c => c.communicationCategory))];
 
 
     useEffect(() => {
-        fetchCommunities(search, currentPage, limit);
+        fetchOwners(search, currentPage, limit);
     }, [currentPage, limit, selectedLocation]);
 
 

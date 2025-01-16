@@ -110,18 +110,18 @@ const [selectedInterest, setSelectedInterest] = useState('');
   
   
   // get collaborationTypes
-  const fetchMyCollaborationTypes = async () => {
-    try {
-      const res = await axios.get(URL + "/api/engagementLevel/");
-      setLevel(res.data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const fetchMyCollaborationTypes = async () => {
+  //   try {
+  //     const res = await axios.get(URL + "/api/engagementLevel/");
+  //     setLevel(res.data);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
   
-  useEffect(() => {
-    fetchEnglevel();
-  }, []);
+  // useEffect(() => {
+  //   fetchEnglevel();
+  // }, []);
   
   
     const fetchCommType = async () => {
@@ -758,7 +758,6 @@ const [selectedInterest, setSelectedInterest] = useState('');
   };
   
   
-
   return (
     <>
     <Navbar/>

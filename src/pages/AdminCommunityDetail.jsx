@@ -17,8 +17,8 @@ const AdminCommunityDetail = () => {
 
     const fetchCommunity = async () => {
       try{
-        const res = await axios.get(URL+"/api/visible/"+communityId)
-        // console.log("this is community henry",res.data)
+        const res = await axios.get(URL+"/api/comunities/"+communityId)
+        console.log("this is comunities",res.data)
         setCommunity(res.data)
       }
       catch(err){
@@ -41,24 +41,25 @@ const AdminCommunityDetail = () => {
         <Navbar2 />
 
         <div className='flex gap-x-4 ml-12 mt-9 items-center'>
-        <p className='text-gray-400 cursor-pointer' onClick={() => navigate(-1)}>Community Owners</p>
+        <p className='text-gray-400 cursor-pointer' onClick={() => navigate(-1)}>Community</p>
         <IoChevronForward />
-        <p className='font-semibold'>{community.name}</p>
+        <p className='font-semibold'>{community.title}</p>
         </div>
 
-        <div className=' text-white text-4xl w-32 h-32 rounded-full items-center justify-center flex border border-[#F08E1F] mt-9 ml-12'>{firstName?.charAt(0)}</div>
+        <div className=' text-4xl w-32 h-32 rounded-full items-center justify-center flex border border-[#F08E1F] mt-9 ml-12'>{community.title?.charAt(0)}</div>
 
 
         <div className='max-w-[700px]'>
-            <p className=' text-lg ml-12 mt-4'>Name: {community.name}</p>
+            <p className=' text-lg ml-12 mt-4'>Community Name: {community.title}</p>
+            <p className=' text-lg ml-12  mt-4'>Description : {community.description}</p>
             <p className=' text-lg ml-12  mt-4'>Community Type : {community.communityType}</p>
-            <p className=' text-lg ml-12  mt-4'>Previous Collaboration Experience : {community.prevCollabType}</p>
-            <p className=' text-lg ml-12  mt-4'>Unique Selling Points : {community.prevCollabType}</p>
+            {/* <p className=' text-lg ml-12  mt-4'>Previous Collaboration Experience : {community.prevCollabType}</p>
+            <p className=' text-lg ml-12  mt-4'>Unique Selling Points : {community.prevCollabType}</p> */}
             {/* <p className=' text-lg-12  mt-4'>Description: Description: At Green Earth Advocates we are at the forefront of financial technology, revolutionizing the way you manage and grow your wealth. Our cutting-edge platform seamlessly integrates innovative solutions to simplify your financial journey.</p> */}
             {/* <p className=' text-lg ml-12  mt-4'>Active Since: Jan 20, 2021</p> */}
             <p className=' text-lg ml-12  mt-4'>Location : {community.location}</p>
-            <p className=' text-lg ml-12  mt-4'>Access Type : {community.accessType}</p>
-            <p className=' text-lg ml-12  mt-4'>Date Launched : January 2021</p>
+            <p className=' text-lg ml-12  mt-4'>Access Type : {community. accessRequire}</p>
+            <p className=' text-lg ml-12  mt-4'>Date Launched : {new Date(community.established).toDateString()}</p>
             <p className=' text-lg ml-12  mt-4'>Size of Community : {community.size} members/visitors</p>
             <p className=' text-lg ml-12  mt-4'>Engagement Level : {community.engagementLevel}</p>
             <p className=' text-lg ml-12  mt-4'>Community Interests: {community.communityInterest}</p>
