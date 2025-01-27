@@ -159,7 +159,7 @@ const Navbar = () => {
             {openCommunity && (
               <div className="border border-[#554634] bg-white px-6 py-6 absolute rounded-lg mt-5 left-1/2 transform -translate-x-1/2">
                 <p
-                  onClick={() => navigate("/browserowner")}
+                  onClick={() => navigate("/browsecommunities")}
                   className="text-[#F08E1F] cursor-pointer whitespace-nowrap"
                 >
                   Browse Communities

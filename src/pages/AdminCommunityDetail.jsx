@@ -58,7 +58,7 @@ const AdminCommunityDetail = () => {
             {/* <p className=' text-lg-12  mt-4'>Description: Description: At Green Earth Advocates we are at the forefront of financial technology, revolutionizing the way you manage and grow your wealth. Our cutting-edge platform seamlessly integrates innovative solutions to simplify your financial journey.</p> */}
             {/* <p className=' text-lg ml-12  mt-4'>Active Since: Jan 20, 2021</p> */}
             <p className=' text-lg ml-12  mt-4'>Location : {community.location}</p>
-            <p className=' text-lg ml-12  mt-4'>Access Type : {community. accessRequire}</p>
+            <p className=' text-lg ml-12  mt-4'>Access Type : {community.accessType}</p>
             <p className=' text-lg ml-12  mt-4'>Date Launched : {new Date(community.established).toDateString()}</p>
             <p className=' text-lg ml-12  mt-4'>Size of Community : {community.size} members/visitors</p>
             <p className=' text-lg ml-12  mt-4'>Engagement Level : {community.engagementLevel}</p>

@@ -152,7 +152,7 @@ console.log("userId",user)
                <td class="px-6 py-2">{item.title}</td>
                 <td class="px-6 py-2">{new Date(item.createdAt).toDateString()}</td>
                 <td class="px-6 py-2">example@gmail.com</td>
-                <td class="px-6 py-2">{item.accessRe}</td>
+                <td class="px-6 py-2">{item.accessType}</td>
 
                 <td className='px-6 py-2'>{item.verified === false ? <button onClick={() => openModal(item.id)} class="px-6 py-1 bg-red-100 rounded-lg text-red-500 mt-3">Unverified</button> : <button onClick={() => openModal(item.id)} class="px-6 py-1 bg-green-100 rounded-lg text-green-500 mt-3">Verified</button> }</td>
                 <div onClick={() => handlePress(item)} className='cursor-pointer mt-4'>

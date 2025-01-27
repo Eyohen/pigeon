@@ -18,7 +18,7 @@ const AdminCommunityOwnerDetail = () => {
 
     const fetchOwner = async () => {
       try{
-        const res = await axios.get(URL+"/api/owners/"+ownerId)
+        const res = await axios.get(URL+"/api/users/"+ownerId)
         // console.log("this is owner henry",res.data)
         setOwner(res.data)
       }
@@ -44,11 +44,11 @@ const AdminCommunityOwnerDetail = () => {
         <p className='text-gray-400 cursor-pointer' onClick={() => navigate(-1)}>Back</p>
         </div>
 
-        <div className='bg-green-400 text-white text-4xl w-32 h-32 rounded-full items-center justify-center flex border border-gray-700 mt-9 ml-12'>{owner?.name?.charAt(0)}</div>
+        <div className='bg-green-400 text-white text-4xl w-32 h-32 rounded-full items-center justify-center flex border border-gray-700 mt-9 ml-12'>{owner?.firstName?.charAt(0)}</div>
 
 
         <div className='max-w-[700px]'>
-            <p className=' text-lg ml-12 mt-4'>Name: {owner.name}</p>
+            <p className=' text-lg ml-12 mt-4'>Name: {owner.firstName} {owner.lastName}</p>
             <p className=' text-lg ml-12  mt-4'>Description : {owner.description}</p>
             <p className=' text-lg ml-12  mt-4'>Date Created : {new Date(owner.createdAt).toDateString()}</p>
             <p className=' text-lg ml-12  mt-4'>Special Achievements or Recognitions : {owner?.recognition}</p>

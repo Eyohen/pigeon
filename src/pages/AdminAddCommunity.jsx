@@ -334,7 +334,7 @@ const AdminAddCommunity = () => {
   const { id: ownerId } = useParams();
   const [owner, setOwner] = useState([])
   const [oid, setOid] = useState('')
-  const [name, setName] = useState('')
+  const [phone, setPhone] = useState('')
   const [email, setEmail] = useState('')
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
@@ -382,32 +382,24 @@ const AdminAddCommunity = () => {
   const [isGoalDropdownOpen, setIsGoalDropdownOpen] = useState(false)
   const [content, setContent] = useState('')
   const [accessType, setAccessType] = useState('')
-  const [selectedAccess, setSelectedAccess] = useState('')
-  const [collab, setCollab] = useState([])
-  const [collaborationType, setCollabType] = useState([])
-  const [selectedCollabType, setSelectedCollabType] = useState([])
-  const [additionalService, setAdditionalService] = useState('');
   const [usp, setUSP] = useState('')
   const [amount, setAmount] = useState('')
   const [selectedDuration, setSelectedDuration] = useState('')
   const [duration, setDuration] = useState('')
   const [accessRequire, setAccessRequire] = useState('')
-
-
-  console.log("owner id", ownerId)
-
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(false)
 
   const navigate = useNavigate()
 
+  const userId = user?.id;
 
   const fetchOwner = async () => {
     try {
-      const res = await axios.get(`${URL}/api/owners/${ownerId}`)
+      const res = await axios.get(`${URL}/api/users/${ownerId}`)
       console.log("owner data", res.data)
       setOwner(res.data)
-      setName(res.data.name)
+      setName(res.data.firstName)
       setEmail(res.data.email)
       setOid(res.data.id)
     } catch (error) {
@@ -545,10 +537,6 @@ const AdminAddCommunity = () => {
   }, []);
 
 
-
-
-
-
   const handleCreate = async () => {
     const [platform, category] = selectedCommPlatform.split('|');
     const [interest, interestcat] = selectedInterest.split('|');
@@ -566,7 +554,7 @@ const AdminAddCommunity = () => {
 
       const res = await axios.post(`${URL}/api/comunities/create`,
         {
-          title, email, description, location: selectedLocation, ownerId, communityType: type,
+          title, email, phone, description, location: selectedLocation, userId, communityType: type,
           commTypeCategory: typecat || null,
           size: selectedSize, frequency, recognition,
           twitter, telegram, whatsapp, contentType,
@@ -575,27 +563,10 @@ const AdminAddCommunity = () => {
           communicationPlatform: platform,
           communicationCategory: category || null,
           platformLink,
-          engagementLevel: selectedEnglevel, accessType:selectedAccess,communityPhone,communityEmail, 
-          connCategory:selectedConnCategory, contentShared:selectedContentShared, established:startDate,communityGoal:selectedGoal, accessRequire,rating, review
+          engagementLevel: selectedEnglevel, accessType,
+          connCategory:selectedConnCategory, contentShared:selectedContentShared, established:startDate,communityGoal:selectedGoal,rating, review
         }
 
-        //   {
-        //   title,name,description,email
-        //   ,
-        //   communityType:type, 
-        //   commTypeCategory:typecat || null,
-        //   size:selectedSize, frequency, days:selectedDays, 
-        //   contentType,
-        //   communityInterest:interest,
-        //   interestCategory:interestcat || null,
-        //   communicationPlatform:platform,
-        //   communicationCategory:category || null,
-        //   platformLink, 
-        //   engagementLevel:selectedEnglevel, 
-        //   accessType:selectedAccess,communityPhone,communityEmail, 
-        //   connCategory:selectedConnCategory, contentShared:selectedContentShared, established:startDate,communityGoal:selectedGoal, accessRequire,rating, review, recognition,
-        //   twitter, telegram, whatsapp
-        // },
         // }, 
         // {
         //   headers: {
@@ -646,9 +617,7 @@ const AdminAddCommunity = () => {
   const handleCommPlatform = (e) => {
     setSelectedCommPlatform(e.target.value);
   }
-  const handleAccess = (e) => {
-    setSelectedAccess(e.target.value);
-  }
+
   const handleLocation = (e) => {
     setSelectedLocation(e.target.value);
   }
@@ -746,14 +715,15 @@ const AdminAddCommunity = () => {
           <div className='border-2 rounded-xl mt-12 py-9 px-6 space-y-3'>
             <p className='font-semibold'>Create Community</p>
 
-            <p>Name</p>
-            <input onChange={(e) => setName(e.target.value)} value={name} className='border border-[#D7D7D7] w-full md:w-[800px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4' />
-
-            <p>Email </p>
-            <input onChange={(e) => setEmail(e.target.value)} value={email} className='border border-[#D7D7D7] w-full md:w-[800px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4' />
 
             <p>Title</p>
             <input onChange={(e) => setTitle(e.target.value)} className='border border-[#D7D7D7] w-full md:w-[800px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4' />
+           
+            <p>Email </p>
+            <input onChange={(e) => setEmail(e.target.value)} className='border border-[#D7D7D7] w-full md:w-[800px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4' />
+
+            <p>Phone </p>
+            <input onChange={(e) => setPhone(e.target.value)} className='border border-[#D7D7D7] w-full md:w-[800px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4' />
 
             <p>Description</p>
             <textarea onChange={(e) => setDescription(e.target.value)} className='border border-[#D7D7D7] w-full md:w-[800px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4' />
@@ -918,7 +888,7 @@ const AdminAddCommunity = () => {
             </div>
 
             <p className='pt-3'>Access Requirement<span className='text-red-500 text-xl'> *</span></p>
-            <input onChange={(e) => setAccessRequire(e.target.value)} className='border border-[#D7D7D7] w-full md:w-[800px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4' placeholder='Access Requirements (e.g., membership fees, application process, open/free)' />
+            <input onChange={(e) => setAccessType(e.target.value)} className='border border-[#D7D7D7] w-full md:w-[800px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4' placeholder='Access Requirements (e.g., membership fees, application process, open/free)' />
 
 
           </div>

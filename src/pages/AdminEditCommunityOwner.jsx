@@ -15,12 +15,15 @@ const AdminEditCommunityOwner = () => {
 
   // Form state
   const [formData, setFormData] = useState({
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
+    phone: '',
     description: '',
     whatsapp: '',
     twitter: '',
     telegram: '',
+    linkedin: '',
     rating: '',
     review: '',
     recognition: ''
@@ -33,15 +36,18 @@ const AdminEditCommunityOwner = () => {
   useEffect(() => {
     const fetchOwners = async () => {
       try {
-        const res = await axios.get(`${URL}/api/owners/${ownerId}`);
+        const res = await axios.get(`${URL}/api/users/${ownerId}`);
         // Update all form fields with existing data
         setFormData({
-          name: res.data.name || '',
+          firstName: res.data.firstName || '',
+          lastName: res.data.lastName || '',
           email: res.data.email || '',
+          phone: res.data.phone || '',
           description: res.data.description || '',
           whatsapp: res.data.whatsapp || '',
           twitter: res.data.twitter || '',
           telegram: res.data.telegram || '',
+          linkedin: res.data.linkedin || '',
           rating: res.data.rating || '',
           review: res.data.review || '',
           recognition: res.data.recognition || ''
@@ -70,11 +76,11 @@ const AdminEditCommunityOwner = () => {
       const accessToken = localStorage.getItem("access_token");
       if (!accessToken) {
         console.error('Access token not found');
-  
+
       }
 
       await axios.put(
-        `${URL}/api/owners/${ownerId}`,
+        `${URL}/api/users/${ownerId}`,
         {
           ...formData,
           user: user?.id
@@ -148,19 +154,36 @@ const AdminEditCommunityOwner = () => {
           <div className='border-2 rounded-xl mt-12 py-9 px-6 space-y-3'>
             <p className='font-semibold'>Edit Community Owner</p>
 
-            <p>Name</p>
+            <p>First Name</p>
             <input
-              name="name"
+              name="firstName"
               onChange={handleInputChange}
-              value={formData.name}
+              value={formData.firstName}
               className='border border-[#D7D7D7] w-full md:w-[800px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'
             />
+
+            <p>Last Name</p>
+            <input
+              name="lastName"
+              onChange={handleInputChange}
+              value={formData.lastName}
+              className='border border-[#D7D7D7] w-full md:w-[800px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'
+            />
+
 
             <p>Email</p>
             <input
               name="email"
               onChange={handleInputChange}
               value={formData.email}
+              className='border border-[#D7D7D7] w-full md:w-[800px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'
+            />
+
+            <p>Phone</p>
+            <input
+              name="phone"
+              onChange={handleInputChange}
+              value={formData.phone}
               className='border border-[#D7D7D7] w-full md:w-[800px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'
             />
 
@@ -202,6 +225,15 @@ const AdminEditCommunityOwner = () => {
               name="twitter"
               onChange={handleInputChange}
               value={formData.twitter}
+              className='border border-[#D7D7D7] w-full md:w-[800px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'
+            />
+
+
+            <p>LinkedIn</p>
+            <input
+              name="linkedin"
+              onChange={handleInputChange}
+              value={formData.linkedin}
               className='border border-[#D7D7D7] w-full md:w-[800px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'
             />
           </div>

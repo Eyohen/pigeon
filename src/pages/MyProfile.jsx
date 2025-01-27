@@ -283,9 +283,9 @@ const MyProfile = () => {
         }
 
 
-    const res = await axios.get(`${URL}/api/users/user/${userId}`)
-    console.log("user", res.data.data)
-    setProfile(res.data.data);
+    const res = await axios.get(`${URL}/api/users/${user?.id}`)
+    console.log("user", res.data)
+    setProfile(res.data);
   } catch (err) {
     setError(err.response?.data?.message || 'Failed to fetch user data');
     console.error('Error fetching user:', err);
@@ -358,7 +358,7 @@ const MyProfile = () => {
             </div>
 
 
-            <div className="bg-white rounded-xl shadow-sm p-6">
+            <div className="bg-white rounded-xl shadow-sm p-6 mt-3">
               <h2 className="text-xl font-semibold mb-4">Recognition</h2>
               <p className="text-gray-700 whitespace-pre-wrap">
                 {profile.recognition}

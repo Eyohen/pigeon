@@ -241,7 +241,7 @@ const [error, setError] = useState(false)
       accessType:selectedAccess,
       connCategory:selectedConnCategory, contentShared:selectedContentShared,
         prevCollabType, established:startDate, communityGoal:selectedGoal, accessRequire,
-         twitter, telegram, whatsapp, usp, recognition, additionalService, 
+         twitter, telegram, whatsapp, usp, recognition, additionalService, userId:user?.id
       }, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -262,42 +262,6 @@ const [error, setError] = useState(false)
     }
   }
 
-
-
-  const createCollaboration = async ()=>{
-    setIsLoading(true)
-    try{
-      const accessToken = localStorage.getItem("access_token");
-
-      if(!accessToken){
-            // Handle the case where the access token is not available
-        console.error('Access token not found')
-      }
-
-      const res = await axios.post(URL+"/api/collaborationTypes/create",
-      {
-      collaborationType:selectedCollabType,
-      duration:selectedDuration,
-      amount,
-      communityId:selectedCommunity
-      }, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        }
-      })
-      console.log("collab type", res.data)
-      
-
-      setError(false)
-      navigate("/browserowner")    
-    }
-    catch(err){
-      setError(true)
-      console.log(err)
-    }finally {
-      setIsLoading(false)
-    }
-  }
 
   const weeks = [
     {

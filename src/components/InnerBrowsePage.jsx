@@ -16,7 +16,7 @@ const InnerBrowsePage = () => {
 
   const fetchCommunity = async () => {
     try{
-      const res = await axios.get(URL+"/api/visible/"+communityId)
+      const res = await axios.get(URL+"/api/comunities/"+communityId)
       console.log("this is browser community henry",res.data)
       setCommunity(res.data)
     }
@@ -39,13 +39,13 @@ const InnerBrowsePage = () => {
         <div className='flex gap-x-4 ml-12 mt-9 items-center'>
         <p className='text-gray-400 cursor-pointer' onClick={() => navigate(-1)}>Browse Communities</p>
         <IoChevronForward />
-        <p className='font-semibold'>{community.name}</p>
+        <p className='font-semibold'>{community.title}</p>
         </div>
 
 <div className='flex gap-x-12'>
 
 <div>
-        <div className='w-32 h-32 text-2xl rounded-full items-center justify-center flex border border-gray-700 mt-9 ml-12'>{community.email?.charAt(0)}</div>
+        <div className='w-32 h-32 text-2xl rounded-full items-center justify-center flex border border-gray-700 mt-9 ml-12'>{community.email?.charAt(0).toUpperCase()}</div>
 
 
         <div className='max-w-[700px]'>
@@ -61,24 +61,45 @@ const InnerBrowsePage = () => {
 
             <IoLockClosedOutline className='mt-6 mx-auto text-[#F08E1F]' />
 
-            <div className='shadow-xl ml-12'>
-                <p className='font-semibold text-lg ml-12  mt-9'> Join Pigeohire to Unlock Full Community Details</p>
-                <p className=' text-lg ml-12  mt-4'> - No ads, scams, junk</p>
-                <p className=' text-lg ml-12  mt-4'> - Find communities, retailers & influencers</p>
-                <p className=' text-lg ml-12  mt-4'>- Advanced search features</p>
-                <p className=' text-lg ml-12  mt-4'>- Exclusive insights and analytics</p>
-                <p className=' text-lg ml-12  mt-4'>- Network Expansion Opportunities</p>
-                <p className=' text-lg ml-12  mt-4'>- Continous Updates and Support</p>
+<div className='shadow-xl rounded-lg p-8 max-w-md mx-auto my-6'>
+    <h2 className='font-semibold text-xl mb-6'>
+        Join Pigeohire to Unlock Full Community Details
+    </h2>
+    
+    <ul className='space-y-4 mb-8'>
+        <li className='flex items-start'>
+            <span className='mr-2'>•</span>
+            <span>No ads, scams, junk</span>
+        </li>
+        <li className='flex items-start'>
+            <span className='mr-2'>•</span>
+            <span>Find communities, retailers & influencers</span>
+        </li>
+        <li className='flex items-start'>
+            <span className='mr-2'>•</span>
+            <span>Advanced search features</span>
+        </li>
+        <li className='flex items-start'>
+            <span className='mr-2'>•</span>
+            <span>Exclusive insights and analytics</span>
+        </li>
+        <li className='flex items-start'>
+            <span className='mr-2'>•</span>
+            <span>Network Expansion Opportunities</span>
+        </li>
+        <li className='flex items-start'>
+            <span className='mr-2'>•</span>
+            <span>Continuous Updates and Support</span>
+        </li>
+    </ul>
 
-
-                <Link to={`/subscriptionplans/${community.id}`}><button className='bg-[#F08E1F] text-white px-12 py-2 rounded-full mt-4 ml-12 mb-9'>Subscribe to premium</button></Link>
-              
-
-            </div>
-            {/* <div className='items-center justify-center flex'>
-            <Link to={'/collaborationtype'}> <button className='bg-[#F08E1F] py-2 px-6 text-white rounded-full mt-4'>Launch Collaboration</button></Link>
-            </div>
-            <p className='text-[#F08E1F]  text-lg ml-12  mt-4'>Launch collaboration to connect with the community owner</p> */}
+    <Link to={`/subscriptionplans/${community.id}`}>
+        <button className='bg-[#F08E1F] text-white px-8 py-3 rounded-full w-full hover:bg-[#e07d0e] transition-colors'>
+            Subscribe to Premium
+        </button>
+    </Link>
+</div>
+          
         </div>
 
 

@@ -7,7 +7,6 @@ import CommunityOwner from './pages/CommunityOwner'
 // import Sidebar from './components/Sidebar'
 import CommunityPage from './pages/CommunityPage'
 import CollaborationType from './pages/CollaborationType'
-import BrowserOwner from './pages/BrowserOwner'
 import InnerBrowsePage from './components/InnerBrowsePage'
 import BrowserPage from './pages/BrowserPage'
 import BrowserSubPlans from './pages/BrowserSubPlans'
@@ -32,7 +31,6 @@ import CreateNewPassword from './pages/CreateNewPassword'
 import Test from './pages/Test'
 import VerifyEmail from './pages/VerifyEmail'
 import ProtectedRoute from './context/ProtectedRoute'
-import InsideBrowseOwner from './components/InsideBrowseOwner'
 import OTP from './pages/Otp'
 import BlogDetails from './components/BlogDetails'
 import MyCommunities from './pages/MyCommunities'
@@ -64,6 +62,7 @@ import AdminAddCommunity from './pages/AdminAddCommunity'
 import AdminUserDetail from './pages/AdminUserDetail'
 import MyProfile from './pages/MyProfile'
 import EditProfile from './pages/EditProfile'
+import BrowseCommunities from './pages/BrowserCommunities'
 
 
 const App = () => {
@@ -94,7 +93,7 @@ const App = () => {
      <Route exact path="/communityowner" element={ <ProtectedRoute><CommunityOwner /></ProtectedRoute> }/>
      <Route exact path="/communitypage/:id" element={<CommunityPage />}/>
      <Route exact path="/collaborationtype/:id" element={<CollaborationType />}/>
-     <Route exact path="/browserowner" element={<ProtectedRoute><BrowserOwner /></ProtectedRoute> }/>
+     <Route exact path="/browsecommunities" element={<ProtectedRoute><BrowseCommunities /></ProtectedRoute> }/>
      <Route exact path="/innerbrowsepage/:id" element={<BrowserPage />}/>
      <Route exact path="/subscriptionplans/:id" element={<BrowserSubPlans />}/>
      <Route exact path="/purchasehistory" element={<PurchaseHistory />}/>
@@ -107,7 +106,6 @@ const App = () => {
      <Route exact path="/settings" element={<Settings />}/>
      <Route exact path="/switchpremium" element={<SwitchPremium />}/>
      <Route exact path="/test" element={<Test />}/>
-     <Route exact path="/insidebrowseowner" element={<InsideBrowseOwner />}/>
      <Route exact path="/innerbrowsepage" element={<InnerBrowsePage />}/>
      <Route exact path="/subdetails" element={<SubscriptionDetails />}/>
      <Route exact path="/upgradeplan" element={<UpgradePlan />}/>

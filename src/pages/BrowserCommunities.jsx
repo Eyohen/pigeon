@@ -3,13 +3,14 @@ import { IoSearchOutline } from "react-icons/io5";
 import { URL } from "../url";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import CommunityOwnerCard from './CommunityOwnerCard';
-import Navbar2 from './Navbar2';
+import Navbar2 from '../components/Navbar2';
 import { IoFilter } from "react-icons/io5";
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import Sidebar from '../components/Sidebar';
+import BrowseCommunityCard from '../components/BrowseCommunityCard';
 
-const InsideBrowseOwner = () => {
+const BrowseCommunities = () => {
     const {user} = useAuth();
     const [isOpen, setIsOpen] = useState(false);
     const [communities, setCommunities] = useState([]);
@@ -33,7 +34,8 @@ const InsideBrowseOwner = () => {
 
     const fetchCommunities = async (searchTerm = '', page = 1, limit = 1, location = '') => {
         try {
-            const res = await axios.get(`${URL}/api/visible?userId=${user?.id}`, {
+            // const res = await axios.get(`${URL}/api/comunities?userId=${user?.id}`, {
+                const res = await axios.get(`${URL}/api/comunities/user/${user?.id}`, {
                 params: {
                     search: searchTerm,
                     page: page,
@@ -49,6 +51,8 @@ const InsideBrowseOwner = () => {
             console.log(err);
         }
     };
+
+    console.log("community", communities)
 
     const handleSearch = (e) => {
         const searchTerm = e.target.value;
@@ -196,11 +200,11 @@ const InsideBrowseOwner = () => {
 
     console.log(user?.id)
   
-    const fetchCurrentSubscription = async () => {
+    const fetchUserStuff = async () => {
       try {
-      const res = await axios.get(`${URL}/api/subpurchases/current-subscription/${user?.id}`)
+      const res = await axios.get(`${URL}/api/users/${user?.id}`)
       console.log("see current subscription",res.data);
-      setSubscription(res.data.subscription);
+      setSubscription(res.data);
       } catch (error){
         console.error("Error fetching subscription:", error);
         setSubscription(null);
@@ -208,7 +212,7 @@ const InsideBrowseOwner = () => {
     }
     useEffect(() => {
       if (user?.id){
-        fetchCurrentSubscription()
+        fetchUserStuff()
       }
     },[user?.id])
   
@@ -217,6 +221,8 @@ const InsideBrowseOwner = () => {
 
 
     return (
+      <div>
+        <Sidebar/>
         <div className='flex-1 ml-[300px]'>
             <Navbar2 />
             <div className='flex items-center justify-start gap-x-24'>
@@ -310,18 +316,20 @@ const InsideBrowseOwner = () => {
 
             {filteredCommunities.map((community, index) => (
                 <Link key={community.id} to={`/innerbrowsepage/${community.id}`}>
-                    <CommunityOwnerCard community={community} bgColor={colors[index % colors.length]} />
+                    <BrowseCommunityCard community={community} bgColor={colors[index % colors.length]} />
                 </Link>
             ))}
             <div className="flex justify-center items-center gap-x-4 mt-9">
-                {subscription ? renderPagination(): (<button onClick={() => navigate('/switchpremium')} className='bg-[#F08E1F] text-white px-4 py-2 rounded-xl'>Please Subscribe to see more</button>)}
+                {subscription?.subscribed === true ? renderPagination() : (<div onClick={() => navigate('/switchpremium')} className='bg-[#F08E1F] px-6 py-2 text-white rounded-lg'>Please subscribe to see more</div>)}
             </div>
 
 
             
             <div className='mb-24'></div>
         </div>
+
+        </div>
     );
 };
 
-export default InsideBrowseOwner;
+export default BrowseCommunities;
