@@ -41,10 +41,10 @@ const Footer = () => {
             <div>
               <p className="mb-7">For Users</p>
               <div className="font-normal text-sm tracking-tighter">
-                <p className="mb-4">Explore Communities</p>
-                <p className="mb-4">Engage Community Owners</p>
+              <Link to={'/browsecommunities'}><p className="mb-4 cursor-pointer">Explore Communities</p></Link>
+              <Link to={'/communityowner'}><p className="mb-4 cursor-pointer">Engage Community Owners</p></Link>
                 <Link to={'/pricing'}><p className="mb-4">Pricing</p></Link>
-                <p className="mb-4">How it Works</p>
+                {/* <p className="mb-4">How it Works</p> */}
               </div>
             </div>
         

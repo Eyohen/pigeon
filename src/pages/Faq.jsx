@@ -75,6 +75,7 @@ const Faq = () => {
   };
 
   return (
+    <>
     <div className="bg-white px-4 sm:px-6 lg:px-8 xl:px-[300px] py-12 font-nunito max-w-[1920px] mx-auto">
       <Navbar/>
       <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-center mb-8 sm:mb-12 mt-12">
@@ -109,24 +110,12 @@ const Faq = () => {
           </div>
         ))}
       </div>
-      <Footer/>
+ 
     </div>
+    <Footer/>
+    </>
   );
 };
 
-// FAQ items data
-const faqData = [
-  {
-    id: 1,
-    question: "How can Pigeonhire help my business grow?",
-    answer: "Pigeonhire connects your business with targeted communities and professionals across the globe, enabling you to expand your reach, engage with key audiences, and foster strategic partnerships. Whether you're looking to increase brand awareness, drive sales, or build relationships, our platform provides the tools and access necessary to achieve your goals."
-  },
-  {
-    id: 2,
-    question: "What makes Pigeonhire different from other community engagement platforms?",
-    answer: "Unlike other platforms, Pigeonhire offers a unique combination of local and global community access, precise targeting capabilities, and flexible pricing options. Our focus on creating meaningful connections and providing detailed analytics sets us apart, ensuring that your engagement efforts are effective and measurable."
-  },
-  // ... Add all other FAQ items here
-];
 
 export default Faq;
