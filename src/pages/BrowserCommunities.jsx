@@ -320,7 +320,7 @@ const BrowseCommunities = () => {
                 </Link>
             ))}
             <div className="flex justify-center items-center gap-x-4 mt-9">
-                {subscription?.subscribed === true ? renderPagination() : (<div onClick={() => navigate('/switchpremium')} className='bg-[#F08E1F] px-6 py-2 text-white rounded-lg'>Please subscribe to see more</div>)}
+                {subscription?.subscribed === true ? renderPagination() : (<div onClick={() => navigate('/switchpremium')} className='bg-[#F08E1F] px-6 py-2 text-white rounded-lg'>Load more . . .</div>)}
             </div>
 
 

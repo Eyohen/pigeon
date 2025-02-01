@@ -25,7 +25,7 @@ const VerifyModal2 = ({ isOpen, onClose, communityId, onVerificationUpdate, chil
     }
 
     try {
-      const res = await axios.put(`${URL}/api/visible/${communityId}`, updatedInfo, {
+      const res = await axios.put(`${URL}/api/comunities/${communityId}`, updatedInfo, {
         headers: {
           'Content-Type': 'application/json'
         }
