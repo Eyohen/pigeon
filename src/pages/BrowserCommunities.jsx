@@ -17,7 +17,7 @@ const BrowseCommunities = () => {
     const [search, setSearch] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
-    const [limit, setLimit] = useState(3); // You can adjust the limit as needed
+    const [limit, setLimit] = useState(4); // You can adjust the limit as needed
     const [locations, setLocations] = useState([]);
     const [selectedLocation, setSelectedLocation] = useState('');
     const [countryFilter, setCountryFilter] = useState('')
@@ -29,24 +29,32 @@ const BrowseCommunities = () => {
     const [priceTagFilter, setPriceTagFilter] = useState('')
     const [commTypeFilter, setCommTypeFilter] = useState('')
     const [connectionFilter, setConnectionFilter] = useState('')
+    const [itemsPerPage, setItemsPerPage] = useState(4);
+    const [subscription, setSubscription] = useState(null);
 
     const navigate = useNavigate()
 
-    const fetchCommunities = async (searchTerm = '', page = 1, limit = 1, location = '') => {
+    const fetchCommunities = async (searchTerm = '', page = 1, limit = 4, location = '') => {
         try {
-            // const res = await axios.get(`${URL}/api/comunities?userId=${user?.id}`, {
                 const res = await axios.get(`${URL}/api/comunities/user/${user?.id}`, {
                 params: {
                     search: searchTerm,
                     page: page,
-                    limit: limit,
-                    location: location
+                    //limit:limit,
+                   limit: subscription?.subscribed ? limit : 4,
                 }
             });
-            setCommunities(res.data.communities);
+            
+            const slicedData = subscription?.subscribed ? 
+            res.data.communities : 
+            res.data.communities.slice(0, 8); // Limit to 8 total for non-subscribers
+        
+        setCommunities(slicedData);
+      //  setCommunities(res.data.communities);
+        setTotalPages(subscription?.subscribed ? res.data.totalPages : 2);
             console.log("to see communities come here", res.data)
             // console.log("see info",res.data.communities[0].location);
-            setTotalPages(res.data.totalPages);
+           // setTotalPages(res.data.totalPages);
         } catch (err) {
             console.log(err);
         }
@@ -68,12 +76,6 @@ const BrowseCommunities = () => {
 
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
-    };
-
-    const handleLocationFilter = (location) => {
-        setSelectedLocation(location);
-        setIsOpen(false); // Close dropdown after selecting location
-        fetchCommunities(search, 1, limit, location, selectedLocation);
     };
 
     const handleCountryFilter = (e) => {
@@ -147,55 +149,66 @@ const BrowseCommunities = () => {
     }, [currentPage, limit, selectedLocation]);
 
 
-    useEffect(() => {
-        // Fetch locations from API
-        const fetchLocations = async () => {
-            try {
-                const res = await axios.get(`${URL}/api/locations`);
-                setLocations(res.data); // Assuming the response contains an array of locations
-            } catch (err) {
-                console.log(err);
-            }
-        };
-        fetchLocations();
-    }, []);
+    // In your rendering logic:
+// const displayedCommunities = filteredCommunities.slice(0, subscription?.subscribed ? 
+//     filteredCommunities.length : 
+//     Math.min((currentPage * itemsPerPage), 8)
+// );
 
-    const renderLocationsDropdown = () => {
-        return (
-            <div className="absolute mt-2 w-[300px] bg-black rounded border border-gray-300 shadow-lg z-100 py-24">
-                {locations.map((location) => (
-                    <button
-                        key={location.id}
-                        onClick={() => handleLocationFilter(location.name)}
-                        className="block w-full px-4 py-2 text-white hover:bg-gray-200"
-                    >
-                        {location.name}
-                    </button>
-                ))}
-            </div>
-        );
-    };
+const displayedCommunities = filteredCommunities.slice(
+    (currentPage - 1) * itemsPerPage, 
+    subscription?.subscribed ? 
+      filteredCommunities.length : 
+      currentPage * itemsPerPage
+  );
+
+    // const renderPagination = () => {
+    //     const pages = [];
+    //     for (let i = 1; i <= totalPages; i++) {
+    //         pages.push(
+    //             <button
+    //                 key={i}
+    //                 onClick={() => handlePageChange(i)}
+    //                 className={`px-3 py-1 border rounded ${i === currentPage ? 'bg-gray-300' : 'bg-white'}`}
+    //             >
+    //                 {i}
+    //             </button>
+    //         );
+    //     }
+    //     return pages;
+    // };
 
     const renderPagination = () => {
+        if (currentPage === 2 && !subscription?.subscribed) {
+          return (
+            <div 
+              onClick={() => navigate('/switchpremium')} 
+              className='bg-[#F08E1F] px-6 py-2 text-white rounded-lg cursor-pointer'
+            >
+              Load more . . .
+            </div>
+          );
+        }
+       
         const pages = [];
         for (let i = 1; i <= totalPages; i++) {
-            pages.push(
-                <button
-                    key={i}
-                    onClick={() => handlePageChange(i)}
-                    className={`px-3 py-1 border rounded ${i === currentPage ? 'bg-gray-300' : 'bg-white'}`}
-                >
-                    {i}
-                </button>
-            );
+          pages.push(
+            <button
+              key={i}
+              onClick={() => handlePageChange(i)}
+              className={`px-3 py-1 border rounded ${i === currentPage ? 'bg-gray-300' : 'bg-white'}`}
+            >
+              {i}
+            </button>
+          );
         }
         return pages;
-    };
+       };
 
     const colors = ['bg-green-400', 'bg-red-400', 'bg-blue-400', 'bg-violet-400', 'bg-gray-400', 'bg-yellow-400'];
 
 
-    const [subscription, setSubscription] = useState(null);
+
 
 
     console.log(user?.id)
@@ -314,15 +327,17 @@ const BrowseCommunities = () => {
          </div>
 
 
-            {filteredCommunities.map((community, index) => (
+            {displayedCommunities.map((community, index) => (
                 <Link key={community.id} to={`/innerbrowsepage/${community.id}`}>
                     <BrowseCommunityCard community={community} bgColor={colors[index % colors.length]} />
                 </Link>
             ))}
-            <div className="flex justify-center items-center gap-x-4 mt-9">
+            {/* <div className="flex justify-center items-center gap-x-4 mt-9">
                 {subscription?.subscribed === true ? renderPagination() : (<div onClick={() => navigate('/switchpremium')} className='bg-[#F08E1F] px-6 py-2 text-white rounded-lg'>Load more . . .</div>)}
-            </div>
-
+            </div> */}
+<div className="flex justify-center items-center gap-x-4 mt-9">
+  {renderPagination()}
+</div>
 
             
             <div className='mb-24'></div>

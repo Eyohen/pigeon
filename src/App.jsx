@@ -1,5 +1,5 @@
 import React from 'react'
-import {Route, Routes} from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
@@ -63,79 +63,86 @@ import AdminUserDetail from './pages/AdminUserDetail'
 import MyProfile from './pages/MyProfile'
 import EditProfile from './pages/EditProfile'
 import BrowseCommunities from './pages/BrowserCommunities'
+import SubscriptionSucces from './pages/SubscriptionSuccess'
+import SubscriptionCancel from './pages/Subscriptioncancel' 
+
 
 
 const App = () => {
   return (
 
-      <Routes>
-     <Route exact path="/" element={<Home/>}/>
-     <Route exact path="/login" element={<Login/>}/>
-     <Route exact path="/register" element={<Register />}/>
-     <Route exact path="/forgotpassword" element={<ForgotPassword />}/>
-     <Route exact path="/reset-password" element={<CreateNewPassword />}/>
-     <Route exact path="/pricing" element={<Pricing />}/>
-     <Route exact path="/contactus" element={<ContactUs />}/>
-     <Route exact path="/blog" element={<Blog />}/>
-     <Route exact path="/aboutus" element={<AboutUs />}/>
-     <Route exact path="/privacypolicy" element={<PrivacyPolicy />}/>
-     <Route exact path="/termsofservice" element={<TermsOfService />}/>
-     <Route exact path="/faq" element={<Faq />}/>
-     <Route exact path="/freebrowsecommunity" element={<FreeBrowseCommunity />}/>
-     <Route exact path="/freeregisterVisibility" element={<FreeRegisterVisibility />}/>
-     <Route exact path="/freecommunityowners" element={<FreeCommunityOwners/>}/>
-     <Route exact path="/verify" element={<VerifyEmail/>}/>
-     <Route exact path="/otp" element={<OTP/>}/>
-     <Route exact path="/blogdetails/:id" element={<BlogDetails/>}/>
-     <Route exact path="/chatroom" element={<ChatRoom/>}/>
+    <Routes>
+      <Route exact path="/" element={<Home />} />
+      <Route exact path="/login" element={<Login />} />
+      <Route exact path="/register" element={<Register />} />
+      <Route exact path="/forgotpassword" element={<ForgotPassword />} />
+      <Route exact path="/reset-password" element={<CreateNewPassword />} />
+      <Route exact path="/pricing" element={<Pricing />} />
+      <Route exact path="/contactus" element={<ContactUs />} />
+      <Route exact path="/blog" element={<Blog />} />
+      <Route exact path="/aboutus" element={<AboutUs />} />
+      <Route exact path="/privacypolicy" element={<PrivacyPolicy />} />
+      <Route exact path="/termsofservice" element={<TermsOfService />} />
+      <Route exact path="/faq" element={<Faq />} />
+      <Route exact path="/freebrowsecommunity" element={<FreeBrowseCommunity />} />
+      <Route exact path="/freeregisterVisibility" element={<FreeRegisterVisibility />} />
+      <Route exact path="/freecommunityowners" element={<FreeCommunityOwners />} />
+      <Route exact path="/verify" element={<VerifyEmail />} />
+      <Route exact path="/otp" element={<OTP />} />
+      <Route exact path="/blogdetails/:id" element={<BlogDetails />} />
+      <Route exact path="/chatroom" element={<ChatRoom />} />
 
-  
-     <Route exact path="/communityowner" element={ <ProtectedRoute><CommunityOwner /></ProtectedRoute> }/>
-     <Route exact path="/communitypage/:id" element={<CommunityPage />}/>
-     <Route exact path="/collaborationtype/:id" element={<CollaborationType />}/>
-     <Route exact path="/browsecommunities" element={<ProtectedRoute><BrowseCommunities /></ProtectedRoute> }/>
-     <Route exact path="/innerbrowsepage/:id" element={<BrowserPage />}/>
-     <Route exact path="/subscriptionplans/:id" element={<BrowserSubPlans />}/>
-     <Route exact path="/purchasehistory" element={<PurchaseHistory />}/>
-     <Route exact path="/requests" element={<Request />}/>
-     <Route exact path="/listcommunity" element={<ListCommunity />}/>
-     <Route exact path="/listvisibility" element={<ListVisibility />}/>
 
-     <Route exact path="/mycommunities" element={ <ProtectedRoute><MyCommunities /></ProtectedRoute> }/>
-     <Route exact path="/mycommunitydetail/:id" element={ <ProtectedRoute><MyCommunityDetail /></ProtectedRoute> }/>
-     <Route exact path="/settings" element={<Settings />}/>
-     <Route exact path="/switchpremium" element={<SwitchPremium />}/>
-     <Route exact path="/test" element={<Test />}/>
-     <Route exact path="/innerbrowsepage" element={<InnerBrowsePage />}/>
-     <Route exact path="/subdetails" element={<SubscriptionDetails />}/>
-     <Route exact path="/upgradeplan" element={<UpgradePlan />}/>
-     <Route exact path="/myprofile" element={<MyProfile />}/>
-     <Route exact path="/editprofile/:id" element={<EditProfile />}/>
+      <Route exact path="/communityowner" element={<ProtectedRoute><CommunityOwner /></ProtectedRoute>} />
+      <Route exact path="/communitypage/:id" element={<CommunityPage />} />
+      <Route exact path="/collaborationtype/:id" element={<CollaborationType />} />
+      <Route exact path="/browsecommunities" element={<ProtectedRoute><BrowseCommunities /></ProtectedRoute>} />
+      <Route exact path="/innerbrowsepage/:id" element={<BrowserPage />} />
+      <Route exact path="/subscriptionplans/:id" element={<BrowserSubPlans />} />
+      <Route exact path="/purchasehistory" element={<PurchaseHistory />} />
+      <Route exact path="/requests" element={<Request />} />
+      <Route exact path="/listcommunity" element={<ListCommunity />} />
+      <Route exact path="/listvisibility" element={<ListVisibility />} />
 
-     <Route exact path="/admin" element={<Admin/>}/>
-     <Route exact path="/superadmin" element={<SuperAdmin/>}/>
-     <Route exact path="/paymentpage" element={<PaymentPage/>}/>
-     <Route exact path="/adminanalytics" element={<ProtectedRoute><AdminAnalytics/></ProtectedRoute>}/>
-     <Route exact path="/changeprice" element={<ProtectedRoute><ChangePrice /></ProtectedRoute>}/>
-     <Route exact path="/admincommunityowner" element={<ProtectedRoute><AdminCommunityOwner /></ProtectedRoute>}/>
-     <Route exact path="/admincommunityownerdetail/:id" element={<ProtectedRoute><AdminCommunityOwnerDetail /></ProtectedRoute>}/>
-     <Route exact path="/adminrestrictedowners" element={<ProtectedRoute><AdminRestrictedOwners /></ProtectedRoute>}/>
-     <Route exact path="/adminrestrictedcommunities" element={<ProtectedRoute><AdminRestrictedCommunities /></ProtectedRoute>}/>
-     <Route exact path="/admincommunities" element={<ProtectedRoute><AdminCommunities /></ProtectedRoute>}/>
-     <Route exact path="/admincommunitydetail/:id" element={<ProtectedRoute><AdminCommunityDetail /></ProtectedRoute>}/>
-     <Route exact path="/adminusers" element={<ProtectedRoute><AdminUsers /></ProtectedRoute>}/>
-     <Route exact path="/adminblog" element={<ProtectedRoute><AdminBlog /></ProtectedRoute>}/>
-     <Route exact path="/adminmessage" element={<ProtectedRoute><AdminMessage /></ProtectedRoute>}/>
-     <Route exact path="/adminsettings" element={<ProtectedRoute><AdminSettings /></ProtectedRoute>}/>
-     <Route exact path="/admintransaction" element={<AdminTransactions />}/>
-     <Route exact path="/adminownerpage" element={<AdminOwnerPage />}/>
-     <Route exact path="/adminaddcommunityowner" element={<AdminAddCommunityOwner />}/>
-     <Route exact path="/admineditcommunityowner/:id" element={<AdminEditCommunityOwner />}/>
-     <Route exact path="/adminaddcommunity/:id" element={<AdminAddCommunity />}/>
-     <Route exact path="/adminuserdetail/:id" element={<AdminUserDetail />}/>
+      <Route exact path="/mycommunities" element={<ProtectedRoute><MyCommunities /></ProtectedRoute>} />
+      <Route exact path="/mycommunitydetail/:id" element={<ProtectedRoute><MyCommunityDetail /></ProtectedRoute>} />
+      <Route exact path="/settings" element={<Settings />} />
+      <Route exact path="/switchpremium" element={<SwitchPremium />} />
+      <Route exact path="/test" element={<Test />} />
+      <Route exact path="/innerbrowsepage" element={<InnerBrowsePage />} />
+      <Route exact path="/subdetails" element={<SubscriptionDetails />} />
+      <Route exact path="/upgradeplan" element={<UpgradePlan />} />
+      <Route exact path="/myprofile" element={<MyProfile />} />
+      <Route exact path="/editprofile/:id" element={<EditProfile />} />
 
-      </Routes>
- 
+
+      <Route exact path="/subscription/success" element={<SubscriptionSucces />} />
+      <Route exact path="/subscription/cancel" element={<SubscriptionCancel />} />
+
+      <Route exact path="/admin" element={<Admin />} />
+      <Route exact path="/superadmin" element={<SuperAdmin />} />
+      <Route exact path="/paymentpage" element={<PaymentPage />} />
+      <Route exact path="/adminanalytics" element={<ProtectedRoute><AdminAnalytics /></ProtectedRoute>} />
+      <Route exact path="/changeprice" element={<ProtectedRoute><ChangePrice /></ProtectedRoute>} />
+      <Route exact path="/admincommunityowner" element={<ProtectedRoute><AdminCommunityOwner /></ProtectedRoute>} />
+      <Route exact path="/admincommunityownerdetail/:id" element={<ProtectedRoute><AdminCommunityOwnerDetail /></ProtectedRoute>} />
+      <Route exact path="/adminrestrictedowners" element={<ProtectedRoute><AdminRestrictedOwners /></ProtectedRoute>} />
+      <Route exact path="/adminrestrictedcommunities" element={<ProtectedRoute><AdminRestrictedCommunities /></ProtectedRoute>} />
+      <Route exact path="/admincommunities" element={<ProtectedRoute><AdminCommunities /></ProtectedRoute>} />
+      <Route exact path="/admincommunitydetail/:id" element={<ProtectedRoute><AdminCommunityDetail /></ProtectedRoute>} />
+      <Route exact path="/adminusers" element={<ProtectedRoute><AdminUsers /></ProtectedRoute>} />
+      <Route exact path="/adminblog" element={<ProtectedRoute><AdminBlog /></ProtectedRoute>} />
+      <Route exact path="/adminmessage" element={<ProtectedRoute><AdminMessage /></ProtectedRoute>} />
+      <Route exact path="/adminsettings" element={<ProtectedRoute><AdminSettings /></ProtectedRoute>} />
+      <Route exact path="/admintransaction" element={<AdminTransactions />} />
+      <Route exact path="/adminownerpage" element={<AdminOwnerPage />} />
+      <Route exact path="/adminaddcommunityowner" element={<AdminAddCommunityOwner />} />
+      <Route exact path="/admineditcommunityowner/:id" element={<AdminEditCommunityOwner />} />
+      <Route exact path="/adminaddcommunity/:id" element={<AdminAddCommunity />} />
+      <Route exact path="/adminuserdetail/:id" element={<AdminUserDetail />} />
+
+    </Routes>
+
 
   )
 }

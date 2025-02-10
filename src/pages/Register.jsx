@@ -62,7 +62,7 @@ const Register = () => {
   const [phone, setPhone] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('')
   const [email, setEmail] = useState('')
-  const [selectedCurrency, setSelectedCurrency] = useState('')
+  const [selectedCurrency, setSelectedCurrency] = useState(currencies[0].currency)
   const [currency, setCurrency] = useState('')
   const [valid,setValid] = useState(true)
   const [error,setError] = useState(false)
@@ -92,14 +92,27 @@ const Register = () => {
       console.log('Passwords do not match!')
     }
 
+    const userData = {
+      firstName, 
+      lastName,
+      email, 
+      password,
+      phone: phoneNumber,
+      currency: selectedCurrency
+    };
+    console.log('Sending data:', userData);
+  
 
     setIsLoading(true)
     try{
-      const res = await axios.post(URL+"/api/auth/register", {firstName, lastName, 
-        email, password,
-         phone:phoneNumber,
-        currency: selectedCurrency
-        })
+      const res = await axios.post(URL+"/api/auth/register",
+        //  {firstName, lastName, 
+        // email, password,
+        //  phone:phoneNumber,
+        // currency: selectedCurrency
+        // }
+      userData
+      )
 
       // const {access_token} = res.data;
 
@@ -130,9 +143,12 @@ const handleChange = (value) => {
   setValid(validatePhoneNumber(value));
 }
 
+// const validatePhoneNumber = (phoneNumber) => {
+//   const phoneNumberPattern = /^\d{10}$/;
+//   return phoneNumberPattern.test(phoneNumber);
+// }
 const validatePhoneNumber = (phoneNumber) => {
-  const phoneNumberPattern = /^\d{10}$/;
-  return phoneNumberPattern.test(phoneNumber);
+  return phoneNumber && phoneNumber.length >= 10;
 }
 
 const handlePasswordChange = (e) => {
@@ -171,26 +187,6 @@ const handleConfirmPasswordChange = (e) => {
       
         <p className='pt-6'>Email</p>
         <input onChange={(e) => setEmail(e.target.value)} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F]' />
-{/* 
-         <p className='pt-6'>Community Interest</p> 
-
-          <select value={selectedInterest} onChange={handleInterest} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4'>
-            <option value=""></option>
-            {interests.map(item => (
-              <option key={item._id} value={item.interest}>{item.interest}</option>
-            ) )}
-          </select>
-
-
-        <p className='pt-6'>Community Goals</p>
-
-        <select value={selectedGoal} onChange={handleGoal} className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F] border-r-4 '>
-            <option value=""></option>
-            {goals.map(item => (
-              <option key={item._id} value={item.goal}>{item.goal}</option>
-            ) )}
-          </select> */}
-
 
         <p className='pt-5'>Phone Number</p>
         <PhoneInput  inputProps={{required:true,}} value={phoneNumber} onChange={handleChange}  className='border border-[#D7D7D7] w-full md:w-[400px] py-2 px-3 rounded-lg hover:border-[#F08E1F]' />
