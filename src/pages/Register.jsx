@@ -106,12 +106,14 @@ const Register = () => {
     setIsLoading(true)
     try{
       const res = await axios.post(URL+"/api/auth/register",
-        //  {firstName, lastName, 
-        // email, password,
-        //  phone:phoneNumber,
-        // currency: selectedCurrency
-        // }
-      userData
+  
+      userData, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        withCredentials: true
+      }
       )
 
       // const {access_token} = res.data;
@@ -143,10 +145,7 @@ const handleChange = (value) => {
   setValid(validatePhoneNumber(value));
 }
 
-// const validatePhoneNumber = (phoneNumber) => {
-//   const phoneNumberPattern = /^\d{10}$/;
-//   return phoneNumberPattern.test(phoneNumber);
-// }
+
 const validatePhoneNumber = (phoneNumber) => {
   return phoneNumber && phoneNumber.length >= 10;
 }
@@ -163,9 +162,6 @@ const handleConfirmPasswordChange = (e) => {
    setPasswordsMatch(e.target.value === password);
 }
 
-// const handleCurrency = (e) => {
-//   setSelectedCurrency(e.target.value);
-// }
 
   return (
     <div className='font-nunito'>
