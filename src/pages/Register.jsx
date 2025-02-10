@@ -107,13 +107,9 @@ const Register = () => {
     try{
       const res = await axios.post(URL+"/api/auth/register",
   
-      userData, {
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        withCredentials: true
-      }
+      userData, 
+    
+      
       )
 
       // const {access_token} = res.data;
