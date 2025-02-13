@@ -51,7 +51,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="text-center text-sm">
-          Pigeonhire © 2024. All rights reserved
+          Pigeonhire © 2025. All rights reserved
         </div>
       </div>
     </div>

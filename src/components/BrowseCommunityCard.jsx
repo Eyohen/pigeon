@@ -31,7 +31,7 @@ const BrowseCommunityCard = ({community, bgColor}) => {
 
   // console.log("just checking",community)
   return (
-    <div className='shadow-xl rounded-xl mt-12 px-16 py-4 max-w-[1200px] ml-12'>
+    <div className='shadow-xl rounded-xl mt-12 px-16 py-4 max-w-[1200px]'>
 
     <div className='flex gap-x-5 items-center'>
         <div className={`${bgColor} text-white rounded-full w-11 h-11 flex justify-center text-2xl items-center`}>{community.title?.charAt(0)}</div>

@@ -217,7 +217,7 @@ const handleConfirmPasswordChange = (e) => {
 
 
         <div>
-        <p className='text-gray-600 text-sm text-center mt-4'>By clicking sign up, you agree to our <span className='text-[#F08E1F]'>terms and data policy</span></p>
+        <p className='text-gray-600 text-sm text-center mt-4'>By clicking sign up, you agree to our <span onClick={() => navigate('/termsofservice')} className='text-[#F08E1F] cursor-pointer'>terms and data policy</span></p>
         <button onClick={handleSubmit}  className='bg-[#F7F7F7] text-[#98999A] w-full md:w-[400px] py-2 rounded-2xl mt-6 hover:bg-[#F08E1F] hover:text-white'>{isLoading ? "Loading..." : "Sign Up"}</button>
         {error && <h3 className='text-red-500 text-lg text-center'>Something went wrong</h3>}
         </div>
@@ -226,8 +226,8 @@ const handleConfirmPasswordChange = (e) => {
 
     </div>
     <div className='flex justify-between mb-12 '>
-    <p className='px-6 text-[#6A6B6C]'>Privacy Policy</p>
-    <p className='px-6 text-[#6A6B6C]'>All Rights Reserved © 2024</p>
+    <p onClick={() => navigate('/privacypolicy')} className='px-6 text-[#6A6B6C] cursor-pointer'>Privacy Policy</p>
+    <p className='px-6 text-[#6A6B6C]'>All Rights Reserved © 2025</p>
     </div>
 </div>
   )

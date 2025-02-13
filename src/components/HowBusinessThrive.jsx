@@ -136,7 +136,7 @@ const HowBusinessThrive = () => {
               We've partnered with businesses that truly resonate with our audience,
               enhancing both our community's value and our collaboration.
             </p>
-            <Link to="/freeregistervisibility">
+            <Link to="/communities">
               <p className="text-[#F08E1F] flex gap-x-2 items-center cursor-pointer hover:gap-x-3 transition-all">
                 <span>Get connected to your tribe</span>
                 <BsArrowRight className="mt-0.5" />

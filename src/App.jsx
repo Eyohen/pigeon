@@ -84,7 +84,7 @@ const App = () => {
       <Route exact path="/privacypolicy" element={<PrivacyPolicy />} />
       <Route exact path="/termsofservice" element={<TermsOfService />} />
       <Route exact path="/faq" element={<Faq />} />
-      <Route exact path="/freebrowsecommunity" element={<FreeBrowseCommunity />} />
+      <Route exact path="/communities" element={<FreeBrowseCommunity />} />
       <Route exact path="/freeregisterVisibility" element={<FreeRegisterVisibility />} />
       <Route exact path="/freecommunityowners" element={<FreeCommunityOwners />} />
       <Route exact path="/verify" element={<VerifyEmail />} />

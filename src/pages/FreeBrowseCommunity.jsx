@@ -3,7 +3,7 @@ import { IoSearchOutline } from "react-icons/io5";
 import { URL } from "../url";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import Navbar2 from '../components/Navbar2';
+import Navbar from '../components/Navbar';
 import { IoFilter } from "react-icons/io5";
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
@@ -162,21 +162,7 @@ const displayedCommunities = filteredCommunities.slice(
       currentPage * itemsPerPage
   );
 
-    // const renderPagination = () => {
-    //     const pages = [];
-    //     for (let i = 1; i <= totalPages; i++) {
-    //         pages.push(
-    //             <button
-    //                 key={i}
-    //                 onClick={() => handlePageChange(i)}
-    //                 className={`px-3 py-1 border rounded ${i === currentPage ? 'bg-gray-300' : 'bg-white'}`}
-    //             >
-    //                 {i}
-    //             </button>
-    //         );
-    //     }
-    //     return pages;
-    // };
+
 
     const renderPagination = () => {
         if (currentPage === 2 && !subscription?.subscribed) {
@@ -235,10 +221,11 @@ const displayedCommunities = filteredCommunities.slice(
 
     return (
       <div>
-        <div className='flex-1 ml-[300px]'>
-            <Navbar2 />
-            <div className='flex items-center justify-start gap-x-24'>
-                <p className='ml-12 font-semibold text-4xl mt-9'>Browse Communities</p>
+        <div className=''>
+            <Navbar />
+            <div className='px-4 md:px-40'>
+            <div className='flex items-center justify-start gap-x-24 mt-12'>
+                <p className=' font-semibold text-4xl mt-9'>Communities</p>
                 <div className="relative mt-9">
                     <div className="absolute inset-y-0 left-0 flex items-center px-2">
                         <label className="px-2 py-1 text-xl font-mono cursor-pointer text-gray-400 text-left">
@@ -254,13 +241,10 @@ const displayedCommunities = filteredCommunities.slice(
                     />
                 </div>
             </div>
-            {/* <div className='flex items-center gap-2 px-12 mt-12'>
-                <button className='border border-[#F08E1F] py-1 px-3 flex items-center justify-center rounded-full hover:bg-[#F08E1F] hover:text-white'>Location</button>
-
-            </div> */}
 
 
-<div className='flex items-center justify-evenly px-9 mt-12'>
+
+<div className='flex items-center gap-x-9 mt-12'>
 
 <IoFilter />Filter by
 
@@ -326,16 +310,18 @@ const displayedCommunities = filteredCommunities.slice(
          </div>
 
 
+
+
             {displayedCommunities.map((community, index) => (
                 <Link key={community.id} to={`/innerbrowsepage/${community.id}`}>
                     <BrowseCommunityCard community={community} bgColor={colors[index % colors.length]} />
                 </Link>
             ))}
-            {/* <div className="flex justify-center items-center gap-x-4 mt-9">
-                {subscription?.subscribed === true ? renderPagination() : (<div onClick={() => navigate('/switchpremium')} className='bg-[#F08E1F] px-6 py-2 text-white rounded-lg'>Load more . . .</div>)}
-            </div> */}
+
 <div className="flex justify-center items-center gap-x-4 mt-9">
   {renderPagination()}
+</div>
+
 </div>
 
             

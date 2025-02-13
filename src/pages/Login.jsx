@@ -119,8 +119,8 @@ const Login = () => {
 
     </div>
     <div className='flex justify-between mb-12 '>
-    <p className='px-6 text-[#6A6B6C]'>Privacy Policy</p>
-    <p className='px-6 text-[#6A6B6C]'>All Rights Reserved © 2024</p>
+    <p onClick={() => navigate('/privacypolicy')} className='px-6 text-[#6A6B6C] cursor-pointer'>Privacy Policy</p>
+    <p className='px-6 text-[#6A6B6C]'>All Rights Reserved © 2025</p>
     </div>
 </div>
   )

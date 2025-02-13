@@ -9,7 +9,7 @@ const navigate = useNavigate()
 
   return (
     <>
-      <div className="bg-[#201327] py-9 pt-[60px] px-4 md:px-[160px]">
+      <div className="bg-[#201327] py-9 mt-[60px] px-4 md:px-[160px]">
         <div className="flex flex-col md:flex-row items-center justify-between">
           <div className="mt-16">
             <p className="text-white text-6xl font-bold font-nunito">
@@ -35,7 +35,7 @@ const navigate = useNavigate()
             <div className="md:flex gap-x-0 md:gap-x-9 md:space-y-0 space-y-4 mt-9 text-center">
 
               <div>
-                <button onClick={()=> navigate('/freebrowsecommunity')} className="bg-[#F08E1F] text-white rounded-full px-6 py-4">
+                <button onClick={()=> navigate('/communities')} className="bg-[#F08E1F] text-white rounded-full px-6 py-4">
                   Browse Communities
                 </button>
               </div>
@@ -47,13 +47,13 @@ const navigate = useNavigate()
               </div>
             </div>
           </div>
-          <div className="relative mt-9 md:mt-0"> 
+          <div className="relative mt-8 md:mt-0"> 
             <div className=" rounded-full p-10 border-2 border-dashed border-[#F08E1F] flex items-center">
               <div className=" rounded-full p-10 border-2 border-dashed border-[#F08E1F] flex items-center">
                 <div className="rounded-full p-40 bg-[#F08E1F]"></div>
               </div>
               <div className="mt-16 absolute right-1">
-            <img src={herolady} className="object-cover w-[450px] h-[500px]" />
+            <img src={herolady} className="object-cover w-[450px] h-[497px] md:h-[500px]" />
           </div>
             </div>
           </div>
