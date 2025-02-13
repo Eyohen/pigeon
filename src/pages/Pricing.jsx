@@ -20,14 +20,19 @@ const Pricing = () => {
   const currencySymbols = {
     'USD': '$',
     'CAD': '$',
+    'EUR': '€',
     'GBP': '£',
-    'NGN': '₦'
+    'NGN': '₦',
+    'AUD': '$',
+    'ZMW': 'ZK',
+    'INR': '₹',
   };
 
   const fetchCurrencies = async () => {
     try {
       setLoading(true);
       const res = await axios.get(`${URL}/api/currencies`);
+      console.log('see currencies', res.data)
       setCurrencies(res.data);
       
       // Set initial prices based on USD
@@ -76,6 +81,10 @@ const Pricing = () => {
           {curr.currency === 'USD' ? 'United States Dollars($)' :
            curr.currency === 'CAD' ? 'Canadian Dollars($)' :
            curr.currency === 'GBP' ? 'British Pounds(£)' :
+           curr.currency === 'EUR' ? 'European Euros(€)' :
+           curr.currency === 'AUD' ? 'Australian Dollars($)' :
+           curr.currency === 'ZMW' ? 'Zambian Kwacha(ZK)' :
+           curr.currency === 'INR' ? 'Indian Rupees(₹)' :
            curr.currency === 'NGN' ? 'Naira(₦)' : curr.currency}
         </option>
       ))}
