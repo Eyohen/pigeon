@@ -5,16 +5,28 @@ import check from "../assets/orangecheck.png";
 import close from "../assets/landingpage/close.svg";
 import Navbar from "../components/Navbar";
 import Footer from "../components/footer";
+import { useAuth } from '../context/AuthContext';
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+import toast, { Toaster } from 'react-hot-toast';
+import { AiFillAndroid } from 'react-icons/ai';
 
 const Pricing = () => {
+    const { user } = useAuth()
   const [currencies, setCurrencies] = useState([]);
   const [selectedCurrency, setSelectedCurrency] = useState('USD');
   const [loading, setLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
   const [prices, setPrices] = useState({
     monthly: '4.99',
     quarterly: '23.95',
     annually: '41.92'
   });
+    const [type, setType] = useState('');
+    const [amount, setAmount] = useState('');
+    const [currency, setCurrency] = useState('USD');
+  
+    const userId = user?.id;
+    const fname = user?.fname;
 
   // Currency symbol mapping
   const currencySymbols = {
@@ -106,6 +118,83 @@ const Pricing = () => {
   };
 
 
+  const makeSubscription = async (cardType) => {
+    setIsLoading(true);
+    try {
+      let subscriptionAmount;
+      let planType;
+
+      switch (cardType) {
+        case 'essentials':
+          subscriptionAmount = prices.monthly;
+          planType = 'monthly';
+          break;
+        case 'pro':
+          subscriptionAmount = prices.quarterly;
+          planType = 'quarterly';
+          break;
+        case 'premier':
+          subscriptionAmount = prices.annually;
+          planType = 'annual';
+          break;
+        default:
+          throw new Error('Invalid card type');
+      }
+
+      // Get checkout URL from backend
+      const response = await axios.post(`${URL}/api/subpurchases/create-checkout-session`, {
+        firstName: fname,
+        amount: subscriptionAmount,
+        userId: userId,
+        currency: selectedCurrency,
+        type: planType,
+        email: user?.email
+      });
+
+      // Redirect to Stripe Checkout
+      if (response.data.url) {
+        window.location.href = response.data.url;
+      } else {
+        throw new Error('No checkout URL received');
+      }
+
+    } catch (error) {
+      setIsLoading(false);
+      console.error("Error subscribing:", error);
+      toast.error(error.response?.data?.error || 'Failed to initialize payment');
+    }
+  };
+
+  const toastStyles = {
+    success: {
+
+      duration: 10000,
+
+      iconTheme: {
+        primary: 'white',
+        secondary: '#4CAF50',
+      },
+      style: {
+
+        background: "green",
+        color: "whitesmoke",
+        icon: <AiFillAndroid background-color="whitesmoke" color='green' />,
+      },
+    },
+    error: {
+      duration: 10000,
+      style: {
+        background: '#F44336',
+        color: 'white',
+        fontWeight: 'bold',
+      },
+      iconTheme: {
+        primary: 'white',
+        secondary: '#F44336',
+      },
+    },
+  };
+
   return (
     <div className="bg-gray-100 font-nunito">
       <Navbar />
@@ -169,8 +258,8 @@ const Pricing = () => {
               <p className="text-base lg:text-lg">Save 0% per month</p>
             </div>
             <div className="flex justify-center mt-8">
-              <button className="bg-[#F08E1F] w-full lg:w-[400px] text-white rounded-full px-6 py-4">
-                Subscribe
+              <button onClick={() => makeSubscription('essentials')} className="bg-[#F08E1F] w-full lg:w-[400px] text-white rounded-full px-6 py-4">
+              {isLoading ? 'transacting . . .' : 'Subscribe'}
               </button>
             </div>
           </div>
@@ -230,8 +319,8 @@ const Pricing = () => {
               <p className="text-base lg:text-lg">Save 15% per month</p>
             </div>
             <div className="flex justify-center mt-8">
-              <button className="bg-[#F08E1F] w-full lg:w-[400px] text-white rounded-full px-6 py-4">
-                Subscribe
+              <button onClick={() => makeSubscription('premier')} className="bg-[#F08E1F] w-full lg:w-[400px] text-white rounded-full px-6 py-4">
+              {isLoading ? 'transacting . . .' : 'Subscribe'}
               </button>
             </div>
           </div>
@@ -290,8 +379,8 @@ const Pricing = () => {
               <p className="text-base lg:text-lg">Save 30% per month</p>
             </div>
             <div className="flex justify-center mt-8">
-              <button className="bg-[#F08E1F] w-full lg:w-[400px] text-white rounded-full px-6 py-4">
-                Subscribe
+              <button onClick={() => makeSubscription('pro')} className="bg-[#F08E1F] w-full lg:w-[400px] text-white rounded-full px-6 py-4">
+              {isLoading ? 'transacting . . .' : 'Subscribe'}
               </button>
             </div>
           </div>

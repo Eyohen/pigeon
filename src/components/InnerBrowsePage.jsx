@@ -93,7 +93,7 @@ const InnerBrowsePage = () => {
         </li>
     </ul>
 
-    <Link to={`/subscriptionplans/${community.id}`}>
+    <Link to={'/switchpremium'}>
         <button className='bg-[#F08E1F] text-white px-8 py-3 rounded-full w-full hover:bg-[#e07d0e] transition-colors'>
             Subscribe to Premium
         </button>
@@ -117,7 +117,7 @@ const InnerBrowsePage = () => {
                 <p className=' text-lg   mt-4'>- Continous Updates and Support</p>
 
 
-                <Link to={`/subscriptionplans/${community.id}`}><button className='bg-[#F08E1F] text-white px-12 py-2 rounded-full mt-4 ml-4 '>Subscribe to premium</button></Link>
+                <Link to={'/switchpremium'}><button className='bg-[#F08E1F] text-white px-12 py-2 rounded-full mt-4 ml-4 '>Subscribe to premium</button></Link>
 
 
             </div>

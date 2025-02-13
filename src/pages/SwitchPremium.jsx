@@ -37,9 +37,29 @@ const SwitchPremium = () => {
   const currencySymbols = {
     'USD': '$',
     'CAD': '$',
+    'EUR': '€',
     'GBP': '£',
-    'NGN': '₦'
+    'NGN': '₦',
+    'AUD': '$',
+    'ZMW': 'ZK',
+    'INR': '₹',
   };
+
+
+  const formatPrice = (price) => {
+    // Convert to string for consistency
+    const numStr = typeof price === 'string' ? price : price.toString();
+    
+    // Split into whole and decimal parts
+    const [whole, decimal] = numStr.split('.');
+    
+    // Add commas to whole number part
+    const withCommas = whole.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    
+    // Return with decimal if it exists
+    return decimal ? `${withCommas}.${decimal}` : withCommas;
+  };
+
 
   const fetchCurrencies = async () => {
     try {
@@ -91,8 +111,12 @@ const SwitchPremium = () => {
       {currencies.map(curr => (
         <option key={curr.id} value={curr.currency}>
           {curr.currency === 'USD' ? 'United States Dollars($)' :
-            curr.currency === 'CAD' ? 'Canadian Dollars($)' :
-              curr.currency === 'GBP' ? 'British Pounds(£)' :
+           curr.currency === 'CAD' ? 'Canadian Dollars($)' :
+           curr.currency === 'GBP' ? 'British Pounds(£)' :
+           curr.currency === 'EUR' ? 'European Euros(€)' :
+           curr.currency === 'AUD' ? 'Australian Dollars($)' :
+           curr.currency === 'ZMW' ? 'Zambian Kwacha(ZK)' :
+           curr.currency === 'INR' ? 'Indian Rupees(₹)' :
                 curr.currency === 'NGN' ? 'Naira(₦)' : curr.currency}
         </option>
       ))}
@@ -207,7 +231,7 @@ const SwitchPremium = () => {
             </div>
             <div className="shadow-xl px-[20px] py-6">
               <p className="text-2xl font-semibold text-center">
-                {currencySymbols[selectedCurrency]}{prices.monthly}
+              {currencySymbols[selectedCurrency]}{formatPrice(prices.monthly)}
               </p>
               {/* Rest of the Essentials card content */}
               <div className="flex gap-x-3 mt-6">
@@ -268,7 +292,7 @@ const SwitchPremium = () => {
             </div>
             <div className="shadow-xl px-[20px] py-6">
               <p className="text-2xl font-semibold text-center">
-                {currencySymbols[selectedCurrency]}{prices.annually}
+              {currencySymbols[selectedCurrency]}{formatPrice(prices.annually)}
               </p>
               {/* Rest of the Premier card content */}
               <div className="flex gap-x-3 mt-6">
@@ -330,7 +354,7 @@ const SwitchPremium = () => {
             </div>
             <div className="shadow-xl px-[20px] py-6">
               <p className="text-2xl font-semibold text-center">
-                {currencySymbols[selectedCurrency]}{prices.quarterly}
+              {currencySymbols[selectedCurrency]}{formatPrice(prices.quarterly)}
               </p>
               {/* Rest of the Pro card content */}
               <div className="flex gap-x-3 mt-6">
