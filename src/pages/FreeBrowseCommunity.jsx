@@ -41,7 +41,7 @@ const FreeBrowseCommunities = () => {
     const fetchCommunities = async (searchTerm = '', page = 1, limit = 4, location = '') => {
       setLoading(true)
         try {
-                const res = await axios.get(`${URL}/api/comunities/user/${user?.id}`, {
+                const res = await axios.get(`${URL}/api/comunities`, {
                 params: {
                     search: searchTerm,
                     page: page,
@@ -52,7 +52,7 @@ const FreeBrowseCommunities = () => {
             
             const slicedData = subscription?.subscribed ? 
             res.data.communities : 
-            res.data.communities.slice(0, 8); // Limit to 8 total for non-subscribers
+            res.data.communities?.slice(0, 8); // Limit to 8 total for non-subscribers
         
         setCommunities(slicedData);
         setTotalPages(subscription?.subscribed ? res.data.totalPages : 2);
@@ -119,7 +119,7 @@ const FreeBrowseCommunities = () => {
     }
 
 
-      const filteredCommunities = communities.filter(c =>
+      const filteredCommunities = communities?.filter(c =>
     Object.keys(c).some(key =>
       c[key].toString().toLowerCase().includes(search.toLowerCase())
     ) && (!countryFilter || c.location === countryFilter) && (!sizeFilter || c.size === sizeFilter)
