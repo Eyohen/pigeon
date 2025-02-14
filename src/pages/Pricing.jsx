@@ -119,6 +119,13 @@ const Pricing = () => {
 
 
   const makeSubscription = async (cardType) => {
+
+    // Check if usr email exists
+    if(!user?.email){
+      //Navigate to register page if no email
+      window.location.href = '/register';
+      return;
+    }
     setIsLoading(true);
     try {
       let subscriptionAmount;

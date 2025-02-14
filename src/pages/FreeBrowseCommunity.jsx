@@ -9,6 +9,9 @@ import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
 import BrowseCommunityCard from '../components/BrowseCommunityCard';
+import SimpleLoader from '../components/SimpleLoader';
+
+
 
 const FreeBrowseCommunities = () => {
     const {user} = useAuth();
@@ -31,10 +34,12 @@ const FreeBrowseCommunities = () => {
     const [connectionFilter, setConnectionFilter] = useState('')
     const [itemsPerPage, setItemsPerPage] = useState(4);
     const [subscription, setSubscription] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate()
 
     const fetchCommunities = async (searchTerm = '', page = 1, limit = 4, location = '') => {
+      setLoading(true)
         try {
                 const res = await axios.get(`${URL}/api/comunities/user/${user?.id}`, {
                 params: {
@@ -50,13 +55,12 @@ const FreeBrowseCommunities = () => {
             res.data.communities.slice(0, 8); // Limit to 8 total for non-subscribers
         
         setCommunities(slicedData);
-      //  setCommunities(res.data.communities);
         setTotalPages(subscription?.subscribed ? res.data.totalPages : 2);
             console.log("to see communities come here", res.data)
-            // console.log("see info",res.data.communities[0].location);
-           // setTotalPages(res.data.totalPages);
         } catch (err) {
             console.log(err);
+        }finally {
+            setLoading(false); // Set loading to false after fetch completes
         }
     };
 
@@ -223,6 +227,8 @@ const displayedCommunities = filteredCommunities.slice(
       <div>
         <div className=''>
             <Navbar />
+
+
             <div className='px-4 md:px-40'>
             <div className='flex items-center justify-start gap-x-24 mt-12'>
                 <p className=' font-semibold text-4xl mt-9'>Communities</p>
@@ -305,18 +311,23 @@ const displayedCommunities = filteredCommunities.slice(
             <option key={index} value={country}>{country}</option>
            ))}
          </select>
-
-
          </div>
 
 
+         {loading ? (
+                <div className="flex justify-center items-center min-h-[400px]">
+                    <SimpleLoader size={60} color="#F08E1F" />
+                </div>
+            ) : (
 
-
-            {displayedCommunities.map((community, index) => (
+            displayedCommunities.map((community, index) => (
                 <Link key={community.id} to={`/innerbrowsepage/${community.id}`}>
                     <BrowseCommunityCard community={community} bgColor={colors[index % colors.length]} />
                 </Link>
-            ))}
+            ))
+
+          )}        
+        
 
 <div className="flex justify-center items-center gap-x-4 mt-9">
   {renderPagination()}
@@ -324,7 +335,8 @@ const displayedCommunities = filteredCommunities.slice(
 
 </div>
 
-            
+
+   
             <div className='mb-24'></div>
         </div>
 

@@ -8,6 +8,7 @@ import Navbar2 from '../components/Navbar2';
 import { IoFilter } from "react-icons/io5";
 import Sidebar from '../components/Sidebar';
 import { useAuth } from '../context/AuthContext';
+import SimpleLoader from '../components/SimpleLoader';
 
 const CommunityOwner = () => {
     const { user } = useAuth();
@@ -26,9 +27,11 @@ const CommunityOwner = () => {
     const [goalFilter, setGoalFilter] = useState('')
     const [platformFilter, setPlatformFilter] = useState('')
     const [commTypeFilter, setCommTypeFilter] = useState('')
+    const [loading, setLoading] = useState(false);
 
 
     const fetchOwners = async (searchTerm = '', page = 1, limit = 1, location = '') => {
+        setLoading(true)
         try {
             const res = await axios.get(`${URL}/api/users/subscribed-users/${user?.id}`, {
 
@@ -39,6 +42,8 @@ const CommunityOwner = () => {
             setTotalPages(res.data.totalPages);
         } catch (err) {
             console.log(err);
+        }finally {
+            setLoading(false); // Set loading to false after fetch completes
         }
     };
 
@@ -252,11 +257,25 @@ const CommunityOwner = () => {
                     </select>
                 </div>
 
-                {filteredCommunities.map((community, index) => (
+                {loading ? (
+                <div className="flex justify-center items-center min-h-[400px]">
+                    <SimpleLoader size={60} color="#F08E1F" />
+                </div>
+            ) : (
+                
+                
+                
+                filteredCommunities.map((community, index) => (
                     <Link key={community.id} to={`/communitypage/${community.id}`}>
                         <CommunityOwnerCard community={community} bgColor={colors[index % colors.length]} />
                     </Link>
-                ))}
+                )
+
+
+                ))
+                
+                
+                }
                 <div className="flex justify-center items-center gap-x-4 mt-9">
                     {user?.subscribed === true ? renderPagination() : (
                         <div onClick={() => navigate('/switchpremium')} className='bg-[#F08E1F] px-6 py-2 text-white rounded-lg'>

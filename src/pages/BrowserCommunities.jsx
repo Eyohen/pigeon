@@ -9,6 +9,7 @@ import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
 import BrowseCommunityCard from '../components/BrowseCommunityCard';
+import SimpleLoader from '../components/SimpleLoader';
 
 const BrowseCommunities = () => {
   const { user } = useAuth();
@@ -31,10 +32,12 @@ const BrowseCommunities = () => {
   const [connectionFilter, setConnectionFilter] = useState('')
   const [itemsPerPage, setItemsPerPage] = useState(4);
   const [subscription, setSubscription] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate()
 
   const fetchCommunities = async (searchTerm = '', page = 1, limit = 4, location = '') => {
+    setLoading(true)
     try {
       const res = await axios.get(`${URL}/api/comunities/user/${user?.id}`, {
         params: {
@@ -57,7 +60,9 @@ const BrowseCommunities = () => {
       // setTotalPages(res.data.totalPages);
     } catch (err) {
       console.log(err);
-    }
+    }finally {
+      setLoading(false); // Set loading to false after fetch completes
+  }
   };
 
   console.log("community", communities)
@@ -239,7 +244,7 @@ const BrowseCommunities = () => {
       <div className='flex-1 ml-[300px]'>
         <Navbar2 />
         <div className='flex items-center justify-start gap-x-24'>
-          <p className='ml-12 font-semibold text-4xl mt-9'>Browse Communities</p>
+          <p className='ml-12 font-semibold text-4xl mt-9'>Communities</p>
           <div className="relative mt-9">
             <div className="absolute inset-y-0 left-0 flex items-center px-2">
               <label className="px-2 py-1 text-xl font-mono cursor-pointer text-gray-400 text-left">
@@ -326,12 +331,23 @@ const BrowseCommunities = () => {
 
         </div>
 
+        
+
+
+
         <div className='px-9'>
-          {displayedCommunities.map((community, index) => (
+        {loading ? (
+                <div className="flex justify-center items-center min-h-[400px]">
+                    <SimpleLoader size={60} color="#F08E1F" />
+                </div>
+            ) : (
+          displayedCommunities.map((community, index) => (
             <Link key={community.id} to={`/innerbrowsepage/${community.id}`}>
               <BrowseCommunityCard community={community} bgColor={colors[index % colors.length]} />
             </Link>
-          ))}
+          ))
+
+        )}
         </div>
 
         <div className="flex justify-center items-center gap-x-4 mt-9">
