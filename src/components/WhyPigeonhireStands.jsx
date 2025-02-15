@@ -219,8 +219,7 @@ const WhyPigeonhireStands = () => {
           <TbNotes size={28} className="text-[#F08E1F] mb-3" />
           <h3 className='font-semibold text-lg mb-2'>Flexible Solutions</h3>
           <p className='text-sm text-gray-600 leading-relaxed'>
-            Choose between subscription-based access or pay-as-you-go options, 
-            fitting every budget and strategy.
+          Access everything with a single subscription, offering unlimited engagement and continuous opportunities to connect with communities and key individuals—designed to fit your goals and budget seamlessly.
           </p>
         </div>
 
