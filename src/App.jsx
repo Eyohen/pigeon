@@ -93,26 +93,26 @@ const App = () => {
       <Route exact path="/chatroom" element={<ChatRoom />} />
 
 
-      <Route exact path="/communityowner" element={<ProtectedRoute><CommunityOwner /></ProtectedRoute>} />
-      <Route exact path="/communitypage/:id" element={<CommunityPage />} />
+      <Route exact path="/app/communityowners" element={<ProtectedRoute><CommunityOwner /></ProtectedRoute>} />
+      <Route exact path="/app/communitypage/:id" element={<CommunityPage />} />
       <Route exact path="/collaborationtype/:id" element={<CollaborationType />} />
-      <Route exact path="/browsecommunities" element={<ProtectedRoute><BrowseCommunities /></ProtectedRoute>} />
+      <Route exact path="/app/browse" element={<ProtectedRoute><BrowseCommunities /></ProtectedRoute>} />
       <Route exact path="/innerbrowsepage/:id" element={<BrowserPage />} />
       <Route exact path="/subscriptionplans/:id" element={<BrowserSubPlans />} />
       <Route exact path="/purchasehistory" element={<PurchaseHistory />} />
       <Route exact path="/requests" element={<Request />} />
       <Route exact path="/listcommunity" element={<ListCommunity />} />
-      <Route exact path="/listvisibility" element={<ListVisibility />} />
+      <Route exact path="/app/create" element={<ListVisibility />} />
 
       <Route exact path="/mycommunities" element={<ProtectedRoute><MyCommunities /></ProtectedRoute>} />
       <Route exact path="/mycommunitydetail/:id" element={<ProtectedRoute><MyCommunityDetail /></ProtectedRoute>} />
       <Route exact path="/settings" element={<Settings />} />
-      <Route exact path="/switchpremium" element={<SwitchPremium />} />
+      <Route exact path="/app/pricing" element={<SwitchPremium />} />
       <Route exact path="/test" element={<Test />} />
       <Route exact path="/innerbrowsepage" element={<InnerBrowsePage />} />
-      <Route exact path="/subdetails" element={<SubscriptionDetails />} />
+      <Route exact path="/app/subscriptionplan" element={<SubscriptionDetails />} />
       <Route exact path="/upgradeplan" element={<UpgradePlan />} />
-      <Route exact path="/myprofile" element={<MyProfile />} />
+      <Route exact path="/app/profile" element={<MyProfile />} />
       <Route exact path="/editprofile/:id" element={<EditProfile />} />
 
 

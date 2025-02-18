@@ -29,21 +29,21 @@ const Sidebar = () => {
 
   console.log(user?.id)
 
-  // const fetchCurrentSubscription = async () => {
-  //   try {
-  //   const res = await axios.get(`${URL}/api/subpurchases/current-subscription/${user?.id}`)
-  //   console.log("see current subscription",res.data);
-  //   setSubscription(res.data.subscription);
-  //   } catch (error){
-  //     console.error("Error fetching subscription:", error);
-  //     setSubscription(null);
-  //   }
-  // }
-  // useEffect(() => {
-  //   if (user?.id){
-  //     fetchCurrentSubscription()
-  //   }
-  // },[user?.id])
+  const fetchCurrentSubscription = async () => {
+    try {
+    const res = await axios.get(`${URL}/api/users/${user?.id}`)
+    console.log("see current subscription",res.data);
+    setSubscription(res.data);
+    } catch (error){
+      console.error("Error fetching subscription:", error);
+      setSubscription(null);
+    }
+  }
+  useEffect(() => {
+    if (user?.id){
+      fetchCurrentSubscription()
+    }
+  },[user?.id])
 
 
   return (
@@ -53,14 +53,14 @@ const Sidebar = () => {
         <div>
         <p className='text-[#F08E1F] font-semibold mt-9'>Menu</p>
 
-        <Link to={'/communityowner'}> <div className='flex gap-x-3 items-center hover:bg-[#F3D8A7] px-2 mt-6 rounded'>
+        <Link to={'/app/communityowners'}> <div className='flex gap-x-3 items-center hover:bg-[#F3D8A7] px-2 mt-6 rounded'>
     
         <FiUsers className='' />
         <p className='hover:bg-[#F3D8A7]  py-1 text-center '>Community Owners</p>
 
         </div></Link>
 
-        <Link to={'/browsecommunities'}> <div className='flex gap-x-3 items-center hover:bg-[#F3D8A7] px-2 mt-6 rounded'>
+        <Link to={'/app/browse'}> <div className='flex gap-x-3 items-center hover:bg-[#F3D8A7] px-2 mt-6 rounded'>
         <CiSearch  size={20} className=' '/>
         <p className='hover:bg-[#F3D8A7] py-1 text-center'>Browse Communities</p>
         </div></Link>
@@ -89,40 +89,43 @@ const Sidebar = () => {
 </div>)} */}
 
         {/* create community */}
-        <Link to={'/myprofile'}>  <div className='flex gap-x-3 items-center px-2 mt-6 rounded cursor-pointer'>
+        <Link to={'/app/profile'}>  <div className='flex gap-x-3 items-center px-2 mt-6 rounded cursor-pointer'>
         <FiUsers />
       <p className='py-1 text-center'>My Profile</p>
 
         </div></Link>
 
         {/* create community */}
-        <Link to={'/listvisibility'}>  <div className='flex gap-x-3 items-center px-2 mt-6 rounded cursor-pointer'>
+        <Link to={'/app/create'}>  <div className='flex gap-x-3 items-center px-2 mt-6 rounded cursor-pointer'>
         <FiUsers />
       <p className='py-1 text-center'>Create Community</p>
 
         </div></Link>
 
-        {/* {subscription ? (
-  <Link to={'/subdetails'}>
+        {subscription?.subscribed ? (
+  <Link to={'/app/subscriptionplan'}>
     <div className='flex gap-x-3 items-center hover:bg-[#F3D8A7] px-2 mt-6 rounded'>
       <LuArrowUpFromLine className=''/>
       <p className='hover:bg-[#F3D8A7] py-1 text-center'>Subscription Details</p>
     </div>
   </Link>
 ) : (
-  <Link to={'/switchpremium'}>
+  <Link to={'/app/pricing'}>
     <div className='flex gap-x-3 items-center hover:bg-[#F3D8A7] px-2 mt-6 rounded'>
       <FiUsers className='' />
       <p className='hover:bg-[#F3D8A7] py-1 text-center'>Switch to premium</p>
     </div>
   </Link>
-)} */}
-  <Link to={'/switchpremium'}>
+)}
+
+
+{/* 
+  <Link to={'/app/pricing'}>
     <div className='flex gap-x-3 items-center hover:bg-[#F3D8A7] px-2 mt-6 rounded'>
       <FiUsers className='' />
       <p className='hover:bg-[#F3D8A7] py-1 text-center'>Switch to premium</p>
     </div>
-  </Link>
+  </Link> */}
 
 
         {/* <Link to={'/settings'}><div className='flex gap-x-3 items-center hover:bg-[#F3D8A7] px-2 mt-6 rounded'>

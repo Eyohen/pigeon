@@ -266,7 +266,7 @@ const CommunityOwner = () => {
                 
                 
                 filteredCommunities.map((community, index) => (
-                    <Link key={community.id} to={`/communitypage/${community.id}`}>
+                    <Link key={community.id} to={`/app/communitypage/${community.id}`}>
                         <CommunityOwnerCard community={community} bgColor={colors[index % colors.length]} />
                     </Link>
                 )

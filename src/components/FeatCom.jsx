@@ -12,7 +12,7 @@ const FeatCom = () => {
   const [communities, setCommunities] = useState([])
 
   const fetchCommunities = async () => {
-    const res = await axios.get(`${URL}/api/visible`)
+    const res = await axios.get(`${URL}/api/comunities`)
     console.log("communities", res.data)
     setCommunities(res.data.communities)
   }
@@ -28,8 +28,8 @@ const FeatCom = () => {
     <p className='text-center text-6xl font-bold'>Featured Communities</p>
     <p className='text-center mt-1 text-3xl'>Handpicked groups known for active engagement and quality discussions</p>
 
-    <div className='flex flex-col md:flex-row items-center gap-y-4 md:gap-y-0 justify-between mt-12'>
-    {communities?.map((c, index) => (
+    <div className='flex flex-col md:flex-row items-center gap-x-0 md:gap-x-12 gap-y-4 md:gap-y-0 justify-center mt-12'>
+    {communities?.slice(0,3)?.map((c, index) => (
           <Link key={c.id}>
             <FeaturedCommCard
              name={c.name}

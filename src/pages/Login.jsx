@@ -55,7 +55,7 @@ const Login = () => {
         const from = params.get('from');
 
         //redirect to 'from' if it exists, otherwise got to the default page
-        navigate(from || "/communityowner")
+        navigate(from || "/app/communityowners")
       }
 
     }
