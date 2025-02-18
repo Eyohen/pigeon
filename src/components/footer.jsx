@@ -21,7 +21,7 @@ const Footer = () => {
               <p className="mb-7 font-bold text-xl">Company</p>
               <div className="font-normal text-sm tracking-tighter">
                 <Link to={'/aboutus'}><p className="mb-4">About Us</p></Link>
-                <Link to={'/blog'}><p>Stories that Connect</p></Link>
+                <Link to={'/blog'}><p>Blog</p></Link>
               </div>
             </div>
             <div>
