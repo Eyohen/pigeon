@@ -192,18 +192,13 @@ const Navbar = () => {
               >
                 Create New
               </p>
-              {user ? (
-                <p onClick={logout} className="text-[#F08E1F] cursor-pointer pt-2">
-                  Logout
-                </p>
-              ) : (
-                <p
+              <p
                   onClick={() => navigate("/login")}
                   className="text-[#F08E1F] cursor-pointer pt-2"
                 >
                   Login
                 </p>
-              )}
+           
             </div>
           )}
         </div>
