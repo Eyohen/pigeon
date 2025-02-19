@@ -184,17 +184,7 @@ const BrowseCommunities = () => {
   // };
 
   const renderPagination = () => {
-    if (currentPage === 2 && !subscription?.subscribed) {
-      return (
-        <div
-          onClick={() => navigate('/switchpremium')}
-          className='bg-[#F08E1F] px-6 py-2 text-white rounded-lg cursor-pointer'
-        >
-          Load more . . .
-        </div>
-      );
-    }
-
+   
     const pages = [];
     for (let i = 1; i <= totalPages; i++) {
       pages.push(

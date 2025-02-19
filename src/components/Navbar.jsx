@@ -181,7 +181,7 @@ const Navbar = () => {
             onClick={handleOpen}
             className="text-white px-6 py-2 rounded-full text-lg font-nunito font-normal bg-[#F08E1F]"
           >
-            {user ? user?.fname : "Sign in"}
+            Sign in
           </button>
 
           {open && (
@@ -243,7 +243,7 @@ const Navbar = () => {
                 <div className="bg-gray-50 mt-2 px-4 py-2 rounded">
                   <p
                     onClick={() => {
-                      navigate("/browserowner");
+                      navigate("/communities");
                       setMobileMenu(false);
                     }}
                     className="text-[#F08E1F] py-2 cursor-pointer"
@@ -270,7 +270,7 @@ const Navbar = () => {
               }}
               className="text-white px-6 py-2 rounded-full text-lg font-nunito font-normal bg-[#F08E1F] w-full"
             >
-              {user ? "Logout" : "Sign in"}
+              Sign in
             </button>
           </div>
         </div>

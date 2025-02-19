@@ -277,11 +277,7 @@ const CommunityOwner = () => {
                 
                 }
                 <div className="flex justify-center items-center gap-x-4 mt-9">
-                    {user?.subscribed === true ? renderPagination() : (
-                        <div onClick={() => navigate('/switchpremium')} className='bg-[#F08E1F] px-6 py-2 text-white rounded-lg'>
-                            Load more ...
-                        </div>
-                    )}
+                   {renderPagination()}
                 </div>
             
                 <div className='mb-24'></div>
