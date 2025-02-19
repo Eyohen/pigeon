@@ -17,7 +17,7 @@ const CommunityOwner = () => {
     const [search, setSearch] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
-    const [limit, setLimit] = useState(3); // You can adjust the limit as needed
+    const [limit, setLimit] = useState(4); // You can adjust the limit as needed
     const [locations, setLocations] = useState([]);
     const [selectedLocation, setSelectedLocation] = useState('');
     const [countryFilter, setCountryFilter] = useState('')
@@ -30,19 +30,38 @@ const CommunityOwner = () => {
     const [loading, setLoading] = useState(false);
 
 
-    const fetchOwners = async (searchTerm = '', page = 1, limit = 1, location = '') => {
+    const fetchOwners = async () => {
         setLoading(true)
         try {
-            const res = await axios.get(`${URL}/api/users/subscribed-users/${user?.id}`, {
+            const res = await axios.get(`${URL}/api/users`);
+            const allUsers = res.data.users;
+             
+        // Apply filters
+        const filtered = allUsers?.filter(c =>
+            Object.keys(c).some(key =>
+                c[key].toString().toLowerCase().includes(search.toLowerCase())
+            ) && (!countryFilter || c.location === countryFilter)
+            && (!sizeFilter || c.size === sizeFilter)
+            && (!interestFilter || c.communityInterest === interestFilter)
+            && (!engagementFilter || c.engagementLevel === engagementFilter)
+            && (!goalFilter || c.communityGoal === goalFilter)
+            && (!platformFilter || c.communicationPlatform === platformFilter)
+            && (!commTypeFilter || c.communityType === commTypeFilter)
+        );
 
-            });
-            setOwner(res.data.users);
-            console.log("see users here", res.data)
-            // console.log("see info",res.data.owners[0].location);
-            setTotalPages(res.data.totalPages);
+        // Calculate pagination
+        const totalItems = filtered.length;
+        const totalPages = Math.ceil(totalItems / limit);
+        setTotalPages(totalPages);
+
+        // Get paginated results
+        const startIndex = (currentPage - 1) * limit;
+        const paginatedUsers = filtered.slice(startIndex, startIndex + limit);
+        
+        setOwner(paginatedUsers);
         } catch (err) {
             console.log(err);
-        }finally {
+        } finally {
             setLoading(false); // Set loading to false after fetch completes
         }
     };
@@ -98,15 +117,6 @@ const CommunityOwner = () => {
     }
 
 
-    const filteredCommunities = owners?.filter(c =>
-        Object.keys(c).some(key =>
-            c[key].toString().toLowerCase().includes(search.toLowerCase())
-        ) && (!countryFilter || c.location === countryFilter) && (!sizeFilter || c.size === sizeFilter)
-        && (!interestFilter || c.communityInterest === interestFilter) && (!engagementFilter || c.engagementLevel === engagementFilter)
-        && (!goalFilter || c.communityGoal === goalFilter) && (!platformFilter || c.communicationPlatform === platformFilter)
-        && (!commTypeFilter || c.communityType === commTypeFilter)
-
-    );
 
     const uniqueCommunityTypes = [...new Set(owners.map(c => c.commTypeCategory))];
 
@@ -124,8 +134,18 @@ const CommunityOwner = () => {
 
 
     useEffect(() => {
-        fetchOwners(search, currentPage, limit);
-    }, [currentPage, limit, selectedLocation]);
+        fetchOwners();
+    }, [   currentPage,
+        limit,
+        selectedLocation,
+        search,
+        countryFilter,
+        sizeFilter,
+        interestFilter,
+        engagementFilter,
+        goalFilter,
+        platformFilter,
+        commTypeFilter]);
 
 
     useEffect(() => {
@@ -140,22 +160,6 @@ const CommunityOwner = () => {
         };
         fetchLocations();
     }, []);
-
-    // const renderLocationsDropdown = () => {
-    //     return (
-    //         <div className="absolute mt-2 w-[300px] bg-black rounded border border-gray-300 shadow-lg z-100 py-24">
-    //             {locations.map((location) => (
-    //                 <button
-    //                     key={location.id}
-    //                     onClick={() => handleLocationFilter(location.name)}
-    //                     className="block w-full px-4 py-2 text-white hover:bg-gray-200"
-    //                 >
-    //                     {location.name}
-    //                 </button>
-    //             ))}
-    //         </div>
-    //     );
-    // };
 
     const renderPagination = () => {
         const pages = [];
@@ -197,13 +201,10 @@ const CommunityOwner = () => {
                         />
                     </div>
                 </div>
-                {/* <div className='flex items-center gap-2 px-12 mt-12'>
-                <button className='border border-[#F08E1F] py-1 px-3 flex items-center justify-center rounded-full hover:bg-[#F08E1F] hover:text-white'>Location</button>
-
-            </div> */}
 
 
-                <div className='flex items-center justify-evenly px-16 mt-12'>
+
+                <div className='flex items-center gap-x-2 px-16 mt-12'>
 
                     <IoFilter />Filter by
 
@@ -258,28 +259,27 @@ const CommunityOwner = () => {
                 </div>
 
                 {loading ? (
-                <div className="flex justify-center items-center min-h-[400px]">
-                    <SimpleLoader size={60} color="#F08E1F" />
-                </div>
-            ) : (
-                
-                
-                
-                filteredCommunities.map((community, index) => (
-                    <Link key={community.id} to={`/app/communitypage/${community.id}`}>
-                        <CommunityOwnerCard community={community} bgColor={colors[index % colors.length]} />
-                    </Link>
-                )
+                    <div className="flex justify-center items-center min-h-[400px]">
+                        <SimpleLoader size={60} color="#F08E1F" />
+                    </div>
+                ) : (
+
+                    owners?.map((community, index) => (
+                        <Link key={community.id} to={`/app/communitypage/${community.id}`}>
+                            <CommunityOwnerCard community={community} bgColor={colors[index % colors.length]} />
+                        </Link>
+                    )
+                    ))
 
 
-                ))
-                
-                
                 }
-                <div className="flex justify-center items-center gap-x-4 mt-9">
-                   {renderPagination()}
+                <div className='ml-12 w-[1100px]'>
+                <div className="flex justify-end items-center gap-x-4 mt-9">
+                    {renderPagination()}
                 </div>
-            
+
+                </div>
+
                 <div className='mb-24'></div>
             </div>
 
