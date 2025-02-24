@@ -36,28 +36,36 @@ const BrowseCommunities = () => {
 
   const navigate = useNavigate()
 
-  const fetchCommunities = async (searchTerm = '', page = 1, limit = 4, location = '') => {
+  const fetchCommunities = async () => {
     setLoading(true)
     try {
-      const res = await axios.get(`${URL}/api/comunities/user/${user?.id}`, {
-        params: {
-          search: searchTerm,
-          page: page,
-          //limit:limit,
-          limit: subscription?.subscribed ? limit : 4,
-        }
-      });
+      const res = await axios.get(`${URL}/api/comunities`);
+      const allCommunities = res.data.communities
 
-      const slicedData = subscription?.subscribed ?
-        res.data.communities :
-        res.data.communities.slice(0, 8); // Limit to 8 total for non-subscribers
+      const filtered = allCommunities.filter(c =>
+        Object.keys(c).some(key =>
+          c[key].toString().toLowerCase().includes(search.toLowerCase())
+        ) && (!countryFilter || c.location === countryFilter) && (!sizeFilter || c.size === sizeFilter)
+        && (!interestFilter || c.communityInterest === interestFilter) && (!engagementFilter || c.engagementLevel === engagementFilter)
+        && (!platformFilter || c.communicationPlatform === platformFilter) && (!priceTagFilter || c.accessType === priceTagFilter) && (!goalFilter || c.communityGoal === goalFilter)
+        && (!commTypeFilter || c.communityType === commTypeFilter) && (!connectionFilter || c.connCategory === connectionFilter)
+      );
+    
+        // Calculate pagination
+        const totalItems = filtered.length;
+        const totalPages = Math.ceil(totalItems / limit);
+        setTotalPages(totalPages);
 
-      setCommunities(slicedData);
-      //  setCommunities(res.data.communities);
-      setTotalPages(subscription?.subscribed ? res.data.totalPages : 2);
+        // Get paginated results
+        const startIndex = (currentPage - 1) * limit;
+        const paginatedCommunities = filtered.slice(startIndex, startIndex + limit);
+
+
+
+      setCommunities(paginatedCommunities);
+    
       console.log("to see communities come here", res.data)
-      // console.log("see info",res.data.communities[0].location);
-      // setTotalPages(res.data.totalPages);
+
     } catch (err) {
       console.log(err);
     }finally {
@@ -65,7 +73,9 @@ const BrowseCommunities = () => {
   }
   };
 
-  console.log("community", communities)
+
+
+
 
   const handleSearch = (e) => {
     const searchTerm = e.target.value;
@@ -120,15 +130,6 @@ const BrowseCommunities = () => {
   }
 
 
-  const filteredCommunities = communities.filter(c =>
-    Object.keys(c).some(key =>
-      c[key].toString().toLowerCase().includes(search.toLowerCase())
-    ) && (!countryFilter || c.location === countryFilter) && (!sizeFilter || c.size === sizeFilter)
-    && (!interestFilter || c.communityInterest === interestFilter) && (!engagementFilter || c.engagementLevel === engagementFilter)
-    && (!platformFilter || c.communicationPlatform === platformFilter) && (!priceTagFilter || c.accessType === priceTagFilter) && (!goalFilter || c.communityGoal === goalFilter)
-    && (!commTypeFilter || c.communityType === commTypeFilter) && (!connectionFilter || c.connCategory === connectionFilter)
-  );
-
 
   const uniqueCommunityTypes = [...new Set(communities.map(c => c.commTypeCategory))];
 
@@ -150,38 +151,17 @@ const BrowseCommunities = () => {
 
 
   useEffect(() => {
-    fetchCommunities(search, currentPage, limit);
-  }, [currentPage, limit, selectedLocation]);
-
-
-  // In your rendering logic:
-  // const displayedCommunities = filteredCommunities.slice(0, subscription?.subscribed ? 
-  //     filteredCommunities.length : 
-  //     Math.min((currentPage * itemsPerPage), 8)
-  // );
-
-  const displayedCommunities = filteredCommunities.slice(
-    (currentPage - 1) * itemsPerPage,
-    subscription?.subscribed ?
-      filteredCommunities.length :
-      currentPage * itemsPerPage
-  );
-
-  // const renderPagination = () => {
-  //     const pages = [];
-  //     for (let i = 1; i <= totalPages; i++) {
-  //         pages.push(
-  //             <button
-  //                 key={i}
-  //                 onClick={() => handlePageChange(i)}
-  //                 className={`px-3 py-1 border rounded ${i === currentPage ? 'bg-gray-300' : 'bg-white'}`}
-  //             >
-  //                 {i}
-  //             </button>
-  //         );
-  //     }
-  //     return pages;
-  // };
+    fetchCommunities();
+  }, [currentPage, limit, selectedLocation,
+    search,
+    countryFilter,
+    sizeFilter,
+    interestFilter,
+    engagementFilter,
+    goalFilter,
+    platformFilter,
+    commTypeFilter
+  ]);
 
   const renderPagination = () => {
    
@@ -331,7 +311,7 @@ const BrowseCommunities = () => {
                     <SimpleLoader size={60} color="#F08E1F" />
                 </div>
             ) : (
-          displayedCommunities.map((community, index) => (
+          communities.map((community, index) => (
             <Link key={community.id} to={`/innerbrowsepage/${community.id}`}>
               <BrowseCommunityCard community={community} bgColor={colors[index % colors.length]} />
             </Link>

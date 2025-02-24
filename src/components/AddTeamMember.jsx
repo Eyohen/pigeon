@@ -38,7 +38,8 @@ const AddTeamMember = ({ isOpen, onClose, communityId, onVerificationUpdate, chi
       lastName,
       email,
       password,
-      role
+      role : "admin",
+      verified:"true"
     }
 
     try {
@@ -76,7 +77,7 @@ const AddTeamMember = ({ isOpen, onClose, communityId, onVerificationUpdate, chi
 
     <p className='font-semibold text-xl mt-6'>Access:</p>
 
-    <div className="flex justify-between items-center"><p className="font-semibold text-xl mt-6">Manage Communities</p>
+    {/* <div className="flex justify-between items-center"><p className="font-semibold text-xl mt-6">Manage Communities</p>
     <div className="mt-4" onClick={handleToggle}>
         {isToggled ? (
           <BsToggleOn size={30} className="text-[#F08E1F]" />
@@ -85,7 +86,7 @@ const AddTeamMember = ({ isOpen, onClose, communityId, onVerificationUpdate, chi
         )}
       </div>
 
-   </div>
+   </div> */}
 
 
     <div className="flex mt-[100px]">

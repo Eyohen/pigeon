@@ -65,6 +65,7 @@ import EditProfile from './pages/EditProfile'
 import BrowseCommunities from './pages/BrowserCommunities'
 import SubscriptionSucces from './pages/SubscriptionSuccess'
 import SubscriptionCancel from './pages/Subscriptioncancel' 
+import ListedCommunities from './pages/ListedCommunities'
 
 
 
@@ -99,6 +100,7 @@ const App = () => {
       <Route exact path="/app/browse" element={<ProtectedRoute><BrowseCommunities /></ProtectedRoute>} />
       <Route exact path="/innerbrowsepage/:id" element={<BrowserPage />} />
       <Route exact path="/subscriptionplans/:id" element={<BrowserSubPlans />} />
+      <Route exact path="/app/listedcommunities" element={<ProtectedRoute><ListedCommunities /></ProtectedRoute>} />
       <Route exact path="/purchasehistory" element={<PurchaseHistory />} />
       <Route exact path="/requests" element={<Request />} />
       <Route exact path="/listcommunity" element={<ListCommunity />} />

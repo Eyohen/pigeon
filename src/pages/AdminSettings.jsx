@@ -182,14 +182,6 @@ const ManageToggle = () => {
     </div>
 </div> }
 
-{/* {teamToggle && <div className='ml-24 w-[280px] text-center'>
-    <img src={noteam} />
-    <p className='font-semibold text-2xl'>No team member yet</p>
-    <p className='text-center min-w-[280px]'>Your team members will have access to the dashboard and will be able to perform certain tasks on the admin dashboard</p>
-    <div>
-        <button onClick={() => openModal()}  className='w-full text-white bg-[#F08E1F] py-2 rounded-full mt-4'>Add Team Member</button>
-    </div>
-</div> } */}
 {teamToggle && <div className='bg-white border w-[750px] h-[300px] rounded-lg mt-12 px-6 py-4'>
 
   <div class="max-h-[200px] overflow-y-auto">

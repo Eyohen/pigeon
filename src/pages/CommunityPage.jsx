@@ -39,11 +39,34 @@ const CommunityPage = () => {
   const [rating, setRating] = useState(0)
   const [comment, setComment] = useState('')
   const [loading, setLoading] = useState(false)
+  const [subscription, setSubscription] = useState(null);
   const navigate = useNavigate()
+
+
+
+
+  console.log(user?.id)
+
+  const fetchCurrentSubscription = async () => {
+    try {
+    const res = await axios.get(`${URL}/api/users/${user?.id}`)
+    console.log("see current subscription",res.data);
+    setSubscription(res.data);
+    } catch (error){
+      console.error("Error fetching subscription:", error);
+      setSubscription(null);
+    }
+  }
+  useEffect(() => {
+    if (user?.id){
+      fetchCurrentSubscription()
+    }
+  },[user?.id])
+
 
   const fetchOwner = async () => {
     try {
-      const res = await axios.get(URL + "/api/users/" + ownerId)
+      const res = await axios.get(`${URL}/api/users/${ownerId}`)
       console.log("this is owner henry", res.data)
       setOwner(res.data)
     }
@@ -54,14 +77,12 @@ const CommunityPage = () => {
 
   useEffect(() => {
     fetchOwner()
-
   }, [ownerId])
 
 
 
   const createReview = async (e) => {
     e.preventDefault();
-
 
     if (!rating) {
       toast.error('Please select a rating');
@@ -159,23 +180,27 @@ const CommunityPage = () => {
         <div className='max-w-[700px]'>
           <p className=' text-lg ml-12 mt-4'>Name: {owner.firstName} {owner.lastName}</p>
           <p className=' text-lg ml-12  mt-4'>Description : {owner.description}</p>
-          <p className=' text-lg ml-12  mt-4'>Date Created : {new Date(owner.createdAt).toDateString()}</p>
+
+          {subscription?.subscribed === true ? (<div><p className=' text-lg ml-12  mt-4'>Date Created : {new Date(owner.createdAt).toDateString()}</p>
           <p className=' text-lg ml-12  mt-4'>Special Achievements or Recognitions : {owner?.recognition}</p>
+          {/* <p className=' text-lg ml-12  mt-4'>Connection Type : {owner?.recognition}</p> */}
           <p className=' text-lg ml-12  mt-4'>Communication Platform Used : <span className='text-[#F08E1F]'>Whatsapp, Telegram</span> and <span className='text-[#F08E1F]'>Twitter</span></p>
-          <p className=' text-lg ml-12  mt-4'>Contact Information : <span className='text-[#F08E1F]'>Whatsapp, Telegram, Email, Website, Twitter</span> and <span className='text-[#F08E1F]'>Phone Number</span></p>
+          <p className=' text-lg ml-12  mt-4'>Contact Information : <span className='text-[#F08E1F]'>Whatsapp: {owner?.whatsapp}, Telegram: {owner?.telegram}, Email: {owner?.email}, Website, Twitter: {owner?.twitter}</span> and <span className='text-[#F08E1F]'>Phone Number: {owner?.phone}</span></p></div>) :    
+          (<div className='ml-12'><button onClick={()=> navigate('/app/pricing')} className='bg-[#F08E1F] rounded-3xl text-white text-xl px-12 py-2 mt-2'>Subscribe</button></div>)}
+       
+    
           <p className=' text-lg ml-12  mt-4 flex items-center'>Reviews and Testimonials : <IoMdArrowDropright size={25} /></p>
-          <p className=' text-lg ml-12  mt-4'>Submit a review</p>
-
-
-   
 
           {/* */}
 
-          {owner.subscribed === true ? (<div className='mt-2 gap-x-4 ml-12'>
+          {subscription?.subscribed === true ? (<div className='mt-2 gap-x-4 ml-12'>
+            <p className=' text-lg mt-4'>Submit a review</p>
             <StarRating rating={rating} onRatingChange={setRating} />
             <textarea onChange={(e) => setComment(e.target.value)} className='border rounded-lg px-3 py-2 w-[400px] h-[100px] mt-2' />
             <div><button onClick={createReview} className='bg-[#F08E1F] rounded-xl text-white px-8 py-2 mt-2'>{loading ? "Submitting . . ." : "Submit Review"}</button></div>
-          </div> ) : (<div className='ml-12'><button onClick={()=> navigate('/app/pricing')} className='bg-[#F08E1F] rounded-xl text-white px-6 py-2 mt-2'>Subscribe to make a review</button></div>)}
+          </div> ) : (<div className='ml-12'>
+        
+            <button onClick={()=> navigate('/app/pricing')} className='bg-[#F08E1F] rounded-3xl text-white text-xl px-6 py-2 mt-2'>Subscribe to make a review</button></div>)}
 
 
           {owner?.Reviews?.map((r) => (

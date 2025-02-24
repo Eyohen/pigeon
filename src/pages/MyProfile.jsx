@@ -103,7 +103,7 @@ const MyProfile = () => {
 
       {loading ? (
                 <div className="flex justify-center items-center min-h-[400px]">
-                    <SimpleLoader size={120} color="#F08E1F" />
+                    <SimpleLoader size={60} color="#F08E1F" />
                 </div>
             ) : (
 

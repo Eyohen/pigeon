@@ -49,10 +49,14 @@ const OTP = () => {
     }
 
     try{
-      // const res = await axios.post(URL+"/api/auth/verify-otp", {otp, resetToken},
-      //   {headers:{'x-reset-token':resetToken}}
-      // )
-      const response = await verifyOTP(otp, resetToken);
+      const response = await axios.post(`${URL}/api/auth/verify-otp`,
+         {otp},
+        {headers:{
+          'Content-Type':'application/json',
+          'x-reset-token': resetToken
+          }
+        }
+      );
       console.log('Response:', response);
       setMessage(response.msg);
         // setOTP(res.data)

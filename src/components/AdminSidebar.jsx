@@ -23,26 +23,6 @@ const AdminSidebar = () => {
     setIsOpenCommunity(!isOpenCommunity);
   }
 
-  // Function to check if user has access to a specific menu item
-  // const hasAccess = (menuItem) => {
-  //   if (user.role === 'superadmin') return true; // Superadmin can access everything
-
-  //     // Define access rules for regular admin
-  //     const adminAccess = {
-  //       analytics: false,
-  //       communityOwners: true,
-  //       transactions: true,
-  //       communities: true,
-  //       users: true,
-  //       blog: true,
-  //       settings: false,
-  //       restrictedOwners: true,
-  //       restrictedCommunities: true
-  //     };
-
-  //     return adminAccess[menuItem];
-  //   }
-
   console.log("sidebar", user)
   return (
     <div className='fixed top-0 left-0 bottom-0 h-screen bg-[#201327]'>
@@ -123,11 +103,6 @@ const AdminSidebar = () => {
         <p className='hover:bg-[#F08E1F] text-white  py-1 text-center'>Restricted Communities</p>
         </div></Link>
 
-
-        {/* <div className='flex gap-x-3 items-center hover:bg-[#F3D8A7] px-2 mt-6 rounded'>
-        <IoChatboxOutline className=''/>
-        <p className='hover:bg-[#F3D8A7] py-1 text-center'>Contact Support</p>
-        </div> */}
 
         <p className='text-[#F08E1F] font-semibold mt-[45px] '>Profile</p>
 

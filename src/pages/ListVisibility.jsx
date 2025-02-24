@@ -251,7 +251,7 @@ const [error, setError] = useState(false)
       setError(false)
  
       toast.success('Community Creation Successful!!', toastStyles.success)
-      setTimeout(() => navigate('/browserowner'), 3000);
+      setTimeout(() => navigate('/app/browse'), 3000);
     }
     catch(err){
       setError(true)

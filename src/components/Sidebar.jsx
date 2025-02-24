@@ -8,6 +8,7 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { IoChatboxOutline } from "react-icons/io5";
 import { IoChevronDown } from "react-icons/io5";
 import { IoChevronForward } from "react-icons/io5";
+import { PiScrollLight } from "react-icons/pi";
 import { LuArrowUpFromLine } from "react-icons/lu";
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
@@ -95,11 +96,17 @@ const Sidebar = () => {
 
         </div></Link>
 
+        
+        {/* listed communities */}
+        <Link to={'/app/listedcommunities'}>  <div className='flex gap-x-3 items-center px-2 mt-6 rounded cursor-pointer'>
+        <PiScrollLight />
+      <p className='py-1 text-center'>Listed Community</p>
+        </div></Link>
+
         {/* create community */}
         <Link to={'/app/create'}>  <div className='flex gap-x-3 items-center px-2 mt-6 rounded cursor-pointer'>
         <FiUsers />
-      <p className='py-1 text-center'>Create Community</p>
-
+      <p className='py-1 text-center'>List Community</p>
         </div></Link>
 
         {subscription?.subscribed ? (
@@ -119,19 +126,10 @@ const Sidebar = () => {
 )}
 
 
-{/* 
-  <Link to={'/app/pricing'}>
-    <div className='flex gap-x-3 items-center hover:bg-[#F3D8A7] px-2 mt-6 rounded'>
-      <FiUsers className='' />
-      <p className='hover:bg-[#F3D8A7] py-1 text-center'>Switch to premium</p>
-    </div>
-  </Link> */}
-
-
-        {/* <Link to={'/settings'}><div className='flex gap-x-3 items-center hover:bg-[#F3D8A7] px-2 mt-6 rounded'>
+        <Link to={'/settings'}><div className='flex gap-x-3 items-center hover:bg-[#F3D8A7] px-2 mt-6 rounded'>
         <IoSettingsOutline className=''/>
         <p className='hover:bg-[#F3D8A7]  py-1 text-center'>Settings</p>
-        </div></Link> */}
+        </div></Link>
 
         <div className='flex gap-x-3 items-center hover:bg-[#F3D8A7] px-2 mt-6 rounded'>
         <IoChatboxOutline className=''/>

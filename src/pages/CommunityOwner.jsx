@@ -208,50 +208,24 @@ const CommunityOwner = () => {
 
                     <IoFilter />Filter by
 
-                    <select value={commTypeFilter} onChange={handleCommunityType} className='border border-[#F08E1F] py-1 px-2 max-w-[170px] flex items-center justify-center rounded-full text-gray-900'>
-                        <option value="" className='custom-option'>Community Type</option>
+                    <select value={commTypeFilter} onChange={handleCommunityType} className='border border-[#F08E1F] py-1 px-2 max-w-[180px] flex items-center justify-center rounded-full text-gray-900'>
+                        <option value="" className='custom-option'>Connection Type</option>
                         {uniqueCommunityTypes.map((country, index) => (
                             <option key={index} value={country}>{country}</option>
                         ))}
                     </select>
 
-                    <select value={countryFilter} onChange={handleCountryFilter} className='border border-[#F08E1F] py-1 px-3 max-w-[115px]  flex items-center justify-center rounded-full text-gray-900'>
+                    <select value={countryFilter} onChange={handleCountryFilter} className='border border-[#F08E1F] py-1 px-3 max-w-[150px]  flex items-center justify-center rounded-full text-gray-900'>
                         <option value="" className='custom-option'>Location</option>
                         {uniqueCountries.map((country, index) => (
                             <option key={index} value={country}>{country}</option>
                         ))}
                     </select>
 
-                    <select value={sizeFilter} onChange={handleSizeFilter} className='border border-[#F08E1F] py-1 px-3 flex items-center justify-center rounded-full text-gray-900'>
-                        <option value="" className='custom-option'>Community Size</option>
-                        {uniqueSizes.map((country, index) => (
-                            <option key={index} value={country}>{country}</option>
-                        ))}
-                    </select>
+            
 
-                    <select value={interestFilter} onChange={handleInterestFilter} className='border border-[#F08E1F] py-1 px-3 max-w-[115px] flex items-center justify-center rounded-full text-gray-900'>
-                        <option value="" className='custom-option'>Interests</option>
-                        {uniqueInterests.map((country, index) => (
-                            <option key={index} value={country}>{country}</option>
-                        ))}
-                    </select>
-
-                    <select value={engagementFilter} onChange={handleEngagementFilter} className='border border-[#F08E1F] py-1 px-3 max-w-[155px]  flex items-center justify-center rounded-full text-gray-900'>
-                        <option value="" className='custom-option'>Engagements</option>
-                        {uniqueEngagements.map((country, index) => (
-                            <option key={index} value={country}>{country}</option>
-                        ))}
-                    </select>
-
-                    <select value={goalFilter} onChange={handleGoalFilter} className='border border-[#F08E1F] py-1 px-3 flex items-center justify-center rounded-full text-gray-900'>
-                        <option value="" className='custom-option'>Community Goals</option>
-                        {uniqueGoals.map((country, index) => (
-                            <option key={index} value={country}>{country}</option>
-                        ))}
-                    </select>
-
-                    <select value={platformFilter} onChange={handlePlatformFilter} className='border border-[#F08E1F] py-1 px-3 max-w-[120px] flex items-center justify-center rounded-full text-gray-900'>
-                        <option value="" className='custom-option'>Platforms Used</option>
+                    <select value={platformFilter} onChange={handlePlatformFilter} className='border border-[#F08E1F] py-1 px-2 max-w-[200px] flex items-center justify-center rounded-full text-gray-900'>
+                        <option value="" className='custom-option'>Community Platform</option>
                         {uniquePlatforms.map((country, index) => (
                             <option key={index} value={country}>{country}</option>
                         ))}
