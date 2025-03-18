@@ -13,7 +13,7 @@ const Blog = () => {
   const fetchPosts = async () => {
     try {
       const res = await axios.get(`${URL}/api/posts`);
-      console.log(res.data);
+      console.log("see blog posts henry",res.data);
       setPosts(res.data);
     } catch (error) {
       console.log(error);
