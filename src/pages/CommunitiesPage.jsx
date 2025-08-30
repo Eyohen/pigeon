@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { Search, Download, MoreHorizontal, ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
+import axios from 'axios';
+import { URL } from '../url';
+import { useAuth } from '../context/AuthContext';
 
 const CommunitiesPage = () => {
   const [selectedCommunities, setSelectedCommunities] = useState([]);

@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
+import axios from 'axios';
+import { URL } from '../url';
+import { useAuth } from '../context/AuthContext';
 
 const SettingsPage = () => {
   const [activeSection, setActiveSection] = useState('Edit Profile');

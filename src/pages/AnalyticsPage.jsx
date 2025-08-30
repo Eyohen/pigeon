@@ -1,4 +1,7 @@
 import React from 'react';
+import axios from 'axios';
+import { URL } from '../url';
+import { useAuth } from '../context/AuthContext';
 
 const AnalyticsPage = () => {
   const MetricCard = ({ title, value, timeframe, bgColor = 'bg-orange-500' }) => (

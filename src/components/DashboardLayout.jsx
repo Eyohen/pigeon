@@ -14,6 +14,9 @@ import {
     Menu
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { URL } from '../url';
+import { useAuth } from '../context/AuthContext';
 
 const DashboardLayout = ({ children, activeTab = 'Analytics' }) => {
     const sidebarItems = [

@@ -11,6 +11,8 @@ import UsersPage from './pages/UsersPage';
 import SettingsPage from './pages/SettingsPage';
 import FeaturedCommunitiesPage from './pages/FeaturedCommunitiesPage';
 import BlogPage from './pages/BlogPage';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
 
 
 
@@ -20,9 +22,12 @@ const App = () => {
   return (
 
     <Routes>
-     
 
-       <Route exact path="/analytics" element={
+
+      <Route path="/" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage />} />
+
+      <Route exact path="/analytics" element={
         <DashboardLayout activeTab="Analytics">
           <AnalyticsPage />
         </DashboardLayout>
@@ -35,40 +40,40 @@ const App = () => {
       } />
 
       <Route path="/transactions" element={
-  <DashboardLayout activeTab="Transactions">
-    <TransactionsPage />
-  </DashboardLayout>
-} />
+        <DashboardLayout activeTab="Transactions">
+          <TransactionsPage />
+        </DashboardLayout>
+      } />
 
-<Route path="/communities" element={
-  <DashboardLayout activeTab="Communities">
-    <CommunitiesPage />
-  </DashboardLayout>
-} />
+      <Route path="/communities" element={
+        <DashboardLayout activeTab="Communities">
+          <CommunitiesPage />
+        </DashboardLayout>
+      } />
 
-<Route path="/users" element={
-  <DashboardLayout activeTab="Users">
-    <UsersPage />
-  </DashboardLayout>
-} />
+      <Route path="/users" element={
+        <DashboardLayout activeTab="Users">
+          <UsersPage />
+        </DashboardLayout>
+      } />
 
-<Route path="/settings" element={
-  <DashboardLayout activeTab="Settings">
-    <SettingsPage />
-  </DashboardLayout>
-} />
+      <Route path="/settings" element={
+        <DashboardLayout activeTab="Settings">
+          <SettingsPage />
+        </DashboardLayout>
+      } />
 
-<Route path="/featured-communities" element={
-  <DashboardLayout activeTab="Featured Communities">
-    <FeaturedCommunitiesPage />
-  </DashboardLayout>
-} />
+      <Route path="/featured-communities" element={
+        <DashboardLayout activeTab="Featured Communities">
+          <FeaturedCommunitiesPage />
+        </DashboardLayout>
+      } />
 
-<Route path="/blog" element={
-  <DashboardLayout activeTab="Blog">
-    <BlogPage />
-  </DashboardLayout>
-} />
+      <Route path="/blog" element={
+        <DashboardLayout activeTab="Blog">
+          <BlogPage />
+        </DashboardLayout>
+      } />
 
     </Routes>
 
