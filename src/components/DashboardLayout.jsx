@@ -1,3 +1,4 @@
+//src/components/DashboardLayout.jsx
 import React from 'react';
 import {
     BarChart3,
@@ -11,14 +12,28 @@ import {
     Star,
     Settings,
     Bell,
-    Menu
+    Menu,
+    LogOut
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { URL } from '../url';
 import { useAuth } from '../context/AuthContext';
 
 const DashboardLayout = ({ children, activeTab = 'Analytics' }) => {
+    const {user, logout} = useAuth();
+    const navigate = useNavigate();
+
+const handleLogout = () => {
+        logout();
+        navigate('/');
+    };
+
+ const getInitials = (firstName, lastName) => {
+        return `${firstName?.charAt(0) || ''}${lastName?.charAt(0) || ''}`.toUpperCase();
+    };
+
+
     const sidebarItems = [
         { name: 'Analytics', icon: BarChart3 },
         { name: 'Connectors', icon: Users },
@@ -71,17 +86,24 @@ const DashboardLayout = ({ children, activeTab = 'Analytics' }) => {
                     <div className="text-orange-500 text-sm font-medium mb-4">Profile</div>
                     <div className="flex items-center space-x-3">
                         <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center">
-                            <span className="text-white font-semibold text-sm">J</span>
+                         <span className="text-white font-semibold text-sm">
+                                {user ? getInitials(user.fname, user.lname) : 'A'}
+                            </span>
                         </div>
                         <div>
-                            <div className="text-white text-sm font-medium">Jenny Wilson</div>
-                            <div className="text-gray-400 text-xs">jen.wilson@example.com</div>
+                            <div className="text-white text-sm font-medium">
+                                {user ? `${user.fname} ${user.lname}` : 'Admin User'}
+                            </div>
+                            <div className="text-gray-400 text-xs">
+                                {user?.email || 'admin@example.com'}
+                            </div>
                         </div>
                     </div>
-                    <button className="w-full mt-4 flex items-center justify-center space-x-2 bg-gray-800 hover:bg-gray-700 text-gray-300 py-2 px-4 rounded-lg transition-colors">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                        </svg>
+                    <button 
+                        onClick={handleLogout}
+                        className="w-full mt-4 flex items-center justify-center space-x-2 bg-gray-800 hover:bg-gray-700 text-gray-300 py-2 px-4 rounded-lg transition-colors"
+                    >
+                        <LogOut className="w-4 h-4" />
                         <span className="text-sm">Log out</span>
                     </button>
                 </div>
