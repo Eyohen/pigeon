@@ -265,6 +265,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { URL } from '../url';
 import { useAuth } from '../context/AuthContext';
+import logo from '../assets/pigeonfavicon.png'
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -394,8 +395,8 @@ const RegisterPage = () => {
         {/* Header */}
         <div className="text-center mb-8">
           <div className="flex items-center justify-center space-x-2 mb-6">
-            <div className="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-xl">🐦</span>
+            <div className="w-10 h-10 rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-xl"><img src={logo}/></span>
             </div>
             <span className="text-2xl font-semibold text-gray-900">pigeonhire</span>
           </div>
