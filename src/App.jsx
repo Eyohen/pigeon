@@ -102,6 +102,7 @@ import FeaturedCommunitiesPage from './pages/FeaturedCommunitiesPage';
 import BlogPage from './pages/BlogPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
+import logo from './assets/pigeonfavicon.png'
 
 // Protected Route wrapper component
 const ProtectedRoute = ({ children }) => {
@@ -149,8 +150,8 @@ const AppLoader = () => (
   <div className="min-h-screen bg-gray-50 flex items-center justify-center">
     <div className="text-center">
       <div className="flex items-center justify-center space-x-2 mb-4">
-        <div className="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center">
-          <span className="text-white font-bold text-xl">🐦</span>
+        <div className="w-10 h-10 rounded-lg flex items-center justify-center">
+         <span className="text-white font-bold text-lg"><img src={logo}></img></span>
         </div>
         <span className="text-2xl font-semibold text-gray-900">pigeonhire</span>
       </div>

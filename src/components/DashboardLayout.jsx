@@ -19,6 +19,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { URL } from '../url';
 import { useAuth } from '../context/AuthContext';
+import logo from '../assets/pigeonfavicon.png'
 
 const DashboardLayout = ({ children, activeTab = 'Analytics' }) => {
     const {user, logout} = useAuth();
@@ -52,8 +53,8 @@ const handleLogout = () => {
                 {/* Logo */}
                 <div className="p-6">
                     <div className="flex items-center space-x-2">
-                        <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center">
-                            <span className="text-white font-bold text-lg">🐦</span>
+                        <div className="w-8 h-8 rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-lg"><img src={logo}></img></span>
                         </div>
                         <span className="text-xl font-semibold">pigeonhire</span>
                     </div>
