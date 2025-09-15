@@ -42,7 +42,7 @@ const handleLogout = () => {
         { name: 'Communities', icon: Building2 },
         { name: 'Users', icon: Users },
         { name: 'Blog', icon: FileText },
-        { name: 'Featured-Communities', icon: Star },
+        // { name: 'Featured-Communities', icon: Star },
         { name: 'Settings', icon: Settings },
     ];
 
